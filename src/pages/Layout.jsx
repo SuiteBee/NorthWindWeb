@@ -7,15 +7,15 @@ function Layout() {
   return (
     <>
         <div className="site-container">
-        {/*<div className="header box"></div>*/}
-        <div className="box header c1">
-          <h1>NW</h1>
+        <div className="titlebar"></div>
+        <div className="header r1 c1">
+          NW
         </div>
-        <div className="header c2">
-          <h1>Northwind</h1>
+        <div className="header r1 c2">
+          Northwind
         </div>
         
-        <div className="header c3">
+        <div className="header r1 c3">
             Powered by React 
             <img className="logo" src={reactLogo}></img>
         </div>
