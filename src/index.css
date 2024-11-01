@@ -1,0 +1,128 @@
+html {
+  font: 62.5% / 1.15 sans-serif;
+}
+ul {
+  list-style: none;
+  padding: 0;
+}
+button {
+  -moz-osx-font-smoothing: inherit;
+  -webkit-font-smoothing: inherit;
+  appearance: none;
+  background: transparent;
+  border: none;
+  color: inherit;
+  font: inherit;
+  line-height: normal;
+  margin: 0;
+  overflow: visible;
+  padding: 0;
+  width: auto;
+}
+button::-moz-focus-inner {
+  border: 0;
+}
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 100%;
+  line-height: 1.15;
+  margin: 0;
+}
+button,
+input {
+  overflow: visible;
+}
+input[type="text"] {
+  border-radius: 0;
+}
+body {
+  background-image: url('assets/background/siteBack.jpg');
+  background-size: cover;
+  color: #4d4d4d;
+  font:
+    1.6rem/1.25 Arial,
+    sans-serif;
+  margin: 0 auto;
+  float: left;
+  padding: 10px 50px 10px 50px;
+  max-width:100%;
+  width: 100%;
+}
+@media screen and (min-width: 620px) {
+  body {
+    font-size: 1.9rem;
+    line-height: 1.31579;
+  }
+}
+
+/* End resets */
+/* Global styles */
+.logo {
+  width: 25px;
+  height: 25px;
+  margin: 40px 10px -5px 10px;
+}
+.site-container {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: 25% 25% 25% 25%;
+  grid-template-rows: auto;
+  grid-template-areas: 
+    "header header header header"
+    "side content content content"
+    "footer footer footer footer";
+    align-items: baseline;
+}
+
+.box {
+  background-color: #444;
+  color: black;
+  border-radius: 5px;
+  padding: 25px;
+  font-size: 150%;
+  height: 100%;
+}
+
+.header {
+  grid-area: header;
+  margin-top: 0;
+  margin-right: 1em;
+}
+.header.c1{
+  grid-column: 1 / span 1;
+  font-family: "Merriweather", serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 400%;
+  color:black;
+  align-content: center;
+}
+.header.c2{
+  grid-column: 2 / span 1;
+  align-content:end;
+  font-size: 400%;
+  color: black;
+}
+.header.c3{
+  grid-column: 4 / span 1;
+  align-content:end;
+  color: black;
+  justify-self: right;
+}
+
+.sidebar {
+  grid-area: side;
+}
+
+.content {
+  grid-area: content;
+  position: relative;
+}
+
+.footer {
+  grid-area: footer;
+}
