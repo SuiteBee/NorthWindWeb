@@ -1,7 +1,7 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import { Navbar } from "../components/navigation/Navbar";
-import reactLogo from "../assets/icon/reactlogo.png";
+import { Navbar } from "@/components/navigation/Navbar";
+import reactLogo from "@/assets/icon/reactlogo.png";
 
 function Layout() {
   return (

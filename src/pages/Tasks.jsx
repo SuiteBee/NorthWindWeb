@@ -1,5 +1,5 @@
 import React from "react";
-import TaskManager from "../components/tasker/TaskManager";
+import TaskManager from "@/components/tasker/TaskManager";
 
 const TodoList = [
     { id: "todo0", name: "Eat", completed: true },

@@ -1,7 +1,7 @@
 import React from "react";
 import {useState} from "react";
 import {nanoid} from "nanoid";
-import "../../styles/tasker.css";
+import "@/styles/tasker.css";
 
 //////////////////////////////////////////
 //Components

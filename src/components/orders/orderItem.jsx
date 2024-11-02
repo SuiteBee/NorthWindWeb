@@ -1,18 +1,14 @@
 import React from "react";
-import OrderGrid from "@/components/orders/orderGrid";
 
-const Orders = () => {
+const OrderItem = () => {
     return (
         <>
             <h1>Orders</h1>
             <div>
                 Here we will display order info
             </div>
-            <div>
-                <OrderGrid />
-            </div>
         </>
     );
 };
 
-export default Orders;
+export default OrderItem;

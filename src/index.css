@@ -332,3 +332,7 @@ button::-moz-focus-inner {
 .footer {
   grid-area: footer;
 }
+
+.orderHeader {
+  color: black;
+}

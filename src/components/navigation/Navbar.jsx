@@ -1,14 +1,14 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import "../../styles/navbar.css";
+import "@/styles/navbar.css";
 
-import HomeIcon from "../../assets/icon/homeIcon.svg";
-import TaskIcon from "../../assets/icon/taskIcon.svg";
-import OrderIcon from "../../assets/icon/orderIcon.svg";
-import ClientsIcon from "../../assets/icon/clientsIcon.svg";
-import CatalogIcon from "../../assets/icon/productIcon.svg";
-import AboutIcon from "../../assets/icon/aboutIcon.svg";
-import LogoutIcon from "../../assets/icon/logoutIcon.svg";
+import HomeIcon from "@/assets/icon/homeIcon.svg";
+import TaskIcon from "@/assets/icon/taskIcon.svg";
+import OrderIcon from "@/assets/icon/orderIcon.svg";
+import ClientsIcon from "@/assets/icon/clientsIcon.svg";
+import CatalogIcon from "@/assets/icon/productIcon.svg";
+import AboutIcon from "@/assets/icon/aboutIcon.svg";
+import LogoutIcon from "@/assets/icon/logoutIcon.svg";
 
 export const Navbar = () => {
     return (
