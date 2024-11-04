@@ -8,20 +8,10 @@ const orderGridCols = [
     { field: "companyName", headerName: "Company", headerClassName: "orderHeader" },
     { field: "orderTotal", headerName: "Order Total", headerClassName: "orderHeader" },
     { field: "carrierName", headerName: "Carrier", headerClassName: "orderHeader" },
-    { field: "isCompleted", headerName: "Completed", headerClassName: "orderHeader",
-        renderCell: renderCompleted
-            
-    }
+    { field: "isCompleted", headerName: "Completed", headerClassName: "orderHeader", renderCell: renderCompleted }
 ];
 
-const orderGridRows = [
-    { id: 1, orderDate: "2024-01-01", companyName: "Suite Bee Software", orderTotal: 99.99, carrierName: "USPS", isCompleted: true },
-    { id: 2, orderDate: "2024-01-01", companyName: "Suite Bee Software", orderTotal: 99.99, carrierName: "USPS", isCompleted: false },
-    { id: 3, orderDate: "2024-01-01", companyName: "Suite Bee Software", orderTotal: 99.99, carrierName: "USPS", isCompleted: true },
-    { id: 4, orderDate: "2024-01-01", companyName: "Suite Bee Software", orderTotal: 99.99, carrierName: "USPS", isCompleted: true },
-    { id: 5, orderDate: "2024-01-01", companyName: "Suite Bee Software", orderTotal: 99.99, carrierName: "USPS", isCompleted: false }
-]
-
+//Render an input to the cell (checkbox)
 function renderCompleted(props){
     const { value } = props;
 
@@ -31,12 +21,25 @@ function renderCompleted(props){
             type="checkbox"
             defaultChecked={value}   
             disabled
-            readonly     
+            readOnly     
         />
     )
 }
 
-const OrderGrid = () => {
+const OrderGrid = (props) => {
+    const orderGridRows = props.allOrders?.map(
+        (order) => (
+            { 
+                id: order.orderId, 
+                orderDate: order.orderDate, 
+                companyName: order.orderedBy.companyName, 
+                orderTotal: order.orderTotal, 
+                carrierName: order.sendTo.shipCarrier, 
+                isCompleted: order.sendTo.shippedDate ? "true" : "false"
+            }
+        )
+    );
+
     return (
         <>
             <div className="orderGrid">
@@ -46,8 +49,14 @@ const OrderGrid = () => {
                             columnVisibilityModel: {
                                 id: false
                             }
+                        },
+                        pagination: {
+                            paginationModel: {
+                                pageSize: 10
+                            }
                         }
                     }}
+                    //Styling
                     sx={{
                         color: "white",
                         background: "black"

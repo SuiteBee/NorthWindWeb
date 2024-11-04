@@ -336,3 +336,8 @@ button::-moz-focus-inner {
 .orderHeader {
   color: black;
 }
+
+.orderGrid {
+  color: white;
+  background: black;
+}
