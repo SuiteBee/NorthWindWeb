@@ -138,6 +138,10 @@ button::-moz-focus-inner {
   background-color: #000;
   color: #fff;
 }
+.btn__close {
+  float:right;
+  margin: 25px;
+}
 .btn-group {
   display: flex;
   justify-content: space-between;
@@ -148,6 +152,7 @@ button::-moz-focus-inner {
 .btn-group > * + * {
   margin-left: 0.8rem;
 }
+
 /*Button styles */
 
 /* Checkbox styles */
@@ -340,4 +345,13 @@ button::-moz-focus-inner {
 .orderGrid {
   color: white;
   background: black;
+  width: 90%;
+}
+
+.orderItem {
+  margin-left: 30px;
+}
+
+.prodItem {
+  margin-left: 30px;
 }

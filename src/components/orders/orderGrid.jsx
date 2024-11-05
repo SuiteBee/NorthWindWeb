@@ -2,40 +2,53 @@ import React from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { Checkbox } from "@mui/material";
 
-const orderGridCols = [
-    { field: "id", headerName: "Order ID", headerClassName: "orderHeader"},
-    { field: "orderDate", headerName: "Date Ordered", headerClassName: "orderHeader" },
-    { field: "companyName", headerName: "Company", headerClassName: "orderHeader" },
-    { field: "orderTotal", headerName: "Order Total", headerClassName: "orderHeader" },
-    { field: "carrierName", headerName: "Carrier", headerClassName: "orderHeader" },
-    { field: "isCompleted", headerName: "Completed", headerClassName: "orderHeader", renderCell: renderCompleted }
-];
-
-//Render an input to the cell (checkbox)
-function renderCompleted(props){
-    const { value } = props;
-
-    return(
-        <input
-            id={`${props.id}_chk`}
-            type="checkbox"
-            defaultChecked={value}   
-            disabled
-            readOnly     
-        />
-    )
-}
-
 const OrderGrid = (props) => {
+
+    function renderView(orderToView){
+        return(
+            <button 
+                type="button" 
+                className="btn" 
+                onClick={() => props.viewOrder(orderToView)}>
+                View
+            </button>
+        )
+    }
+
+    //Render an input to the cell (checkbox)
+    function renderCompleted(isComplete){
+        return(
+            <input
+                id={`${props.id}_chk`}
+                type="checkbox"
+                defaultChecked={isComplete}   
+                disabled
+                readOnly     
+            />
+        )
+    }
+
+    const orderGridCols = [
+        { field: "id", headerName: "Order ID", headerClassName: "orderHeader" },
+        { field: "orderDate", headerName: "Date Ordered", headerClassName: "orderHeader", width: 125 },
+        { field: "companyName", headerName: "Company", headerClassName: "orderHeader", width: 225 },
+        { field: "orderTotal", headerName: "Order Total", headerClassName: "orderHeader", align: "right" },
+        { field: "carrierName", headerName: "Carrier", headerClassName: "orderHeader", width: 150 },
+        { field: "isCompleted", headerName: "Completed", headerClassName: "orderHeader", align: "center", renderCell: renderCompleted },
+        { field: "viewOrder", headerName: "", renderCell: renderView, align: "center" }
+    ];
+
     const orderGridRows = props.allOrders?.map(
         (order) => (
             { 
                 id: order.orderId, 
                 orderDate: order.orderDate, 
                 companyName: order.orderedBy.companyName, 
-                orderTotal: order.orderTotal, 
+                //Display cost format x,xxx.xx
+                orderTotal: order.orderTotal.toLocaleString('en-US', {minimumFractionDigits: 2}), 
                 carrierName: order.sendTo.shipCarrier, 
-                isCompleted: order.sendTo.shippedDate ? "true" : "false"
+                isCompleted: order.sendTo.shippedDate ? "true" : "false",
+                viewOrder: order
             }
         )
     );
@@ -58,8 +71,10 @@ const OrderGrid = (props) => {
                     }}
                     //Styling
                     sx={{
+                        m: 2,
                         color: "white",
-                        background: "black"
+                        background: "black",
+                        fontSize: "16px"
                     }}
                 />
             </div>

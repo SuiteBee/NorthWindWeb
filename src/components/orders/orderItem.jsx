@@ -1,14 +1,38 @@
-import React from "react";
+import ProductItem from "@/components/orders/ProductItem";
+import {nanoid} from "nanoid";
 
-const OrderItem = () => {
+const OrderItem = (order) => {
+
+    const prodList = order.value.products?.map((item, index) => (
+        <ProductItem 
+            id={index += 1}
+            key={`prod_${nanoid()}`}
+            prod={item} 
+        />
+    ));
+
     return (
         <>
-            <h1>Orders</h1>
-            <div>
-                Here we will display order info
+            <div className="orderItem">
+                <label>
+                    Order ID: {order.value.orderId}
+                </label>
+                <br />
+                <label>
+                    Company: {order.value.orderedBy.companyName}
+                </label>
+                <br />
+                <label>
+                    Order Total: {order.value.orderTotal.toLocaleString('en-US', {minimumFractionDigits: 2}) }
+                </label>
+                <br />
+
+                <h1>Products</h1>
+                {prodList}
             </div>
+            
         </>
     );
-};
+}
 
 export default OrderItem;
