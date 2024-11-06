@@ -258,7 +258,7 @@ button::-moz-focus-inner {
 }
 /* End Stack styles */
 
-.logo {
+.react-logo {
   width: 25px;
   height: 25px;
   margin: 40px 10px -5px 10px;
@@ -354,4 +354,17 @@ button::-moz-focus-inner {
 
 .prodItem {
   margin-left: 30px;
+}
+
+.nav-link {
+  color: white ;
+  font-weight: 400;
+}
+
+.nav-link.active {
+  color: blue !important;
+}
+
+.nav-link:hover {
+  color: lightskyblue;
 }
