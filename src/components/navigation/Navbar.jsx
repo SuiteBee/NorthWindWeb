@@ -13,35 +13,33 @@ export const Navbar = () => {
     return (
         <>
             <div className="container-fluid h-100">
-                <div className="navbar-nav h-50">
-                    <NavLink className="p-4 nav-link" to="/">
-                        <img className="p-2" src={HomeIcon}></img>
+                <div className="navbar-nav h-100 row-gap-2">
+                    <NavLink className="nav-link" to="/">
+                        <img className="me-2" src={HomeIcon}></img>
                         Home
                     </NavLink>
-                    <NavLink className="p-4 nav-link" to="/tasks">
-                        <img className="p-2" src={TaskIcon}></img>
+                    <NavLink className="nav-link" to="/tasks">
+                        <img className="me-2" src={TaskIcon}></img>
                         Task Manager
                     </NavLink>
-                    <NavLink className="p-4 nav-link" to="/orders">
-                        <img className="p-2" src={OrderIcon}></img>
+                    <NavLink className="nav-link" to="/orders">
+                        <img className="me-2" src={OrderIcon}></img>
                         Orders
                     </NavLink>
-                    <NavLink className="p-4 nav-link" to="/customers">
-                        <img className="p-2" src={ClientsIcon}></img>
+                    <NavLink className="nav-link" to="/customers">
+                        <img className="me-2" src={ClientsIcon}></img>
                         Clients
                     </NavLink>
-                    <NavLink className="p-4 nav-link" to="/products">
-                        <img className="p-2" src={CatalogIcon}></img>
+                    <NavLink className="nav-link" to="/products">
+                        <img className="me-2" src={CatalogIcon}></img>
                         Catalog
                     </NavLink>
-                    <NavLink className="p-4 nav-link" to="/about">
-                        <img className="p-2" src={AboutIcon}></img>
+                    <NavLink className="nav-link" to="/about">
+                        <img className="me-2" src={AboutIcon}></img>
                         About
                     </NavLink>
-                </div>
-                <div className="navbar-nav h-50 justify-content-end">
-                    <NavLink className="p-4 nav-link" to="/logout">
-                        <img className="p-2" src={LogoutIcon}></img>
+                    <NavLink className="nav-link mt-auto" to="/logout">
+                        <img className="me-2" src={LogoutIcon}></img>
                         Log Out
                     </NavLink>
                 </div>

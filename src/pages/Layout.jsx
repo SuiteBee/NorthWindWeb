@@ -27,11 +27,11 @@ function Layout() {
   return (
     <>
 
-      <div className="sticky-top p-2 d-flex flex-nowrap align-items-baseline text-white bg-dark">
-        <div className="display-1 col-sm-2 text-center">
+      <div className="sticky-top p-2 d-flex flex-nowrap align-items-center text-white bg-dark">
+        <div className="display-1 col-sm-1 text-center border-end">
           NW
         </div>
-        <div className="display-4 col-sm-8 text-left">
+        <div className="display-4 col-sm-10 text-left px-5">
           Northwind
         </div>
         
@@ -43,15 +43,15 @@ function Layout() {
         </div>
         */}
 
-        <div className="col-sm-2">
-          <button className="btn-default" type="button" onClick={handleShowNav}>
+        <div className="col-sm-1 d-flex justify-content-end">
+          <button className="btn-default px-5" type="button" onClick={handleShowNav}>
             <img src={MenuIcon}></img>
           </button>
         </div>
       </div>
 
-      <Offcanvas className="bg-black" show={showNav} onHide={handleCloseNav}>
-        <Offcanvas.Header className="justify-content-between">
+      <Offcanvas className="bg-dark" show={showNav} onHide={handleCloseNav}>
+        <Offcanvas.Header className="justify-content-between border-bottom">
           <div className="display-1 text-white">Menu</div>
           <div>
             <button className="btn-default" type="button" onClick={handleCloseNav}>
@@ -65,16 +65,17 @@ function Layout() {
         </Offcanvas.Body>
       </Offcanvas>
 
-      <div className="box content">
+      <div className="container-fluid bg-black vh-100">
         <Outlet />
       </div>
 
-      <div className="box footer">
-        footer
-      </div>
-
-      <div className="box footer">
-        footer
+      <div className="container-fluid bg-black h-10 border-top">
+        <div className="d-flex justify-content-center">
+          <div className="d-flex m-2 p-2">
+            <h1>Powered by React</h1>
+            <img className="react-logo ms-2 my-1" src={ReactLogo}></img>
+          </div>
+        </div>
       </div>
     </>
   );

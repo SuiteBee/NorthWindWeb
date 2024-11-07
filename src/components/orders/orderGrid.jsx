@@ -1,6 +1,5 @@
 import React from "react";
 import { DataGrid } from "@mui/x-data-grid";
-import { Checkbox } from "@mui/material";
 
 const OrderGrid = (props) => {
 
@@ -8,7 +7,7 @@ const OrderGrid = (props) => {
         return(
             <button 
                 type="button" 
-                className="btn" 
+                className="btn btn-primary" 
                 onClick={() => props.viewOrder(orderToView)}>
                 View
             </button>
@@ -29,13 +28,13 @@ const OrderGrid = (props) => {
     }
 
     const orderGridCols = [
-        { field: "id", headerName: "Order ID", headerClassName: "orderHeader" },
+        { field: "id", headerName: "Order ID", headerClassName: "orderHeader"},
         { field: "orderDate", headerName: "Date Ordered", headerClassName: "orderHeader", width: 125 },
         { field: "companyName", headerName: "Company", headerClassName: "orderHeader", width: 225 },
-        { field: "orderTotal", headerName: "Order Total", headerClassName: "orderHeader", align: "right" },
+        { field: "orderTotal", headerName: "Order Total", headerClassName: "orderHeader", width: 125, align: "right" },
         { field: "carrierName", headerName: "Carrier", headerClassName: "orderHeader", width: 150 },
-        { field: "isCompleted", headerName: "Completed", headerClassName: "orderHeader", align: "center", renderCell: renderCompleted },
-        { field: "viewOrder", headerName: "", renderCell: renderView, align: "center" }
+        { field: "isCompleted", headerName: "Completed", headerClassName: "orderHeader", width: 100, align: "center", renderCell: renderCompleted },
+        { field: "viewOrder", headerName: "", renderCell: renderView, align: "center", width:75 }
     ];
 
     const orderGridRows = props.allOrders?.map(
@@ -55,7 +54,7 @@ const OrderGrid = (props) => {
 
     return (
         <>
-            <div className="orderGrid">
+            <div style={{width: "850px"}}>
                 <DataGrid rows={orderGridRows} columns={orderGridCols} 
                     initialState={{
                         columns: {

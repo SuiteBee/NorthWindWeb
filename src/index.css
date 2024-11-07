@@ -261,7 +261,6 @@ button::-moz-focus-inner {
 .react-logo {
   width: 25px;
   height: 25px;
-  margin: 40px 10px -5px 10px;
 }
 .site-container {
   display: grid;
@@ -362,7 +361,7 @@ button::-moz-focus-inner {
 }
 
 .nav-link.active {
-  color: blue !important;
+  color: gray !important;
 }
 
 .nav-link:hover {
