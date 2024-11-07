@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 
 //////////////////////////////////////////
@@ -23,6 +23,10 @@ function Layout() {
 
   const handleCloseNav = () => setNav(false);
   const handleShowNav = () => setNav(true);
+  
+  const CloseNavbar = useCallback(() => {
+    setNav(false);
+  }, [showNav]);
 
   return (
     <>
@@ -34,14 +38,6 @@ function Layout() {
         <div className="display-4 col-sm-10 text-left px-5">
           Northwind
         </div>
-        
-        {/*<div className="h4 col-sm-2 text-right">
-          <div class="d-flex flex-nowrap align-items-baseline justify-content-end">
-            Powered by React
-            <img className="react-logo" src={ReactLogo}></img>
-          </div>
-        </div>
-        */}
 
         <div className="col-sm-1 d-flex justify-content-end">
           <button className="btn-default px-5" type="button" onClick={handleShowNav}>
@@ -61,7 +57,7 @@ function Layout() {
           
         </Offcanvas.Header>
         <Offcanvas.Body>
-          <Navbar />
+          <Navbar CloseNav={CloseNavbar}/>
         </Offcanvas.Body>
       </Offcanvas>
 
