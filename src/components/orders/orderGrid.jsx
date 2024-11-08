@@ -3,6 +3,7 @@ import { DataGrid } from "@mui/x-data-grid";
 
 const OrderGrid = (props) => {
 
+    //Render view button on grid to display order details
     function renderView(orderToView){
         return(
             <button 
@@ -14,7 +15,7 @@ const OrderGrid = (props) => {
         )
     }
 
-    //Render an input to the cell (checkbox)
+    //Render a disabled input checkbox to the cell (checkbox)
     function renderCompleted(isComplete){
         return(
             <input
@@ -46,6 +47,7 @@ const OrderGrid = (props) => {
                 //Display cost format x,xxx.xx
                 orderTotal: order.orderTotal.toLocaleString('en-US', {minimumFractionDigits: 2}), 
                 carrierName: order.sendTo.shipCarrier, 
+                //Mark order complete when shipped
                 isCompleted: order.sendTo.shippedDate ? "true" : "false",
                 viewOrder: order
             }
@@ -54,6 +56,7 @@ const OrderGrid = (props) => {
 
     return (
         <>
+            {/*Sum of column widths*/}
             <div style={{width: "850px"}}>
                 <DataGrid rows={orderGridRows} columns={orderGridCols} 
                     initialState={{
@@ -62,6 +65,7 @@ const OrderGrid = (props) => {
                                 id: false
                             }
                         },
+                        //10 results per page
                         pagination: {
                             paginationModel: {
                                 pageSize: 10

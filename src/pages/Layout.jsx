@@ -31,11 +31,11 @@ function Layout() {
   return (
     <>
 
-      <div className="sticky-top p-2 d-flex flex-nowrap align-items-center text-white bg-dark">
-        <div className="display-1 col-sm-1 text-center border-end">
+      <div className="sticky-top p-2 d-flex flex-nowrap align-items-center text-white bg-dark justify-content-between">
+        <div className="display-1 col-sm-auto text-center border-end px-3">
           NW
         </div>
-        <div className="display-4 col-sm-10 text-left px-5">
+        <div className="display-4 col-sm-8 flex-fill px-3">
           Northwind
         </div>
 
@@ -46,7 +46,7 @@ function Layout() {
         </div>
       </div>
 
-      <Offcanvas className="bg-dark" show={showNav} onHide={handleCloseNav}>
+      <Offcanvas className="bg-dark w-40" show={showNav} onHide={handleCloseNav}>
         <Offcanvas.Header className="justify-content-between border-bottom">
           <div className="display-1 text-white">Menu</div>
           <div>

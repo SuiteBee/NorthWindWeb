@@ -15,7 +15,7 @@ const Orders = () => {
     }
 
     const gridView = () => {
-        return {display: viewingOrder === null && msg === null ? "" : "none"};
+        return {display: viewingOrder === null ? "" : "none"};
     }
     
     const detailView = () => {
@@ -44,13 +44,32 @@ const Orders = () => {
 
     return (
         <>
-            <div className="p-5 w-50" style={msgView()}>
+            <div className="p-3 w-75" style={msgView()}>
                 {msg}
             </div>
 
             <div style={gridView()}>
-                <h1 className="display-1 p-3">Orders</h1>
-                <hr />
+                <h1 className="display-1 p-2 text-white">Orders</h1>
+                <hr className="text-white w-80 h-10" style={{height: "3px"}}/>
+                <div className="d-flex px-4 gap-3 justify-content-start">
+                    <div className="col-sm-auto">
+                        <button 
+                            type="button" 
+                            className="btn btn-primary btn-lg" 
+                            onClick={{}}>
+                            Create
+                        </button>
+                    </div>
+                    <div className="col-sm-auto">
+                        <button 
+                            type="button" 
+                            className="btn btn-primary btn-lg" 
+                            onClick={{}}>
+                            Update
+                        </button>
+                    </div>
+                </div>
+                
                 <div>
                     <OrderGrid allOrders={orders} viewOrder={viewOrder}/>
                 </div>

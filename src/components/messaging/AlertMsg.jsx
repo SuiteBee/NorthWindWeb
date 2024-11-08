@@ -23,7 +23,7 @@ const AlertMsg = (type, title, msg) => {
     return (
         <>
             <Alert 
-                className={`p-3 w-auto bg-${type} border-${type}`} 
+                className={`p-2 w-auto bg-${type} border-${type}`} 
                 key={type} 
                 variant={type} 
                 dismissible
@@ -32,7 +32,7 @@ const AlertMsg = (type, title, msg) => {
                     <img className="p-1 align-text-top" src={getIcon()} />
                     {title}
                 </h2>
-                <hr />
+                <hr className="text-black"/>
                 <p>
                     {msg}
                 </p>
