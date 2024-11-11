@@ -96,63 +96,19 @@ body {
 
 /*Button styles */
 button {
-  -moz-osx-font-smoothing: inherit;
-  -webkit-font-smoothing: inherit;
-  appearance: none;
-  background: transparent;
+  background: none;
   border: none;
-  color: inherit;
-  font: inherit;
-  line-height: normal;
-  margin: 0;
-  overflow: visible;
-  padding: 0;
-  width: auto;
-}
-button::-moz-focus-inner {
-  border: 0;
-}
-.btn {
-  border: 0.2rem solid #4d4d4d;
-  cursor: pointer;
-  padding: 0.8rem 1rem 0.7rem;
-  text-transform: capitalize;
-}
-.btn.toggle-btn {
-  border-color: #d3d3d3;
-  border-width: 1px;
-}
-.btn.toggle-btn[aria-pressed="true"] {
-  border-color: #4d4d4d;
-  text-decoration: underline;
-}
-.btn__danger {
-  background-color: #ca3c3c;
-  border-color: #bd2130;
-  color: #fff;
-}
-.btn__filter {
-  border-color: lightgrey;
-}
-.btn__primary {
-  background-color: #000;
-  color: #fff;
-}
-.btn__close {
-  float:right;
-  margin: 25px;
-}
-.btn-group {
-  display: flex;
-  justify-content: space-between;
-}
-.btn-group > * {
-  flex: 1 1 49%;
-}
-.btn-group > * + * {
-  margin-left: 0.8rem;
 }
 
+.btn-long {
+  width: 100px;
+  height: 35px;
+}
+
+.btn-alert {
+  width: 50px;
+  height: 35px;
+}
 /*Button styles */
 
 /* Checkbox styles */
@@ -262,79 +218,11 @@ button::-moz-focus-inner {
   width: 25px;
   height: 25px;
 }
-.site-container {
-  display: grid;
-  grid-template-columns: 25% 25% 25% 25%;
-  grid-template-rows: auto;
-  grid-template-areas: 
-    "header header header header"
-    "side content content content"
-    "footer footer footer footer";
-  align-items: baseline;
-  color: white;
-}
 
-.box {
-  background-color: black;
-  font-size: 150%;
-  height: 100%;
-}
-
-.header {
-  grid-area: header;
-  margin-top: 0;
-  margin-right: 1em;
-}
-.titlebar {
-  grid-area: header;
-  grid-row-start: 1;
-  grid-row-end: 1;
-  background-color: black;
-  color: white;
-  padding: 25px;
-  grid-area: header;
-  margin-top:0;
-  height: 100%;
-}
-.header.r1.c1{
-  grid-column: 1 / span 1;
-  font-family: "Merriweather", serif;
-  font-weight: 700;
-  font-style: normal;
-  font-size: 400%;
-
-  align-self: center;
-  justify-self: center;
-}
-.header.r1.c2{
-  grid-column: 2 / span 1;
-  font-family: "Merriweather", serif;
-  font-size: 200%;
-
-  margin-top: 5%;
-}
-.header.r1.c3{
-  grid-column: 4 / span 1;
-  justify-self: right;
-  margin-top: 5%;
-}
-
-.sidebar {
-  grid-area: side;
-  background-color: black;
-  border: 2px solid white;
-  border-left: 0;
-  border-bottom: 0;
-  border-top: 0;
-}
-
-.content {
-  grid-area: content;
-  position: relative;
-}
-
-.footer {
-  grid-area: footer;
+.alert-close {
+  filter: invert(1);
+  width: 20px;
+  height: 20px;
 }
 
 .orderHeader {

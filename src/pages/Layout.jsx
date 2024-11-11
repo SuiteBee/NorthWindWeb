@@ -12,11 +12,13 @@ import CloseIcon from "@/assets/icon/closeIcon.svg";
 //Components
 //////////////////////////////////////////
 import { Navbar } from "@/components/navigation/Navbar";
+import AlertMsg from '@/components/messaging/AlertMsg';
 
 //////////////////////////////////////////
 //Bootstrap
 //////////////////////////////////////////
 import Offcanvas from 'react-bootstrap/Offcanvas';
+
 
 function Layout() {
   const [showNav, setNav] = useState(false);
@@ -64,6 +66,8 @@ function Layout() {
       <div className="container-fluid bg-black vh-100">
         <Outlet />
       </div>
+
+      <AlertMsg />
 
       <div className="container-fluid bg-black h-10 border-top">
         <div className="d-flex justify-content-center">

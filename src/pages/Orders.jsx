@@ -2,91 +2,84 @@ import { NorthWindClient } from "@/components/client/NorthWindClient";
 import React, { useState, useEffect } from "react";
 import OrderGrid from "@/components/orders/orderGrid";
 import OrderItem from "@/components/orders/orderItem";
-import AlertMsg from "@/components/messaging/AlertMsg.jsx";
 import CloseIcon from "@/assets/icon/closeIcon.svg";
+import useAlert from "@/hooks/useAlert";
 
 const Orders = () => {
     const [orders, setOrders] = useState(null);
-    const [viewingOrder, setViewingOrder] = useState(null);
-    const [msg, setMsg] = useState(null);
+    const [orderDetail, setOrderDetail] = useState(null);
+    const { setAlert, clearAlert } = useAlert();
 
-    const msgView = () => {
-        return {display: msg === null ? "none" : ""};
+    function viewOrder(toView){
+        setOrderDetail(OrderItem(toView));
     }
 
-    const gridView = () => {
-        return {display: viewingOrder === null ? "" : "none"};
-    }
-    
-    const detailView = () => {
-        return {display: viewingOrder === null ? "none" : ""};
+    function closeOrderView(){
+        setOrderDetail(null);
     }
 
+    //Popualate Order grid with all orders
     useEffect(() => {
         NorthWindClient.get("order/all")
         .then(data => {
             setOrders(data);
-            setMsg(null);
+            clearAlert();
         })
         .catch(error => {
             console.error("Server Error", error);
-            setMsg(AlertMsg("danger", "Server Error", error.message));
+            setAlert("danger", "Server Error: Order Grid", error.message);
         });
     }, [])
 
-    function viewOrder(toView){
-        setViewingOrder(OrderItem(toView));
-    }
-
-    function closeOrderView(){
-        setViewingOrder(null);
-    }
-
-    return (
-        <>
-            <div className="p-3 w-75" style={msgView()}>
-                {msg}
-            </div>
-
-            <div style={gridView()}>
-                <h1 className="display-1 p-2 text-white">Orders</h1>
-                <hr className="text-white w-80 h-10" style={{height: "3px"}}/>
-                <div className="d-flex px-4 gap-3 justify-content-start">
-                    <div className="col-sm-auto">
-                        <button 
-                            type="button" 
-                            className="btn btn-primary btn-lg" 
-                            onClick={{}}>
-                            Create
-                        </button>
-                    </div>
-                    <div className="col-sm-auto">
-                        <button 
-                            type="button" 
-                            className="btn btn-primary btn-lg" 
-                            onClick={{}}>
-                            Update
-                        </button>
-                    </div>
+    if(orderDetail === null){
+     return (
+        <div>
+            <h1 className="display-1 p-2 text-white">Orders</h1>
+            <hr className="text-white w-80 h-10" style={{height: "3px"}}/>
+            <div className="d-flex px-4 gap-3 justify-content-start">
+                <div className="col-sm-auto">
+                    <button 
+                        type="button" 
+                        className="btn btn-primary btn-long" 
+                        onClick={{}}>
+                        Create
+                    </button>
                 </div>
-                
-                <div>
-                    <OrderGrid allOrders={orders} viewOrder={viewOrder}/>
+                <div className="col-sm-auto">
+                    <button 
+                        type="button" 
+                        className="btn btn-primary btn-long" 
+                        onClick={{}}>
+                        Update
+                    </button>
                 </div>
             </div>
             
-            <div style={detailView()}>
-                <button 
-                    type="button" 
-                    className="btn btn__danger btn__close"
-                    onClick={closeOrderView}>
-                    <img src={CloseIcon}/>
-                </button>
-                <h1>Details</h1>
-                {viewingOrder}
+            <div>
+                <OrderGrid allOrders={orders} viewOrder={viewOrder}/>
             </div>
-        </>
-    );
+        </div>
+     )       
+    } else{
+        return(
+            <div className="text-white">
+                <div className="d-flex">
+                    <h1 className="display-1 p-2">Order Details</h1>
+                    <div className="align-self-start ms-auto">
+                        <button 
+                            type="button" 
+                            className="btn btn__danger btn__close"
+                            onClick={closeOrderView}>
+                            <img src={CloseIcon}/>
+                        </button>
+                    </div>
+                    
+                </div>
+
+                {orderDetail}
+            </div>
+        )
+    }
 };
 
 export default Orders;
