@@ -9,6 +9,7 @@ const OrderGrid = (props) => {
             <button 
                 type="button" 
                 className="btn btn-primary" 
+                style={{width: "50px", height: "30px"}}
                 onClick={() => props.viewOrder(orderToView)}>
                 View
             </button>
@@ -18,13 +19,11 @@ const OrderGrid = (props) => {
     //Render a disabled input checkbox to the cell (checkbox)
     function renderCompleted(isComplete){
         return(
-            <input
-                id={`${props.id}_chk`}
-                type="checkbox"
-                defaultChecked={isComplete}   
-                disabled
-                readOnly     
-            />
+            <span className={`badge bg-${isComplete ? "success" : "warning"} mx-2`}>
+                {isComplete ? "Shipped" : "Incomplete"}
+            </span>
+
+            
         )
     }
 
@@ -34,7 +33,7 @@ const OrderGrid = (props) => {
         { field: "companyName", headerName: "Company", headerClassName: "orderHeader", width: 225 },
         { field: "orderTotal", headerName: "Order Total", headerClassName: "orderHeader", width: 125, align: "right" },
         { field: "carrierName", headerName: "Carrier", headerClassName: "orderHeader", width: 150 },
-        { field: "isCompleted", headerName: "Completed", headerClassName: "orderHeader", width: 100, align: "center", renderCell: renderCompleted },
+        { field: "isCompleted", headerName: "", headerClassName: "orderHeader", width: 100, align: "center", renderCell: renderCompleted },
         { field: "viewOrder", headerName: "", renderCell: renderView, align: "center", width:75 }
     ];
 
@@ -58,7 +57,10 @@ const OrderGrid = (props) => {
         <>
             {/*Sum of column widths*/}
             <div style={{width: "850px"}}>
-                <DataGrid rows={orderGridRows} columns={orderGridCols} 
+                <DataGrid 
+                    disableRowSelectionOnClick 
+                    rows={orderGridRows} 
+                    columns={orderGridCols} 
                     initialState={{
                         columns: {
                             columnVisibilityModel: {
@@ -77,7 +79,13 @@ const OrderGrid = (props) => {
                         m: 2,
                         color: "white",
                         background: "black",
-                        fontSize: "16px"
+                        fontSize: "16px",
+                        ".MuiTablePagination-root": {
+                            background: "white"
+                        },
+                        ".MuiTablePagination-displayedRows": {
+                            font: "1.6rem/1.25 Arial, sans-serif"
+                        }
                     }}
                 />
             </div>

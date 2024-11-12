@@ -1,5 +1,6 @@
 import ProductItem from "@/components/orders/ProductItem";
 import {nanoid} from "nanoid";
+import { moneyString } from "@/components/utility/DisplayHelpers"
 
 const OrderItem = (order) => {
 
@@ -26,8 +27,9 @@ const OrderItem = (order) => {
                 
             <hr className="text-white w-80 h-10" style={{height: "3px"}}/>
 
-            <div className="orderItem">
+            <div className="orderItem pb-5">
                 <h1>Order</h1>
+                <hr className="text-white w-50 h-10" style={{height: "3px"}}/>
                 <div className="ps-4">
                     <label>
                         Order ID: {order.value.orderId}
@@ -38,7 +40,7 @@ const OrderItem = (order) => {
                     </label>
                     <br />
                     <label>
-                        Order Total: {order.value.orderTotal.toLocaleString('en-US', {minimumFractionDigits: 2}) }
+                        Order Total: ${moneyString(order.value.orderTotal)}
                     </label>
 
                     <div className="py-3" style={{display: orderCompleted() ? "none" : ""}}>
@@ -54,7 +56,11 @@ const OrderItem = (order) => {
                 <br />
 
                 <h1>Products</h1>
-                {prodList}
+                <hr className="text-white w-50 h-10" style={{height: "3px"}}/>
+                <div className="row row-cols-auto gap-3">
+                    {prodList}
+                </div>
+
             </div>
             
         </>

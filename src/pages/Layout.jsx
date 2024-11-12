@@ -32,7 +32,6 @@ function Layout() {
 
   return (
     <>
-
       <div className="sticky-top p-2 d-flex flex-nowrap align-items-center text-white bg-dark justify-content-between">
         <div className="display-1 col-sm-auto text-center border-end px-3">
           NW
@@ -63,13 +62,13 @@ function Layout() {
         </Offcanvas.Body>
       </Offcanvas>
 
-      <div className="container-fluid bg-black vh-100">
+      <div className="container-fluid vh-100 vw-100 bg-black">
         <Outlet />
       </div>
 
       <AlertMsg />
 
-      <div className="container-fluid bg-black h-10 border-top">
+      <div className="container-fluid vw-100 bg-black border-top">
         <div className="d-flex justify-content-center">
           <div className="d-flex m-2 p-2">
             <h1>Powered by React</h1>
