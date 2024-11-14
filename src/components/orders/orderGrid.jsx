@@ -1,5 +1,6 @@
 import React from "react";
 import { DataGrid } from "@mui/x-data-grid";
+import { moneyString } from "@/components/utility/DisplayHelpers"
 
 const OrderGrid = (props) => {
 
@@ -44,7 +45,7 @@ const OrderGrid = (props) => {
                 orderDate: order.orderDate, 
                 companyName: order.orderedBy.companyName, 
                 //Display cost format x,xxx.xx
-                orderTotal: order.orderTotal.toLocaleString('en-US', {minimumFractionDigits: 2}), 
+                orderTotal: "$" + moneyString(order.orderTotal), 
                 carrierName: order.sendTo.shipCarrier, 
                 //Mark order complete when shipped
                 isCompleted: order.sendTo.shippedDate ? "true" : "false",
@@ -61,6 +62,7 @@ const OrderGrid = (props) => {
                     disableRowSelectionOnClick 
                     rows={orderGridRows} 
                     columns={orderGridCols} 
+                    pageSizeOptions={[10,15,20]}
                     initialState={{
                         columns: {
                             columnVisibilityModel: {

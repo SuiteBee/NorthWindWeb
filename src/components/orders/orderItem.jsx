@@ -46,8 +46,7 @@ const OrderItem = (order) => {
                     <div className="py-3" style={{display: orderCompleted() ? "none" : ""}}>
                         <button 
                             type="button" 
-                            className="btn btn-success btn-long" 
-                            onClick={{}}>
+                            className="btn btn-success btn-long">
                             Ship
                         </button>
                     </div>

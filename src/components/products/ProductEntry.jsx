@@ -1,6 +1,6 @@
 import { moneyString, percString } from "@/components/utility/DisplayHelpers"
 
-const ProductItem = (props) => {
+const ProductEntry = (props) => {
 
     return (
         <div className="card bg-dark text-white col">
@@ -73,4 +73,4 @@ const ProductItem = (props) => {
     );    
 }
 
-export default ProductItem;
+export default ProductEntry;
