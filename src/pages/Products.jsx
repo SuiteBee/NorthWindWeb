@@ -1,14 +1,18 @@
 import React from "react";
+import ProductCatalog from "@/components/products/ProductCataglog";
 
-const Customers = () => {
+const Products = () => {
     return (
         <>
-            <h1>Products</h1>
             <div>
-                Here we will display product info
+                <h1 className="display-1 p-2 text-white">Product Catalog</h1>
+                <hr className="text-white w-80 h-10" style={{height: "3px"}}/>
+                <div>
+                    <ProductCatalog />
+                </div>
             </div>
         </>  
     );
 };
 
-export default Customers;
+export default Products;

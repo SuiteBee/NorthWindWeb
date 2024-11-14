@@ -2,6 +2,34 @@ import { moneyString, percString } from "@/components/utility/DisplayHelpers"
 
 const ProductItem = (props) => {
 
+    const ShowDiscount = (
+        props.prod.discount > 0 &&
+        <>    
+            <li className="list-group-item bg-dark text-white border-bottom-0">
+                <span className="float-start">
+                    Discount
+                </span>
+                
+                <span className="float-end">
+                {percString(props.prod.discount)}
+                </span>
+            </li>
+            <li className="list-group-item bg-dark text-white border-white">
+                <span className="float-end">
+                {`-$${moneyString(props.prod.discountAmt)}`}
+                </span>
+            </li>
+        </>
+    );
+
+    const ShowSpace = (
+        props.prod.discount <= 0 &&
+        <>    
+            <li className="list-group-item bg-dark text-white border-bottom-0 pt-5"></li>
+            <li className="list-group-item bg-dark text-white border-white pt-5"></li>
+        </>
+    )
+
     return (
         <div className="card bg-dark text-white col">
             <div className="card-header border-white">
@@ -29,7 +57,7 @@ const ProductItem = (props) => {
                         ${moneyString(props.prod.purchasePrice)}
                     </span>
                 </li>
-                <li className="list-group-item bg-dark text-white border-bottom-0">
+                <li className="list-group-item bg-dark text-white border-white">
                     <span className="float-start">
                         Quantity
                     </span>
@@ -37,9 +65,6 @@ const ProductItem = (props) => {
                     <span className="float-end">
                         {props.prod.quantity}
                     </span>
-                </li>
-                <li className="list-group-item bg-dark text-white border-white">
-                    Cost
                 </li>
                 <li className="list-group-item bg-dark text-white border-bottom-0">
                     <span className="float-start">
@@ -50,15 +75,8 @@ const ProductItem = (props) => {
                     {`$${moneyString(props.prod.totalPrice)}`}
                     </span>
                 </li>
-                <li className="list-group-item bg-dark text-white border-bottom-0">
-                    <span className="float-start">
-                        Discount
-                    </span>
-                    
-                    <span className="float-end">
-                    {percString(props.prod.discount)}
-                    </span>
-                </li>
+                {ShowDiscount}
+                {ShowSpace}
                 <li className="list-group-item bg-dark text-white border-bottom-0">
                     <span className="float-start">
                         Final
