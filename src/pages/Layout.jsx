@@ -62,7 +62,7 @@ function Layout() {
         </Offcanvas.Body>
       </Offcanvas>
 
-      <div className="container-fluid d-block overflow-auto bg-black">
+      <div className="container-fluid d-block overflow-auto min-vh-100 bg-black">
         <Outlet />
       </div>
 

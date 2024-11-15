@@ -73,8 +73,8 @@ const AlertMsg = () => {
                     className="btn btn-alert bg-dark text-white position-relative"
                     onClick={showAlerts}>
                     Alerts 
-                    <span class={`position-absolute top-0 start-100 translate-middle badge border border-light rounded-circle bg-${type} p-2`}>
-                        <span class="visually-hidden">New Alerts</span>
+                    <span className={`position-absolute top-0 start-100 translate-middle badge border border-light rounded-circle bg-${type} p-2`}>
+                        <span className="visually-hidden">New Alerts</span>
                     </span>
                 </button>
             </div>

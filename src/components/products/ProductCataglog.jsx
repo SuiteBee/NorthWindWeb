@@ -1,16 +1,29 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { NorthWindClient } from "@/components/client/NorthWindClient";
 import useAlert from "@/hooks/useAlert";
 import ProductEntry from "./ProductEntry";
 import {nanoid} from "nanoid";
+import CategoryBtn from "@/components/products/CategoryBtn";
 
 const ProductCatalog = () => {
     const[products, setProducts] = useState(null);
-    const[filter, setFilter] = useState(null);
+    const[filteredProducts, setFilteredProducts] = useState(null);
+    const[categoryFilter, setCategoryFilter] = useState("");
     
     const { setAlert, clearAlert } = useAlert();
 
-    let categories = [
+    let categoryValues = [
+        "Beverages", 
+        "Condiments", 
+        "Confections", 
+        "Dairy Products", 
+        "Grains/Cereals", 
+        "Meat/Poultry", 
+        "Produce", 
+        "Seafood"
+    ]
+
+    let categoryTexts = [
         "Beverages", 
         "Condiments", 
         "Confections", 
@@ -21,22 +34,7 @@ const ProductCatalog = () => {
         "Seafood"
     ]
 
-    const categoryBtn = (btnText) => ( 
-        <div className="col-sm-auto">
-            <button 
-                type="button" 
-                className="btn btn-outline-primary btn-long"
-                onClick={filterProducts(btnText)}>
-                {btnText}
-            </button>
-        </div>
-    )
-
-    const categoryFilter = categories?.map((cat, index) => (
-        categoryBtn(cat)
-    ));
-
-    //Popualate Company DataList
+    //Product API GET
     useEffect(() => {
         NorthWindClient.get("product/all")
         .then(data => {
@@ -49,7 +47,6 @@ const ProductCatalog = () => {
         });
     }, [])
 
-
     const prodList = products?.map((item, index) => (
         <ProductEntry 
             id={index += 1}
@@ -58,62 +55,61 @@ const ProductCatalog = () => {
         />
     ));
 
-    const filteredList = filter?.map((item, index) => (
+    const filteredList = filteredProducts?.map((item, index) => (
         <ProductEntry 
             id={index += 1}
-            key={`prod_${nanoid()}`}
+            key={`prodFilt_${nanoid()}`}
             prod={item} 
         />
     ));
 
-    function filterProducts(categoryTxt){
-        var filtered = products?.filter(item => item.category === categoryTxt)
-        setFilter(filtered);
-    }
+    const filterProducts_click = useCallback((categoryTxt) => {
+        setFilteredProducts(products?.filter(item => item.categoryName === categoryTxt));
+        setCategoryFilter(categoryTxt);
+    }, [products, categoryFilter, filteredProducts]);
+
+    const categoryBtns = categoryValues?.map((cat, index) => (
+        <CategoryBtn 
+            btnText={categoryTexts[index]}
+            btnValue={cat}
+            btnEvent={filterProducts_click}
+            btnActive={cat === categoryFilter}
+            id={index += 1}
+            key={`catButt_${categoryTexts[index]}`}
+        />
+    ));
     
-    if(filter === null){
-        return (
-        <>
-            <div className="orderItem pb-5">
-                <div>
+    return (
+    <>
+        <div className="orderItem pb-5">
+            <div>
+                <div className="d-flex">
                     <h1 className="p-2 text-white">Categories</h1>
-                    <hr className="text-white w-80 h-10" style={{height: "3px"}}/>
-                    <div className="d-flex gap-3 justify-content-start pb-5">
-                        {categoryFilter}
+                    <div className="px-5 py-2">
+                        <button 
+                            type="button" 
+                            className="btn btn-warning btn-long"
+                            onClick={() => setCategoryFilter("")}>
+                            Clear
+                        </button>
                     </div>
                 </div>
-                <div>
-                    <h1 className="p-2 text-white">Search</h1>
-                    <hr className="text-white w-80 h-10" style={{height: "3px"}}/>
-                </div>
-                <div className="row row-cols-auto gap-3">
-                    {prodList}
+                
+                <hr className="text-white w-80 h-10" style={{height: "3px"}}/>
+                <div className="d-flex gap-3 justify-content-start pb-5">
+                    {categoryBtns}
                 </div>
             </div>
-        </>
-        );
-    } else {
-        return (
-        <>
-            <div className="orderItem pb-5">
-                <div>
-                    <h1 className="p-2 text-white">Categories</h1>
-                    <hr className="text-white w-80 h-10" style={{height: "3px"}}/>
-                    <div className="d-flex gap-3 justify-content-start pb-5">
-                        {categoryFilter}
-                    </div>
-                </div>
-                <div>
-                    <h1 className="p-2 text-white">Search</h1>
-                    <hr className="text-white w-80 h-10" style={{height: "3px"}}/>
-                </div>
-                <div className="row row-cols-auto gap-3">
-                    {filteredList}
-                </div>
+            <div>
+                <h1 className="p-2 text-white">Search</h1>
+                <hr className="text-white w-80 h-10" style={{height: "3px"}}/>
             </div>
-        </>
-        );
-    }
+            <div className="row row-cols-auto gap-3">
+                {categoryFilter?.trim() == "" ? prodList : filteredList}
+            </div>
+        </div>
+    </>
+    );
 }
 
 export default ProductCatalog;
