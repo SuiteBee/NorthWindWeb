@@ -33,15 +33,19 @@ function Layout() {
   return (
     <>
       <div className="sticky-top p-2 d-flex flex-nowrap align-items-center text-white bg-dark justify-content-between">
-        <div className="display-1 col-sm-auto text-center border-end px-3">
+        <div className="display-1 col-auto text-center border-end px-3">
           NW
         </div>
-        <div className="display-4 col-sm-8 flex-fill px-3">
+        <div className="display-4 col-8 flex-fill px-3">
           Northwind
         </div>
 
-        <div className="col-sm-1 d-flex justify-content-end">
-          <button className="btn-default px-5" type="button" onClick={handleShowNav}>
+        <div className="col-1 d-flex justify-content-end mx-3">
+          <div className="mx-3 align-self-center">
+            <AlertMsg />
+          </div>
+
+          <button className="btn-default" type="button" onClick={handleShowNav}>
             <img src={MenuIcon}></img>
           </button>
         </div>
@@ -65,8 +69,6 @@ function Layout() {
       <div className="container-fluid d-block overflow-auto min-vh-100 bg-black">
         <Outlet />
       </div>
-
-      <AlertMsg />
 
       <div className="container-fluid vw-100 bg-black border-top">
         <div className="d-flex justify-content-center">

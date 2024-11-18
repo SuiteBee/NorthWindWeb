@@ -3,7 +3,7 @@ import { moneyString, percString } from "@/components/utility/DisplayHelpers"
 const ProductEntry = (props) => {
 
     return (
-        <div className="card bg-dark text-white col-4">
+        <div className="card bg-dark text-white m-2" style={{width: "35rem"}}>
             <div className="card-header border-white">
                 {props.prod.productName}
             </div>

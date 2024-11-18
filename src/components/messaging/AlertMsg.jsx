@@ -10,10 +10,10 @@ import useAlert from "@/hooks/useAlert";
 
 const AlertMsg = () => {
     const {type, title, msg} = useAlert();
-    const [show, setShow] = useState(false);
+    const [show, setShow] = useState(true);
 
-    const showAlerts = () => {
-        setShow(true);
+    const toggleAlerts = () => {
+        setShow(!show);
     }
 
     const hideAlerts = () => {
@@ -33,22 +33,23 @@ const AlertMsg = () => {
         }
     }
 
-    if(show){
+    if(msg !== ""){
         return (
-            <div className="position-fixed bottom-0 end-0 p-3 w-25">
-                <Alert 
-                    className={`p-2 w-auto bg-${type} border-${type}`} 
-                    key={type} 
-                    variant={type} 
-                    show={show}
-                >
+            <>
+                <div className="position-fixed end-0 me-5 mt-8 w-40">
+                    <Alert 
+                        className={`p-2 w-auto bg-${type} border-${type}`} 
+                        key={type} 
+                        variant={type} 
+                        show={show}>
+
                     <div className="container">
                         <div className="row pt-2">
                             <div className="col-auto">
-                                <h2 className="fw-bold float-end">
-                                    <img className="p-1 align-text-top text-black" src={getIcon()} />
+                                <h3 className="fw-bold float-end">
+                                    <img className="px-2 pb-1 align-text-center" src={getIcon()} />
                                     {title}
-                                </h2>
+                                </h3>
                             </div>
                             <div className="col-1">
                                 <button type="button" onClick={hideAlerts}>
@@ -56,29 +57,27 @@ const AlertMsg = () => {
                                 </button>
                             </div>
                         </div>
-                        <hr className="text-black"/>
-                        <p>
+                        <p className="fs-4">
                             {msg}
                         </p>
                     </div>
-                    
-                </Alert>
-            </div>
-        );    
-    } else if(type !== ""){
-        return (
-            <div className="position-fixed bottom-0 end-0 p-5">
-                <button 
-                    type="button"
-                    className="btn btn-alert bg-dark text-white position-relative"
-                    onClick={showAlerts}>
-                    Alerts 
-                    <span className={`position-absolute top-0 start-100 translate-middle badge border border-light rounded-circle bg-${type} p-2`}>
-                        <span className="visually-hidden">New Alerts</span>
-                    </span>
-                </button>
-            </div>
-        );    
+                        
+                    </Alert>
+                </div>
+
+                <div className="align-self-center">
+                    <button 
+                        type="button"
+                        className="btn btn-alert bg-primary position-relative"
+                        onClick={toggleAlerts}>
+                        Alerts 
+                        <span className={`position-absolute top-0 start-100 translate-middle badge border border-light rounded-circle bg-${type} p-2`}>
+                            <span className="visually-hidden">New Alerts</span>
+                        </span>
+                    </button>
+                </div>
+            </>
+        ); 
     } else{
         <>
         </>

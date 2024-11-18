@@ -81,7 +81,7 @@ const ProductCatalog = () => {
     
     return (
     <>
-        <div className="orderItem pb-5">
+        <div className="orderItem">
             <div>
                 <div className="d-flex">
                     <h1 className="p-2 text-white">Categories</h1>
@@ -95,16 +95,19 @@ const ProductCatalog = () => {
                     </div>
                 </div>
                 
-                <hr className="text-white w-80 h-10" style={{height: "3px"}}/>
-                <div className="d-flex gap-3 justify-content-start pb-5">
+                <hr className="text-white w-80" style={{height: "3px"}}/>
+                <div className="row row-cols-auto justify-content-start pb-5">
                     {categoryBtns}
                 </div>
             </div>
             <div>
                 <h1 className="p-2 text-white">Search</h1>
-                <hr className="text-white w-80 h-10" style={{height: "3px"}}/>
+                <hr className="text-white w-80" style={{height: "3px"}}/>
             </div>
-            <div className="row row-cols-auto gap-3">
+        </div>
+
+        <div className="container pb-5">
+            <div className="row row-cols-auto justify-content-start">
                 {categoryFilter?.trim() == "" ? prodList : filteredList}
             </div>
         </div>
