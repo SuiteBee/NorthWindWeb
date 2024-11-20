@@ -5,7 +5,7 @@ import React from "react";
 //////////////////////////////////////////
 import { PageRouter } from "./components/navigation/PageRouter";
 
-function App(props) {
+function App() {
   return (
     <>
       <PageRouter />

@@ -1,6 +1,13 @@
+//////////////////////////////////////////
+//Hooks
+//////////////////////////////////////////
+import useAlert from "@/hooks/useAlert";
+
+//////////////////////////////////////////
+//Components
+//////////////////////////////////////////
 import { useState, useEffect, useCallback } from "react";
 import { NorthWindClient } from "@/components/client/NorthWindClient";
-import useAlert from "@/hooks/useAlert";
 import ProductEntry from "./ProductEntry";
 import {nanoid} from "nanoid";
 import CategoryBtn from "@/components/products/CategoryBtn";
@@ -9,6 +16,7 @@ const ProductCatalog = () => {
     const[products, setProducts] = useState(null);
     const[filteredProducts, setFilteredProducts] = useState(null);
     const[categoryFilter, setCategoryFilter] = useState("");
+    const[inputProduct, setInputProduct] = useState("");
     
     const { setAlert, clearAlert } = useAlert();
 
@@ -64,9 +72,9 @@ const ProductCatalog = () => {
     ));
 
     const filterProducts_click = useCallback((categoryTxt) => {
-        setFilteredProducts(products?.filter(item => item.categoryName === categoryTxt));
+        filterCatalog();
         setCategoryFilter(categoryTxt);
-    }, [products, categoryFilter, filteredProducts]);
+    }, [products, filteredProducts]);
 
     const categoryBtns = categoryValues?.map((cat, index) => (
         <CategoryBtn 
@@ -78,6 +86,47 @@ const ProductCatalog = () => {
             key={`catButt_${categoryTexts[index]}`}
         />
     ));
+
+    const filterCatalog = () => {
+        setFilteredProducts(products);
+
+        //Category filter exists
+        if(categoryFilter?.trim() !== ""){
+            setFilteredProducts(products?.filter(item => item.categoryName === categoryFilter));
+        }
+
+        //Search filter exists
+        if(inputProduct?.trim() !== ""){
+            const match = filteredProducts?.filter(option => option.productName.toLowerCase().includes(inputProduct));
+            if(match){
+                setFilteredProducts(match);
+            } 
+        }
+    }
+
+
+    function handleProductChange(event){
+        const value = event.target.value;
+        setInputProduct(value.toLowerCase());
+
+        filterCatalog();
+    }
+
+    const productSearch = (
+        <div className="mb-3">
+            <div className="input-group has-validation" style={{width: "500px"}}>
+                <input 
+                    type="text"
+                    className={`form-control text-black`}
+                    list="productList" 
+                    id="searchProduct" 
+                    placeholder="Type to search..."
+                    value={inputProduct}
+                    onChange={handleProductChange}
+                />
+            </div>
+        </div>
+    );
     
     return (
     <>
@@ -101,14 +150,25 @@ const ProductCatalog = () => {
                 </div>
             </div>
             <div>
-                <h1 className="p-2 text-white">Search</h1>
-                <hr className="text-white w-80" style={{height: "3px"}}/>
+                <div className="d-flex">
+                    <h1 className="p-2 text-white">Search</h1>
+                    <div className="px-5 py-2">
+                        <button 
+                            type="button" 
+                            className="btn btn-warning btn-long"
+                            onClick={() => setInputProduct("")}>
+                            Clear
+                        </button>
+                    </div>
+                </div>
+                <hr className="text-white w-50" style={{height: "3px"}}/>
+                {productSearch}
             </div>
         </div>
 
-        <div className="container pb-5">
+        <div className="container pb-5 pt-5">
             <div className="row row-cols-auto justify-content-start">
-                {categoryFilter?.trim() == "" ? prodList : filteredList}
+                {categoryFilter?.trim() == "" && inputProduct?.trim() == "" ? prodList : filteredList}
             </div>
         </div>
     </>

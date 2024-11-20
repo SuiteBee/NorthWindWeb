@@ -64,7 +64,7 @@ const OrderForm = () => {
             <div className="input-group has-validation">
                 <input 
                     type="text"
-                    className={`form-control ${companyValidation()}`}
+                    className={`form-control ${companyValidation()} text-black`}
                     list="companyList" 
                     id="selectedCompany" 
                     placeholder="Type to search..."

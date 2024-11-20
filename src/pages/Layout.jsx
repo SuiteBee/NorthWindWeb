@@ -51,8 +51,8 @@ function Layout() {
         </div>
       </div>
 
-      <Offcanvas className="bg-dark w-40" show={showNav} onHide={handleCloseNav}>
-        <Offcanvas.Header className="justify-content-between border-bottom">
+      <Offcanvas className="bg-dark" show={showNav} onHide={handleCloseNav}>
+        <Offcanvas.Header className="justify-content-between border-bottom m-2">
           <div className="display-1 text-white">Menu</div>
           <div>
             <button className="btn-default" type="button" onClick={handleCloseNav}>

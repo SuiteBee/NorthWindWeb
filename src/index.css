@@ -18,6 +18,9 @@ ul {
   list-style: none;
   padding: 0;
 }
+p {
+  font: 75% / 1.15 sans-serif;
+}
 button,
 input,
 optgroup,
@@ -36,9 +39,8 @@ input[type="text"] {
   border-radius: 0;
 }
 body {
-  background-image: url('assets/background/siteBack.jpg');
+  background-color: #000;
   background-size: cover;
-  color: #4d4d4d;
   font:
     1.6rem/1.25 Arial,
     sans-serif;
@@ -104,11 +106,6 @@ button {
 
 .btn-long {
   width: 100px;
-  height: 35px;
-}
-
-.btn-alert {
-  width: 50px;
   height: 35px;
 }
 
