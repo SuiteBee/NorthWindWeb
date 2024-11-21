@@ -5,7 +5,7 @@
   box-sizing: border-box;
 }
 *:focus-visible {
-  outline: 3px dashed #228bec;
+  outline: 2px #228bec;
   outline-offset: 0;
 }
 
@@ -55,6 +55,10 @@ body {
     line-height: 1.31579;
     margin:0;
   }
+}
+.form-control::placeholder {
+  color: gray;
+  opacity: 1;
 }
 
 /* Input styles */
@@ -163,7 +167,7 @@ button {
 }
 .c-cb > input[type="checkbox"]:focus-visible + label::before {
   border-width: 4px;
-  outline: 3px dashed #228bec;
+  outline: 2px #228bec;
 }
 .c-cb > label::after {
   background: transparent;
@@ -258,4 +262,22 @@ button {
 
 .nav-link:hover {
   color: lightskyblue;
+}
+
+.modal {
+  top: 50% !important;
+  overflow-y: hidden !important;
+}
+
+.modal-content {
+  background: none;
+}
+
+.modal-dialog {
+  height: 100%;
+  width: 100%;
+}
+
+.modal-backdrop {
+  opacity: 0.9 !important;
 }
