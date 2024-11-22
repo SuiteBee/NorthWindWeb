@@ -7,12 +7,12 @@ import { useState, useEffect } from "react";
 //////////////////////////////////////////
 //Components
 //////////////////////////////////////////
-import { moneyString } from "@/components/utility/DisplayHelpers"
 import Modal from "react-bootstrap/Modal";
 
 const ProductModal = (props) => {
 
     const[newPrice, setNewPrice] = useState(0);
+    const[manualPrice, setManualPrice] = useState(true);
     const[markupPrice, setMarkupPrice] = useState(100);
     const[addStock, setAddStock] = useState(0);
 
@@ -42,15 +42,47 @@ const ProductModal = (props) => {
     }
 
 
-    function handleSubmit(event){
+    function HandleSubmit(event){
         alert(`Submitting newPrice:${newPrice} markupPrice:${markupPrice} addStock:${addStock}`);
     }
 
     function CalculateMarkup() {
-        let tmpPrice = props.prod.itemPrice;
-        let tmpMarkup = markupPrice / 100;
-        tmpPrice = (tmpPrice * tmpMarkup).toFixed(2);
-        setNewPrice(tmpPrice);
+        if(!manualPrice){
+            let tmpPrice = props.prod.itemPrice;
+            let tmpMarkup = markupPrice / 100;
+            tmpPrice = (tmpPrice * tmpMarkup).toFixed(2);
+            setNewPrice(tmpPrice);
+        }
+    }
+
+    function HandleNewPriceChange(val){
+        //Reset markup when manually entering
+        setManualPrice(true);
+        setMarkupPrice(100);
+
+        var tmpPrice = val === "" ? 0 : parseFloat(val);
+
+        if(!tmpPrice && tmpPrice != 0) return;
+
+        const reg = /(?<![\d.])(\d{1,4}|\d{0,4}\.\d{1,2})?(?![\d.])/
+        if(reg.test(tmpPrice.toString())) setNewPrice(tmpPrice.toString());
+    }
+
+    function HandleStockChange(val){
+        //0 by default, set to 0 if backspace
+        var tmpStock = val === "" ? 0 : parseInt(val, 10);
+
+        //Don't process non-integer inputs
+        if(!tmpStock && tmpStock != 0) return;
+
+        //Digits with length up to 3
+        const reg = /^[0-9]{1,3}$/
+        if(reg.test(tmpStock.toString())) setAddStock(tmpStock.toString());
+    }
+
+    function HandleMarkupChange(val){
+        setManualPrice(false);
+        setMarkupPrice(val); 
     }
 
     if(props.prod.discontinued){
@@ -131,7 +163,7 @@ const ProductModal = (props) => {
                                     style={{height:"25px", fontSize:"15px"}}
                                     id="newPrice" 
                                     value={newPrice}
-                                    onChange={e => setNewPrice(e.target.value)}
+                                    onChange={e => HandleNewPriceChange(e.target.value)}
                                 />
                             </div>
                         </div>
@@ -145,13 +177,13 @@ const ProductModal = (props) => {
                             <div>
                                 <input
                                     type="range"
-                                    class="form-range"
+                                    className="form-range"
                                     min="5"
                                     max="200"
                                     step="5"
                                     id="markupPrice"
                                     value={markupPrice}
-                                    onChange={e => setMarkupPrice(e.target.value)}
+                                    onChange={e => HandleMarkupChange(e.target.value)}
                                 />
                             </div>
                         </div>
@@ -193,7 +225,7 @@ const ProductModal = (props) => {
                                     style={{height:"25px",width:"50px", fontSize:"15px"}}
                                     id="addStock" 
                                     value={addStock}
-                                    onChange={e => setAddStock(e.target.value)}
+                                    onChange={e => HandleStockChange(e.target.value)}
                                 />
                             </div>
                         </div>
@@ -204,7 +236,7 @@ const ProductModal = (props) => {
                             <button 
                                 type="submit" 
                                 className="btn btn-success btn-long"
-                                onClick={handleSubmit}>
+                                onClick={HandleSubmit}>
                                 Submit
                             </button>
                         </div>

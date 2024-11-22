@@ -3,10 +3,11 @@ import React from "react";
 const Home = () => {
     return (
         <>
-            <h1>Home</h1>
-            <div>
-                Here is stuff about the site
+            <div className="display-1 p-5">
+                Dashboard
+                <hr className="w-50"/>
             </div>
+
         </>
     );
 };

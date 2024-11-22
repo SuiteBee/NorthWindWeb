@@ -265,7 +265,7 @@ button {
 }
 
 .modal {
-  top: 50% !important;
+  top: 25% !important;
   overflow-y: hidden !important;
 }
 

@@ -35,7 +35,7 @@ export const Navbar = (props) => {
                 <div className="navbar-nav h-100 row-gap-2 fs-4">
                     <NavLink className="nav-link" to="/" onClick={handleClick}>
                         <img className="me-2" src={HomeIcon}></img>
-                        Home
+                        Dashboard
                     </NavLink>
                     <NavLink className="nav-link" to="/tasks" onClick={handleClick}>
                         <img className="me-2" src={TaskIcon}></img>
