@@ -1,61 +1,74 @@
 
-import React, { useState, useEffect } from "react";
-import { BarChart } from '@mui/x-charts/BarChart';
+import React from "react";
+import { BarChart } from "@mui/x-charts/BarChart";
+import { axisClasses } from "@mui/x-charts/ChartsAxis";
+
+import { moneyString } from "@/components/utility/DisplayHelpers"
+
+const chartColors = ["lightgreen", "lightblue", "lightyellow", "lightcoral"];
+
+const chartSetting = {
+    yAxis: [
+        {
+            label: "Dollars $ (USD)"
+        }
+    ],
+    height: 400
+}
 
 const RevenueChart = (props) => {
-    
-    const chartSetting = {
-        yAxis: [
-            {
-                label: "dollars $"
-            }
-        ],
-        width: 600,
-        height: 400
-    }
-
     if(props.revenue){
         return (
             <BarChart
                 dataset={props.revenue}
                 xAxis={[{ scaleType: "band", dataKey: "year" }]}
                 series={[
-                    { dataKey: "quarterOne", label: "Q1", },
-                    { dataKey: "quarterTwo", label: "Q2", },
-                    { dataKey: "quarterThree", label: "Q3", },
-                    { dataKey: "quarterFour", label: "Q4", }
+                    { dataKey: "quarterOne", label: "Q1", id: "q1", valueFormatter: (v) => `$ ${moneyString(v)}` },
+                    { dataKey: "quarterTwo", label: "Q2", id: "q2", valueFormatter: (v) => `$ ${moneyString(v)}` },
+                    { dataKey: "quarterThree", label: "Q3", id: "q3", valueFormatter: (v) => `$ ${moneyString(v)}` },
+                    { dataKey: "quarterFour", label: "Q4", id: "q4", valueFormatter: (v) => `$ ${moneyString(v)}` }
                 ]}
                 {...chartSetting}
+                margin={{left: 120 }}
                 //Styling
                 sx={{
-                    m: 2,
-                    //change left yAxis label styles
-                    "& .MuiChartsAxis-left .MuiChartsAxis-tickLabel":{
-                        strokeWidth:"0.4",
-                        fill:"white"
+                    [`.${axisClasses.root}`]: {
+                        //Axis lines and ticks
+                        [`.${axisClasses.tick}, .${axisClasses.line}`]: {
+                            stroke:"white",
+                            strokeWidth:1.5
+                        },
+                        //Axis labels
+                        [`.${axisClasses.tickLabel}`]: {
+                            fill:"white",
+                            fontSize:"16px !important"
+                        }
                     },
-                    // change all labels fontFamily shown on both xAxis and yAxis
-                    "& .MuiChartsAxis-tickContainer .MuiChartsAxis-tickLabel":{
-                        fontFamily: "Roboto",
-                    },
-                    // change bottom label styles
-                    "& .MuiChartsAxis-bottom .MuiChartsAxis-tickLabel":{
-                        strokeWidth:"0.5",
-                        fill:"white"
-                    },
-                    // bottomAxis Line Styles
-                    "& .MuiChartsAxis-bottom .MuiChartsAxis-line":{
-                        stroke:"white",
-                        strokeWidth:0.4
-                    },
-                    // leftAxis Line Styles
-                    "& .MuiChartsAxis-left .MuiChartsAxis-line":{
-                        stroke:"white",
-                        strokeWidth:0.4
+                    //Y-Axis label
+                    [`.${axisClasses.left} .${axisClasses.label}`]: {
+                        transform: 'translate(-60px, 0)',
+                        fill:"white",
+                        fontSize:"32px !important"
                     }
                 }}
                 //More Styling
+                colors={chartColors}
                 slotProps={{
+                    //Hover tooltip style
+                    popper: {
+                        sx: {
+                            border: "2px solid white",
+                            backgroundColor:"black",
+                            "& .MuiChartsTooltip-paper": {
+                                backgroundColor: "black",
+                                "& .MuiTypography-root": {
+                                    color: "white",
+                                    fontSize: "14px"
+                                }
+                            }
+                        }
+                    },
+                    //Overhead legend
                     legend: {
                       labelStyle: {
                         fontSize: 14,

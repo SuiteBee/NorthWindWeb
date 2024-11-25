@@ -2,6 +2,7 @@ import { NorthWindClient } from "../components/client/NorthWindClient";
 import React, { useState, useEffect } from "react";
 
 import RevenueChart from "../components/dashboard/RevenueChart";
+import CategoryChart from "../components/dashboard/CategoryChart";
 
 
 import useAlert from "@/hooks/useAlert";
@@ -27,15 +28,20 @@ const Home = () => {
 
     return (
         <>
-            <div className="display-1 p-5">
-                Dashboard
-                <hr className="w-50"/>
+            <div className="d-flex mt-3">
+                <div className="col-6 border rounded mx-2">
+                    <h1 className="mt-3 text-center text-decoration-underline">
+                        Revenue
+                    </h1>
+                    <RevenueChart revenue={dashTotals?.revenue}/>
+                </div>
+                <div className="col-6 border rounded mx-2">
+                    <h1 className="mt-3 text-center text-decoration-underline">
+                        Categories
+                    </h1>
+                    <CategoryChart categories={dashTotals?.categories}/>
+                </div>
             </div>
-
-            <div className="text-white">
-                <RevenueChart revenue={dashTotals?.revenue}/>
-            </div>
-
         </>
     );
 };
