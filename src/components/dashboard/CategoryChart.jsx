@@ -1,5 +1,5 @@
 import React from "react";
-import { PieChart, pieArcLabelClasses  } from '@mui/x-charts/PieChart';
+import { PieChart, pieArcLabelClasses  } from "@mui/x-charts/PieChart";
 
 const chartColors = ["lightgreen", "magenta", "lightblue", "lightyellow", "lightcoral", "violet", "gold", "cyan"];
 
@@ -83,9 +83,6 @@ const CategoryChart = (props) => {
     } else{
         return( 
             <>
-            <h1>
-            Not Found
-            </h1>
             </>
         );
     }

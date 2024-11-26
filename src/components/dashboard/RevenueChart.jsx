@@ -46,7 +46,7 @@ const RevenueChart = (props) => {
                     },
                     //Y-Axis label
                     [`.${axisClasses.left} .${axisClasses.label}`]: {
-                        transform: 'translate(-60px, 0)',
+                        transform: "translate(-60px, 0)",
                         fill:"white",
                         fontSize:"32px !important"
                     }
