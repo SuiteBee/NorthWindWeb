@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { NorthWindClient } from "@/components/client/NorthWindClient";
+import { NorthWindClient } from "@/components/api/NorthWindClient";
 import useAlert from "@/hooks/useAlert";
 
 const OrderForm = () => {

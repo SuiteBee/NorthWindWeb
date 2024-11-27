@@ -32,7 +32,7 @@ function Layout() {
 
   return (
     <>
-      <div className="sticky-top p-2 d-flex flex-nowrap align-items-center text-white bg-dark justify-content-between">
+      <div className="sticky-top p-2 d-flex flex-nowrap align-items-center text-white bg-dark justify-content-between border-bottom border-black">
         <div className="display-1 col-auto text-center border-end px-3">
           NW
         </div>

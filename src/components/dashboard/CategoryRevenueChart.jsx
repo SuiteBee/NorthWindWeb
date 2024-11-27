@@ -1,34 +1,32 @@
 import React from "react";
 import { LineChart } from "@mui/x-charts/LineChart";
 import { axisClasses } from "@mui/x-charts/ChartsAxis";
+import { moneyString } from "@/components/utility/DisplayHelpers"
 
 const labels = {
-    beverages: 'Beverages ($)',
-    condiments: 'Condiments ($)',
-    confections: 'Confections ($)',
-    dairy: 'Dairy Products ($)',
-    grains: 'Grains/Cereals ($)',
-    meat: 'Meat/Poultry ($)',
-    produce: 'Produce ($)',
-    seafood: 'Seafood ($)'
+    beverages: "Beverages (USD)",
+    condiments: "Condiments (USD)",
+    confections: "Confections (USD)",
+    dairy: "Dairy Products (USD)",
+    grains: "Grains/Cereals (USD)",
+    meat: "Meat/Poultry (USD)",
+    produce: "Produce (USD)",
+    seafood: "Seafood (USD)"
   };
 
  const colors = {
-    beverages: 'lightgreen',
-    condiments: 'magenta',
-    confections: 'lightblue',
-    dairy: 'lightyellow',
-    grains: 'lightcoral',
-    meat: 'violet',
-    produce: 'gold',
-    seafood: 'cyan'
+    beverages: "lightgreen",
+    condiments: "magenta",
+    confections: "lightblue",
+    dairy: "lightyellow",
+    grains: "lightcoral",
+    meat: "violet",
+    produce: "gold",
+    seafood: "cyan"
   };
 
 const CategoryRevenueChart = (props) => {
     if(props.categoryRevenue){
-
-        //Line point Hover Display value
-        const valueFormatter = (item) => `${item.value}%`
 
         const stackStrategy = {
             stack: "total",
@@ -52,7 +50,8 @@ const CategoryRevenueChart = (props) => {
                 xAxis={[
                     {
                         dataKey:"year",
-                        valueFormatter: (value) => value.toString()
+                        valueFormatter: (value) => value.toString(),
+                        tickMinStep:1
                     }
                 ]}
                 series={Object.keys(labels).map((key) => ({
@@ -60,6 +59,7 @@ const CategoryRevenueChart = (props) => {
                     label: labels[key],
                     color: colors[key],
                     showMark: false,
+                    valueFormatter: (v) => `$ ${moneyString(v)}`,
                     ...stackStrategy
                 }))}
                 dataset={props.categoryRevenue}
@@ -81,7 +81,7 @@ const CategoryRevenueChart = (props) => {
                     },
                     //Y-Axis label
                     [`.${axisClasses.left} .${axisClasses.label}`]: {
-                        transform: "translate(-60px, 0)",
+                        transform: "translate(-65px, 0)",
                         fill:"white"
                     },
                     //X-Axis label
@@ -112,6 +112,9 @@ const CategoryRevenueChart = (props) => {
     } else{
         return(
             <>
+                <div class="d-flex justify-content-center">
+                    <div className="spinner-border m-5" role="status" style={{width:"100px", height: "100px"}} />
+                </div>
             </>
         )
     }

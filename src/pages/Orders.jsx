@@ -1,4 +1,4 @@
-import { NorthWindClient } from "@/components/client/NorthWindClient";
+import { NorthWindClient } from "@/components/api/NorthWindClient";
 import React, { useState, useEffect } from "react";
 import OrderGrid from "@/components/orders/OrderGrid";
 import OrderItem from "@/components/orders/OrderItem";

@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 //////////////////////////////////////////
 //Components
 //////////////////////////////////////////
-import { NorthWindClient } from "@/components/client/NorthWindClient";
+import { NorthWindClient } from "@/components/api/NorthWindClient";
 import ProductEntry from "./ProductEntry";
 import {nanoid} from "nanoid";
 import CategoryBtn from "@/components/products/CategoryBtn";

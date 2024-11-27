@@ -10,7 +10,7 @@ function fillColor(value) {
 
 const PendingShipGauge = (props) => {
     
-    if(props.shipments !== null){
+    if(props.shipments || props.shipments === 0){
         return (
             <Gauge
             value={110 - (props.shipments * 4)}
@@ -40,6 +40,9 @@ const PendingShipGauge = (props) => {
     }else{
         return (
             <>
+            <div class="d-flex justify-content-center">
+                <div className="spinner-border m-5" role="status" style={{width:"100px", height: "100px"}} />
+            </div>
             </>
         )
     }

@@ -1,10 +1,11 @@
-import { NorthWindClient } from "../components/client/NorthWindClient";
+import { NorthWindClient } from "../components/api/NorthWindClient";
 import React, { useState, useEffect } from "react";
 
 import RevenueChart from "../components/dashboard/RevenueChart";
 import CategoryChart from "../components/dashboard/CategoryChart";
 import CategoryRevenueChart from "../components/dashboard/CategoryRevenueChart";
 import PendingShipGauge from "../components/dashboard/PendingShipGauge";
+import CategoryHeatmap from "../components/dashboard/CategoryHeatmap";
 
 import useAlert from "@/hooks/useAlert";
 
@@ -29,32 +30,50 @@ const Home = () => {
 
     return (
         <>
-            <div className="d-flex mt-3">
-                <div className="col-5 border rounded mx-2">
-                    <h1 className="mt-3 text-center text-decoration-underline">
+            <div className="d-flex mt-3 justify-content-center">
+                <div className="col-6 border rounded mx-2 bg-dark">
+                    <div className="d-flex justify-content-center mt-3">
+                        <span className="badge bg-primary mx-2 my-2 fs-2">
                         Revenue
-                    </h1>
+                        </span>
+                    </div>
                     <RevenueChart revenue={dashTotals?.revenue}/>
                 </div>
-                <div className="col-6 border rounded mx-2">
-                    <h1 className="mt-3 text-center text-decoration-underline">
+                <div className="col-6 border rounded mx-2 bg-dark">
+                    <div className="d-flex justify-content-center mt-3">
+                        <span className="badge bg-primary mx-2 my-2 fs-2">
                         Product Categories
-                    </h1>
+                        </span>
+                    </div>
                     <CategoryChart categories={dashTotals?.categories}/>
                 </div>
             </div>
-            <div className="d-flex mt-3 mb-3">
-                <div className="col-6 border rounded mx-2">
-                    <h1 className="mt-3 text-center text-decoration-underline">
+            <div className="d-flex mt-3 mb-3 justify-content-center">
+                <div className="col-6 border rounded mx-2 bg-dark">
+                    <div className="d-flex justify-content-center mt-3">
+                        <span className="badge bg-primary mx-2 my-2 fs-2">
                         Category Revenue
-                    </h1>
+                        </span>
+                    </div>
                     <CategoryRevenueChart categoryRevenue={dashTotals?.categoryRevenue} />
                 </div>
-                <div className="col-5 border rounded mx-2" style={{height: "500px"}}>
-                    <h1 className="mt-3 text-center text-decoration-underline">
-                        Pending Shipments
-                    </h1>
+                <div className="col-6 border rounded mx-2 bg-dark">
+                    <div className="d-flex justify-content-center mt-3">
+                        <span className="badge bg-primary mx-2 my-2 fs-2">
+                            Pending Shipments
+                        </span>
+                    </div>
                     <PendingShipGauge shipments={dashTotals?.pendingShipments} />
+                </div>
+            </div>
+            <div className="d-flex mt-3 mb-3 justify-content-center">
+                <div className="col-12 border rounded mx-2 bg-dark">
+                    <div className="d-flex justify-content-center mt-3">
+                        <span className="badge bg-primary mx-2 my-2 fs-2">
+                        Orders by Month
+                        </span>
+                    </div>
+                    <CategoryHeatmap categoryMonths={dashTotals?.categoryHeatmap} />
                 </div>
             </div>
         </>
