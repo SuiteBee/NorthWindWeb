@@ -8,13 +8,17 @@ import { useState, useEffect } from "react";
 //Components
 //////////////////////////////////////////
 import Modal from "react-bootstrap/Modal";
+import { NorthWindClient } from "@/components/api/NorthWindClient";
 
 const ProductModal = (props) => {
 
+    const[product, setProduct] = useState(props.prod);
     const[newPrice, setNewPrice] = useState(0);
     const[manualPrice, setManualPrice] = useState(true);
     const[markupPrice, setMarkupPrice] = useState(100);
     const[addStock, setAddStock] = useState(0);
+
+    const { setAlert, clearAlert } = useAlert();
 
     //Apply markup  
     useEffect(() => {
@@ -22,9 +26,9 @@ const ProductModal = (props) => {
     }, [markupPrice]);
 
     const productTitle = () => {
-        if(props.prod.discontinued){
+        if(product.discontinued){
             return "danger";
-        }else if (!props.prod.inStock){
+        }else if (!product.inStock){
             return "warning";
         } else{
             return "success";
@@ -32,9 +36,9 @@ const ProductModal = (props) => {
     }
 
     const productStatus = () => {
-        if(props.prod.discontinued){
+        if(product.discontinued){
             return "Discontinued";
-        }else if (!props.prod.inStock){
+        }else if (!product.inStock){
             return "Out of Stock";
         } else{
             return "Available";
@@ -43,15 +47,40 @@ const ProductModal = (props) => {
 
 
     function HandleSubmit(event){
-        alert(`Submitting newPrice:${newPrice} markupPrice:${markupPrice} addStock:${addStock}`);
+        //Update values
+        if(newPrice > 0) product.itemPrice = newPrice;
+        product.stockAmt += addStock;
+        
+        //Send API update for this product modal
+        NorthWindClient.put(`product/update/${product.productId}`, product)
+        .then(data => {
+            setProduct(data);
+            clearAlert();
+        })
+        .catch(error => {
+            console.error("Server Error", error);
+            setAlert("danger", "Server Error: Update Price", error.message);
+        });
+
+        //Reset modal to default
+        setNewPrice(0);
+        setManualPrice(true);
+        setMarkupPrice(100);
+        setAddStock(0);
+
+        //Update parent state to refresh catalog
+        let products = [...props.catalogProducts]
+        props.catalogHandler(products);
+
+        props.hideModal();
     }
 
     function CalculateMarkup() {
         if(!manualPrice){
-            let tmpPrice = props.prod.itemPrice;
+            let tmpPrice = product.itemPrice;
             let tmpMarkup = markupPrice / 100;
             tmpPrice = (tmpPrice * tmpMarkup).toFixed(2);
-            setNewPrice(tmpPrice);
+            setNewPrice(Number(tmpPrice));
         }
     }
 
@@ -65,7 +94,7 @@ const ProductModal = (props) => {
         if(!tmpPrice && tmpPrice != 0) return;
 
         const reg = /(?<![\d.])(\d{1,4}|\d{0,4}\.\d{1,2})?(?![\d.])/
-        if(reg.test(tmpPrice.toString())) setNewPrice(tmpPrice.toString());
+        if(reg.test(tmpPrice.toString())) setNewPrice(tmpPrice);
     }
 
     function HandleStockChange(val){
@@ -77,7 +106,7 @@ const ProductModal = (props) => {
 
         //Digits with length up to 3
         const reg = /^[0-9]{1,3}$/
-        if(reg.test(tmpStock.toString())) setAddStock(tmpStock.toString());
+        if(reg.test(tmpStock.toString())) setAddStock(tmpStock);
     }
 
     function HandleMarkupChange(val){
@@ -85,13 +114,13 @@ const ProductModal = (props) => {
         setMarkupPrice(val); 
     }
 
-    if(props.prod.discontinued){
+    if(product.discontinued){
         return(
             <Modal show={props.showModal} onHide={props.hideModal}>
                 <Modal.Dialog>
                     <Modal.Header className={`bg-${productTitle()}`} closeButton>
                         <Modal.Title className="fs-3"> 
-                            {props.prod.productName} is 
+                            {product.productName} is 
                             <span className="text-decoration-underline mx-2">
                                 {productStatus()}
                             </span>
@@ -116,7 +145,7 @@ const ProductModal = (props) => {
                 <Modal.Dialog>
                     <Modal.Header className={`bg-${productTitle()}`} closeButton>
                         <Modal.Title className="fs-3"> 
-                            {props.prod.productName} is 
+                            {product.productName} is 
                             <span className="text-decoration-underline mx-2">
                                 {productStatus()}
                             </span>
@@ -125,7 +154,7 @@ const ProductModal = (props) => {
 
                     <Modal.Body className="bg-dark">
                         <p>
-                            Update or markup the price of <span className="fw-bold">{props.prod.productName}</span>
+                            Update or markup the price of <span className="fw-bold">{product.productName}</span>
                         </p>
 
                         <hr />
@@ -143,7 +172,7 @@ const ProductModal = (props) => {
                                     className="ms-2"
                                     style={{height:"25px", fontSize:"15px"}}
                                     id="currentPrice" 
-                                    value={props.prod.itemPrice.toFixed(2)}
+                                    value={product.itemPrice.toFixed(2)}
                                     disabled
                                 />
                             </div>
@@ -202,7 +231,7 @@ const ProductModal = (props) => {
                                     className="ms-4"
                                     style={{height:"25px",width:"50px", fontSize:"15px"}}
                                     id="currentStock" 
-                                    value={props.prod.stockAmt}
+                                    value={product.stockAmt}
                                     disabled
                                 />
                             </div>
@@ -224,7 +253,7 @@ const ProductModal = (props) => {
                                     className="ms-2"
                                     style={{height:"25px",width:"50px", fontSize:"15px"}}
                                     id="addStock" 
-                                    value={addStock}
+                                    value={addStock.toString()}
                                     onChange={e => HandleStockChange(e.target.value)}
                                 />
                             </div>

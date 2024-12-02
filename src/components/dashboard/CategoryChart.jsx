@@ -83,7 +83,7 @@ const CategoryChart = (props) => {
     } else{
         return( 
             <>
-                <div class="d-flex justify-content-center">
+                <div className="d-flex justify-content-center">
                     <div className="spinner-border m-5" role="status" style={{width:"100px", height: "100px"}} />
                 </div>
             </>

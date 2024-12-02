@@ -89,6 +89,8 @@ const ProductCatalog = () => {
             id={index += 1}
             key={`prod_${nanoid()}`}
             prod={item} 
+            catalogHandler={setProducts}
+            catalogProducts={products}
         />
     ));
 

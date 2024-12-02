@@ -1,7 +1,6 @@
 //////////////////////////////////////////
 //Hooks
 //////////////////////////////////////////
-import useAlert from "@/hooks/useAlert";
 import { useState } from "react";
 
 //////////////////////////////////////////
@@ -46,8 +45,6 @@ let productBack = [
 
 const ProductEntry = (props) => {
     const[showProductModal, setProductModal] = useState(false);
-
-    const { setAlert, clearAlert } = useAlert();
 
     let icon = productIcons.find((icon) => icon.cat == props.prod.categoryName).img;
     let back = productBack.find((back) => back.cat == props.prod.categoryName).className;
@@ -117,7 +114,13 @@ const ProductEntry = (props) => {
                 </div>
             </div>
 
-            <ProductModal showModal={showProductModal} hideModal={setProductModal} prod={props.prod}/>
+            <ProductModal 
+                showModal={showProductModal} 
+                hideModal={setProductModal} 
+                prod={props.prod}
+                catalogHandler={props.catalogHandler}
+                catalogProducts={props.catalogProducts}
+            />
         </>
         
     );    
