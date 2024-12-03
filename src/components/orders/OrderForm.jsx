@@ -100,7 +100,7 @@ const OrderForm = () => {
                     <div className="input-group">
                         <input 
                             type="text"
-                            className="form-control"
+                            className="form-control text-black"
                             id="ShipName" 
                             value={inputShipName}
                             onChange={(e) => setInputShipName(e.target.value)}
@@ -115,7 +115,7 @@ const OrderForm = () => {
                     <div className="input-group">
                         <input 
                             type="text"
-                            className="form-control"
+                            className="form-control text-black"
                             id="ShipStreet" 
                             value={inputStreet}
                             onChange={(e) => setInputStreet(e.target.value)}
@@ -130,7 +130,7 @@ const OrderForm = () => {
                     <div className="input-group">
                         <input 
                             type="text"
-                            className="form-control"
+                            className="form-control text-black"
                             id="ShipCity" 
                             value={inputCity}
                             onChange={(e) => setInputCity(e.target.value)}
@@ -143,7 +143,7 @@ const OrderForm = () => {
                     <div className="input-group">
                         <input 
                             type="text"
-                            className="form-control"
+                            className="form-control text-black"
                             id="ShipZip" 
                             value={inputZip}
                             onChange={(e) => setInputZip(e.target.value)}
@@ -158,7 +158,7 @@ const OrderForm = () => {
                     <div className="input-group">
                         <input 
                             type="text"
-                            className="form-control"
+                            className="form-control text-black"
                             id="ShipZip" 
                             value={inputCountry}
                             onChange={(e) => setInputCountry(e.target.value)}
@@ -171,7 +171,7 @@ const OrderForm = () => {
                     <div className="input-group">
                         <input 
                             type="text"
-                            className="form-control"
+                            className="form-control text-black"
                             id="ShipRegion" 
                             value={inputRegion}
                             onChange={(e) => setInputRegion(e.target.value)}

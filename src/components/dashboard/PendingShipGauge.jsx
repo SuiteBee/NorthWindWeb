@@ -16,8 +16,8 @@ const PendingShipGauge = (props) => {
             value={110 - (props.shipments * 4)}
             startAngle={-110}
             endAngle={110}
-            height={300}
-            margin={{top: 80}}
+            height={400}
+            margin={{bottom: 20, top: 20}}
             sx={{
                 [`& .${gaugeClasses.valueText}`]: {
                 fontSize: 60,

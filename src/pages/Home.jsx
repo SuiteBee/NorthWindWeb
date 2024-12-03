@@ -30,50 +30,63 @@ const Home = () => {
 
     return (
         <>
-            <div className="d-flex mt-3 justify-content-center">
-                <div className="col-6 border rounded mx-2 bg-dark">
-                    <div className="d-flex justify-content-center mt-3">
-                        <span className="badge bg-primary mx-2 my-2 fs-2">
-                        Revenue
-                        </span>
+            <div className="container-fluid p-4">
+                <div className="row row-gap-4 justify-content-center">
+
+                    <div className="col-md-12 col-lg-6">
+                        <div className="border rounded bg-dark">
+                            <div className="d-flex justify-content-center mt-3">
+                                <span className="badge bg-primary mx-2 my-2 fs-2">
+                                Revenue
+                                </span>
+                            </div>
+                            <RevenueChart revenue={dashTotals?.revenue}/>
+                        </div>
                     </div>
-                    <RevenueChart revenue={dashTotals?.revenue}/>
-                </div>
-                <div className="col-6 border rounded mx-2 bg-dark">
-                    <div className="d-flex justify-content-center mt-3">
-                        <span className="badge bg-primary mx-2 my-2 fs-2">
-                        Product Categories
-                        </span>
+
+                    <div className="col-md-12 col-lg-6">
+                        <div className="border rounded bg-dark">
+                            <div className="d-flex justify-content-center mt-3">
+                                <span className="badge bg-primary mx-2 my-2 fs-2">
+                                Product Categories
+                                </span>
+                            </div>
+                            <CategoryChart categories={dashTotals?.categories}/>
+                        </div>
                     </div>
-                    <CategoryChart categories={dashTotals?.categories}/>
-                </div>
-            </div>
-            <div className="d-flex mt-3 mb-3 justify-content-center">
-                <div className="col-6 border rounded mx-2 bg-dark">
-                    <div className="d-flex justify-content-center mt-3">
-                        <span className="badge bg-primary mx-2 my-2 fs-2">
-                        Category Revenue
-                        </span>
+
+                    <div className="col-md-12 col-lg-6">
+                        <div className="border rounded bg-dark">
+                            <div className="d-flex justify-content-center mt-3">
+                                <span className="badge bg-primary mx-2 my-2 fs-2">
+                                Category Revenue
+                                </span>
+                            </div>
+                            <CategoryRevenueChart categoryRevenue={dashTotals?.categoryRevenue} />
+                        </div>
                     </div>
-                    <CategoryRevenueChart categoryRevenue={dashTotals?.categoryRevenue} />
-                </div>
-                <div className="col-6 border rounded mx-2 bg-dark">
-                    <div className="d-flex justify-content-center mt-3">
-                        <span className="badge bg-primary mx-2 my-2 fs-2">
-                            Pending Shipments
-                        </span>
+
+                    <div className="col-md-12 col-lg-6">
+                        <div className="border rounded bg-dark">
+                            <div className="d-flex justify-content-center mt-3">
+                                <span className="badge bg-primary mx-2 my-2 fs-2">
+                                    Pending Shipments
+                                </span>
+                            </div>
+                            <PendingShipGauge shipments={dashTotals?.pendingShipments} />
+                        </div>
                     </div>
-                    <PendingShipGauge shipments={dashTotals?.pendingShipments} />
-                </div>
-            </div>
-            <div className="d-flex mt-3 mb-3 justify-content-center">
-                <div className="col-12 border rounded mx-2 bg-dark">
-                    <div className="d-flex justify-content-center mt-3">
-                        <span className="badge bg-primary mx-2 my-2 fs-2">
-                        Orders by Month
-                        </span>
+
+                    <div className="col-md-12 col-lg-12">
+                        <div className="border rounded bg-dark">
+                            <div className="d-flex justify-content-center mt-3">
+                                <span className="badge bg-primary mx-2 my-2 fs-2">
+                                Orders by Month
+                                </span>
+                            </div>
+                            <CategoryHeatmap categoryMonths={dashTotals?.categoryHeatmap} />
+                        </div>
                     </div>
-                    <CategoryHeatmap categoryMonths={dashTotals?.categoryHeatmap} />
                 </div>
             </div>
         </>

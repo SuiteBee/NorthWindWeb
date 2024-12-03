@@ -64,7 +64,7 @@ const Orders = () => {
     } else if (newOrder) {
         //New Order Form
         return (
-            <div className="h-100 text-white">
+            <div className="h-100 text-white p-5">
                 <div className="d-flex">
                     <h1 className="display-1 p-2">New Order</h1>
                     <div className="align-self-start ms-auto">
@@ -83,7 +83,7 @@ const Orders = () => {
     } else{
         //Order Grid
         return(
-            <div className="h-100">
+            <div className="h-100 p-5">
                 <h1 className="display-1 p-2 text-white">Orders</h1>
                 <hr className="text-white w-80 h-10" style={{height: "3px"}}/>
                 <div className="d-flex px-4 gap-3 justify-content-start">

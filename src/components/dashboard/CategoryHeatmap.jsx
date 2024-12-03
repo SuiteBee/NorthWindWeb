@@ -7,9 +7,9 @@ const categories = {
     beverages: "Beverages",
     condiments: "Condiments",
     confections: "Confections",
-    dairy: "Dairy Products",
-    grains: "Grains/Cereals",
-    meat: "Meat/Poultry",
+    dairy: "Dairy",
+    grains: "Grains",
+    meat: "Meat",
     produce: "Produce",
     seafood: "Seafood"
   };

@@ -3,6 +3,17 @@ import { PieChart, pieArcLabelClasses  } from "@mui/x-charts/PieChart";
 
 const chartColors = ["lightgreen", "magenta", "lightblue", "lightyellow", "lightcoral", "violet", "gold", "cyan"];
 
+const categories = [
+        { display: "Beverages", value: "Beverages" },
+        { display: "Condiments", value: "Condiments" },
+        { display: "Confections", value: "Confections" },
+        { display: "Dairy", value: "Dairy Products" },
+        { display: "Grains", value: "Grains/Cereals" },
+        { display: "Meat", value: "Meat/Poultry" },
+        { display: "Produce", value: "Produce" },
+        { display: "Seafood", value: "Seafood" }
+    ];
+
 const CategoryChart = (props) => {
     if(props.categories){
 
@@ -14,7 +25,7 @@ const CategoryChart = (props) => {
             (item, index) => (
                 {
                     id: index,
-                    label: item.category,
+                    label: categories.find(c => c.value === item.category).display,
                     value: item.percentage
                 }
             )
@@ -29,15 +40,15 @@ const CategoryChart = (props) => {
                         faded: { innerRadius: 30, additionalRadius: -30, color: "gray" },
                         arcLabelMinAngle: 25,
                         arcLabelRadius: "60%",
-                        //Pie X position
-                        cx: 200,
+                        //Pie Y position
+                        cy: 160,
                         data: catData,
                         valueFormatter
                     }
                 ]}
                 height={400}
+                margin={{ right: 0, bottom: 100 }}
                 sx={{
-                    m: 4,
                     //Slice labels
                     [`& .${pieArcLabelClasses.root}`]: {
                         fontWeight: "bold",
@@ -72,9 +83,13 @@ const CategoryChart = (props) => {
                     },
                     //Overhead legend
                     legend: {
+                      padding: { top: 20, left: 20, bottom: 20, right: 20 },
+                      direction: "row",
+                      position: { vertical: "bottom", horizontal: "middle" },
                       labelStyle: {
                         fontSize: 14,
                         fill: "white",
+                        width: 75
                       }
                     }
                 }}
