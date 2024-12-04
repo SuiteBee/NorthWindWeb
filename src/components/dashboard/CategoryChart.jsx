@@ -38,8 +38,8 @@ const CategoryChart = (props) => {
                         arcLabel: (item) => `${item.value}%`,
                         highlightScope: { fade: "global", highlight: "item" },
                         faded: { innerRadius: 30, additionalRadius: -30, color: "gray" },
-                        arcLabelMinAngle: 25,
-                        arcLabelRadius: "60%",
+                        arcLabelMinAngle: 30,
+                        arcLabelRadius: "65%",
                         //Pie Y position
                         cy: 160,
                         data: catData,
@@ -56,7 +56,7 @@ const CategoryChart = (props) => {
                     },
                     //Slices
                     "& .MuiPieArc-root": {
-                        stroke: "black",
+                        stroke: "#212529",
                         strokeWidth: 2,
                     }
                 }}

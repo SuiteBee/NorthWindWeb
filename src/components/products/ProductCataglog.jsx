@@ -165,7 +165,7 @@ const ProductCatalog = () => {
                 <hr className="text-white w-50" style={{height: "3px"}}/>
                 {productSearch}
             </div>
-            <div className="text-center fst-italic">
+            <div className="text-center fst-italic pt-5">
                 Click on any product entry to update prices or to re-stock
             </div>
         </div>

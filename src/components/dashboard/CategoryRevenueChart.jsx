@@ -89,6 +89,11 @@ const CategoryRevenueChart = (props) => {
                         transform: "translate(0, 5px)",
                         fill:"white",
                         fontSize:"12px !important"
+                    },
+                    //Area Borders
+                    "& .MuiLineElement-root": {
+                        strokeWidth: 2,
+                        stroke:"#212529"
                     }
                 }}
                 slotProps={{
@@ -105,7 +110,10 @@ const CategoryRevenueChart = (props) => {
                                 }
                             }
                         }
-                    }
+                    },
+                    area: (ownerState) => ({
+                        style: { fill: ownerState.color }
+                    })
                 }}
             />
         )

@@ -37,10 +37,6 @@ export const Navbar = (props) => {
                         <img className="me-2" src={HomeIcon}></img>
                         Dashboard
                     </NavLink>
-                    <NavLink className="nav-link" to="/tasks" onClick={handleClick}>
-                        <img className="me-2" src={TaskIcon}></img>
-                        Task Manager
-                    </NavLink>
                     <NavLink className="nav-link" to="/orders" onClick={handleClick}>
                         <img className="me-2" src={OrderIcon}></img>
                         Orders

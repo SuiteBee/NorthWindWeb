@@ -83,10 +83,9 @@ const ProductEntry = (props) => {
 
                 <div className="d-flex">
                     <div className="col-4 border-light">
-                    <div className={`d-flex align-items-center justify-content-center bg-${back} my-3 mx-2`} style={{height:"100px", width:"100px"}}>
+                        <div className={`d-flex align-items-center justify-content-center bg-${back} my-3 mx-2`} style={{height:"100px", width:"100px"}}>
                             <img className="" style={{height:"50px", width:"50px"}} src={icon}></img>
                         </div>
-
                     </div>
                     <div className="col-8">
                         <ul className="list-group list-group-flush border-white my-3 mx-2">
