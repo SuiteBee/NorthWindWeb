@@ -4,7 +4,8 @@ const CategoryBtn = (props) => {
             <button 
                 type="button" 
                 className={`btn btn${props.btnActive ? "" : "-outline"}-primary btn-long`}
-                onClick={() => props.btnEvent(props.btnValue)}>
+                onClick={() => props.btnEvent(props.btnValue)}
+                style={props.btnStyle}>
                 {props.btnText}
             </button>
         </div>

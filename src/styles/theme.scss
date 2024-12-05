@@ -43,6 +43,19 @@ $font-family-sans-serif: "Poppins", sans-serif;
 //Required
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
 
+//Classes utilizing bootstrap
+.dashboardTotal {
+    @extend .border;
+    @extend .border-3; 
+    @extend .rounded;
+    @extend .text-center;
+    @extend .text-dark;
+    @extend .fw-bolder; 
+    @extend .mx-3; 
+    @extend .mt-3; 
+    @extend .fs-1;
+}
+
 //Internal
 @import "src/index";
 @import "src/styles/navbar";

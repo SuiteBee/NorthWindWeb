@@ -8,121 +8,121 @@ import { useState, useEffect } from "react";
 //Components
 //////////////////////////////////////////
 import { NorthWindClient } from "@/components/api/NorthWindClient";
-import ProductEntry from "./ProductEntry";
+import ClientEntry from "./ClientEntry";
 import {nanoid} from "nanoid";
 import CategoryBtn from "@/components/utility/CategoryBtn";
 
-let categoryValues = [
-    "Beverages", 
-    "Condiments", 
-    "Confections", 
-    "Dairy Products", 
-    "Grains/Cereals", 
-    "Meat/Poultry", 
-    "Produce", 
-    "Seafood"
+let regions = [
+    "Western Europe",
+    "Central America",
+    "British Isles",
+    "Northern Europe",
+    "Southern Europe",
+    "North America",
+    "South America",
+    "Scandinavia",
+    "Eastern Europe"
 ];
 
-let categoryTexts = [
-    "Beverages", 
-    "Condiments", 
-    "Confections", 
-    "Dairy", 
-    "Grains", 
-    "Meat", 
-    "Produce", 
-    "Seafood"
-];
+const ClientCatalog = () => {
+    const[clients, setClients] = useState(null);
+    const[filteredClients, setFilteredClients] = useState(null);
+    const[regionFilter, setRegionFilter] = useState("");
+    const[inputSearch, setInputSearch] = useState("");
 
-const ProductCatalog = () => {
-    const[products, setProducts] = useState(null);
-    const[filteredProducts, setFilteredProducts] = useState(null);
-    const[categoryFilter, setCategoryFilter] = useState("");
-    const[inputProduct, setInputProduct] = useState("");
-    
     const { setAlert, clearAlert } = useAlert();
 
     //Product API GET
     useEffect(() => {
-        NorthWindClient.get("product/all")
+        NorthWindClient.get("customer/all")
         .then(data => {
-            setProducts(data);
+            setClients(data);
             clearAlert();
         })
         .catch(error => {
             console.error("Server Error", error);
-            setAlert("danger", "Server Error: Get Products", error.message);
+            setAlert("danger", "Server Error: Get Clients", error.message);
         });
     }, [])
 
     //Apply category/search filters    
     useEffect(() => {
-        filterCatalog();
-    }, [categoryFilter, inputProduct]);
+        filterClients();
+    }, [regionFilter, inputSearch]);
 
-    function filterCatalog() {
-        let tmpFilter = products;
+    function filterClients() {
+        let tmpFilter = clients;
 
-        //Category filter exists
-        if(categoryFilter?.trim() !== ""){
-            tmpFilter = tmpFilter?.filter(item => item.categoryName === categoryFilter);
+         //Region filter exists
+         if(regionFilter?.trim() !== ""){
+            tmpFilter = tmpFilter?.filter(item => item.address.region === regionFilter);
         }
 
         //Search filter exists
-        if(inputProduct?.trim() !== ""){
-            const match = tmpFilter?.filter(option => option.productName.toLowerCase().includes(inputProduct));
+        if(inputSearch?.trim() !== ""){
+            const nameMatch = tmpFilter?.filter(
+                option => option.contactInfo.contactName.toLowerCase().includes(inputSearch)
+            );
+
+            const companyMatch = tmpFilter?.filter(
+                option => option.companyName.toLowerCase().includes(inputSearch)
+            );
+
+            const match = nameMatch.concat(companyMatch);
+
             if(match){
                 tmpFilter = match;
             } 
         }
 
-        setFilteredProducts(tmpFilter);
+        setFilteredClients(tmpFilter);
     }
 
     function handleInputChange(event){
         const value = event.target.value;
-        setInputProduct(value.toLowerCase());
+        setInputSearch(value.toLowerCase());
     }
 
-    const prodList = products?.map((item, index) => (
-        <ProductEntry 
+    const clientList = clients?.map((item, index) => (
+        <ClientEntry 
             id={index += 1}
-            key={`prod_${nanoid()}`}
-            prod={item} 
-            catalogHandler={setProducts}
-            catalogProducts={products}
+            key={`client_${nanoid()}`}
+            client={item} 
+            catalogHandler={setClients}
+            catalogClients={clients}
         />
     ));
 
-    const filteredList = filteredProducts?.map((item, index) => (
-        <ProductEntry 
+    const filteredList = filteredClients?.map((item, index) => (
+        <ClientEntry 
             id={index += 1}
-            key={`prodFilt_${nanoid()}`}
-            prod={item} 
+            key={`clientFilt_${nanoid()}`}
+            client={item} 
         />
     ));
 
-    const categoryBtns = categoryValues?.map((cat, index) => (
+    const regionBtns = regions?.map((value, index) => (
         <CategoryBtn 
-            btnText={categoryTexts[index]}
-            btnValue={cat}
-            btnEvent={setCategoryFilter}
-            btnActive={cat === categoryFilter}
+            btnText={value}
+            btnValue={value}
+            btnEvent={setRegionFilter}
+            btnActive={value === regionFilter}
             id={index += 1}
-            key={`catButt_${categoryTexts[index]}`}
+            key={`regionButt_${index}`}
+            btnStyle={{height:"60px"}}
         />
     ));
 
-    const productSearch = (
+    const clientSearch = (
         <div className="mb-3">
             <div style={{width: "500px"}}>
                 <input 
                     type="text"
                     className="form-control text-black"
                     style={{height:"30px", fontSize:"15px"}}
-                    id="searchProduct" 
+                    id="searchClient" 
                     placeholder="Type to search..."
-                    value={inputProduct}
+                    value={inputSearch}
                     onChange={handleInputChange}
                 />
             </div>
@@ -134,12 +134,12 @@ const ProductCatalog = () => {
         <div className="orderItem">
             <div>
                 <div className="d-flex">
-                    <h1 className="p-2 text-white">Categories</h1>
+                    <h1 className="p-2 text-white">Regions</h1>
                     <div className="px-5 py-2">
                         <button 
                             type="button" 
                             className="btn btn-warning btn-long"
-                            onClick={() => setCategoryFilter("")}>
+                            onClick={() => setRegionFilter("")}>
                             Clear
                         </button>
                     </div>
@@ -147,7 +147,7 @@ const ProductCatalog = () => {
                 
                 <hr className="text-white w-80" style={{height: "3px"}}/>
                 <div className="row row-cols-auto justify-content-start pb-5">
-                    {categoryBtns}
+                    {regionBtns}
                 </div>
             </div>
             <div>
@@ -157,26 +157,26 @@ const ProductCatalog = () => {
                         <button 
                             type="button" 
                             className="btn btn-warning btn-long"
-                            onClick={() => setInputProduct("")}>
+                            onClick={() => setInputSearch("")}>
                             Clear
                         </button>
                     </div>
                 </div>
                 <hr className="text-white w-50" style={{height: "3px"}}/>
-                {productSearch}
+                {clientSearch}
             </div>
             <div className="text-center fst-italic pt-5">
-                Click on any product entry to update prices or to re-stock
+                Click on any client entry to update address or contact info
             </div>
         </div>
 
         <div className="container pb-5 pt-5">
             <div className="row row-cols-auto justify-content-start">
-                {categoryFilter?.trim() == "" && inputProduct?.trim() == "" ? prodList : filteredList}
+                {regionFilter?.trim() == "" && inputSearch?.trim() == "" ? clientList : filteredList}
             </div>
         </div>
     </>
     );
 }
 
-export default ProductCatalog;
+export default ClientCatalog;
