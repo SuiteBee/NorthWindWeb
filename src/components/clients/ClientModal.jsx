@@ -8,26 +8,49 @@ import { useState, useEffect } from "react";
 //Components
 //////////////////////////////////////////
 import Modal from "react-bootstrap/Modal";
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
 import { NorthWindClient } from "@/components/api/NorthWindClient";
 
 const ClientModal = (props) => {
 
-    const[client, setClient] = useState(props.client);
-    const[newPrice, setNewPrice] = useState(0);
-    const[manualPrice, setManualPrice] = useState(true);
-    const[markupPrice, setMarkupPrice] = useState(100);
-    const[addStock, setAddStock] = useState(0);
-
     const { setAlert, clearAlert } = useAlert();
+    const[client, setClient] = useState(props.client);
+
+    const[formState, setFormState] = useState({
+        street: client.address.street,
+        city: client.address.city,
+        postalCode: client.address.postalCode,
+        country: client.address.country,
+        region: client.address.region,
+
+        contactName: client.contactInfo.contactName,
+        contactTitle: client.contactInfo.contactTitle,
+        phone: client.contactInfo.phone,
+        fax: client.contactInfo.fax
+    });
+
+    const countryOptions = props.clientCountries?.map((item, index) => (
+        <Dropdown.Item key={`country_${index}`} eventKey={item}>{item}</Dropdown.Item>
+    ));
 
     function HandleSubmit(event){
         //Update values
+        client.address.street = formState.street;
+        client.address.city = formState.city;
+        client.address.postalCode = formState.postalCode;
+        client.address.country = formState.country;
+        client.address.region = formState.region;
 
-        
+        client.contactInfo.contactName = formState.contactName;
+        client.contactInfo.contactTitle = formState.contactTitle;
+        client.contactInfo.phone = formState.phone;
+        client.contactInfo.fax = formState.fax;
+
         //Send API update for this product modal
         NorthWindClient.put(`customer/update/${client.id}`, client)
         .then(data => {
-            setProduct(data);
+            setClient(data);
             clearAlert();
         })
         .catch(error => {
@@ -40,6 +63,26 @@ const ClientModal = (props) => {
         props.catalogHandler(clients);
 
         props.hideModal();
+    }
+
+    function HandleFormChange(event){
+        const value = event.target.value;
+        setFormState({
+            ...formState,
+            [event.target.name]: value
+        });
+    }
+
+    function HandleCountryDDLChange(eventKey){
+        const selectedCountry = eventKey;
+        const selectedRegion = props.clientCountryRegions.find(
+            r => r.country === selectedCountry).region;
+
+        setFormState({
+            ...formState,
+            region: selectedRegion,
+            country: selectedCountry
+        });
     }
 
     return (
@@ -70,7 +113,9 @@ const ClientModal = (props) => {
                                 className="ms-2"
                                 style={{width:"300px", height:"25px", fontSize:"15px"}}
                                 id="currentStreet" 
-                                value={client.address.street}
+                                name="street"
+                                value={formState.street}
+                                onChange={HandleFormChange}
                             />
                         </div>
                     </div>
@@ -85,7 +130,9 @@ const ClientModal = (props) => {
                                 className="ms-2"
                                 style={{width:"200px", height:"25px", fontSize:"15px"}}
                                 id="currentCity" 
-                                value={client.address.city}
+                                name="city"
+                                value={formState.city}
+                                onChange={HandleFormChange}
                             />
                         </div>
                     </div>
@@ -100,7 +147,9 @@ const ClientModal = (props) => {
                                 className="ms-2"
                                 style={{width:"75px", height:"25px", fontSize:"15px"}}
                                 id="currentZip" 
-                                value={client.address.postalCode}
+                                name="postalCode"
+                                value={formState.postalCode}
+                                onChange={HandleFormChange}
                             />
                         </div>
                     </div>
@@ -110,13 +159,17 @@ const ClientModal = (props) => {
                             Country
                         </div>
                         <div className="col-6">
-                            <input 
-                                type="text"
-                                className="ms-2"
-                                style={{width:"150px", height:"25px", fontSize:"15px"}}
-                                id="currentCountry" 
-                                value={client.address.country}
-                            />
+                            <DropdownButton 
+                                className="ms-2" 
+                                id="countryDropdownBtn" 
+                                variant="light"
+                                size="sm"
+                                name="country"
+                                title={formState.country}
+                                onSelect={HandleCountryDDLChange}>
+                                {countryOptions}
+                            </DropdownButton>
+
                         </div>
                     </div>
 
@@ -128,9 +181,10 @@ const ClientModal = (props) => {
                             <input 
                                 type="text"
                                 className="ms-2"
-                                style={{width:"250px", height:"25px", fontSize:"15px"}}
+                                style={{width:"125px", height:"25px", fontSize:"15px"}}
                                 id="currentRegion" 
-                                value={client.address.region}
+                                name="region"
+                                value={formState.region}
                                 disabled
                             />
                         </div>
@@ -150,7 +204,9 @@ const ClientModal = (props) => {
                                 className="ms-2"
                                 style={{width:"250px", height:"25px", fontSize:"15px"}}
                                 id="currentName" 
-                                value={client.contactInfo.contactName}
+                                name="contactName"
+                                value={formState.contactName}
+                                onChange={HandleFormChange}
                             />
                         </div>
                     </div>
@@ -165,7 +221,9 @@ const ClientModal = (props) => {
                                 className="ms-2"
                                 style={{width:"250px", height:"25px", fontSize:"15px"}}
                                 id="currentTitle" 
-                                value={client.contactInfo.contactTitle}
+                                name="contactTitle"
+                                value={formState.contactTitle}
+                                onChange={HandleFormChange}
                             />
                         </div>
                     </div>
@@ -180,7 +238,9 @@ const ClientModal = (props) => {
                                 className="ms-2"
                                 style={{width:"120px", height:"25px", fontSize:"15px"}}
                                 id="currentPhone" 
-                                value={client.contactInfo.phone}
+                                name="phone"
+                                value={formState.phone}
+                                onChange={HandleFormChange}
                             />
                         </div>
                     </div>
@@ -195,26 +255,13 @@ const ClientModal = (props) => {
                                 className="ms-2"
                                 style={{width:"120px", height:"25px", fontSize:"15px"}}
                                 id="currentFax" 
-                                value={client.contactInfo.fax}
+                                name="fax"
+                                value={formState.fax}
+                                onChange={HandleFormChange}
                             />
                         </div>
                     </div>
 
-
-                    <div className="d-flex align-items-baseline m-2">
-                        <div className="col-2">
-                            Website
-                        </div>
-                        <div className="col-6">
-                            <input 
-                                type="text"
-                                className="ms-2"
-                                style={{width:"120px", height:"25px", fontSize:"15px"}}
-                                id="currentSite" 
-                                value={client.contactInfo.website}
-                            />
-                        </div>
-                    </div>
                     <hr />
 
                     <div className="d-flex justify-content-end">

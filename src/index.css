@@ -281,3 +281,20 @@ button {
 .modal-backdrop {
   opacity: 0.9 !important;
 }
+
+.dropdown-menu {
+  background: white;
+}
+
+.dropdown-item {
+  color: black;
+}
+
+.dropdown-item:hover {
+  background: #0d6efd;
+  color: white;
+}
+
+.dropdown-toggle {
+  font-weight: normal;
+}

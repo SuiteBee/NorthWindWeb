@@ -65,6 +65,8 @@ const ClientEntry = (props) => {
                 showModal={showClientModal} 
                 hideModal={setClientModal} 
                 client={props.client}
+                clientCountryRegions={props.clientCountryRegions}
+                clientCountries={props.clientCountries} 
                 catalogHandler={props.catalogHandler}
                 catalogClients={props.catalogClients}
             />

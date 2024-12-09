@@ -12,21 +12,14 @@ import ClientEntry from "./ClientEntry";
 import {nanoid} from "nanoid";
 import CategoryBtn from "@/components/utility/CategoryBtn";
 
-let regions = [
-    "Western Europe",
-    "Central America",
-    "British Isles",
-    "Northern Europe",
-    "Southern Europe",
-    "North America",
-    "South America",
-    "Scandinavia",
-    "Eastern Europe"
-];
-
 const ClientCatalog = () => {
     const[clients, setClients] = useState(null);
     const[filteredClients, setFilteredClients] = useState(null);
+
+    const[countryRegions, setCountryRegions] = useState(null);
+    const[countries, setCountries] = useState(null);
+    const[regions, setRegions] = useState(null);
+
     const[regionFilter, setRegionFilter] = useState("");
     const[inputSearch, setInputSearch] = useState("");
 
@@ -34,6 +27,7 @@ const ClientCatalog = () => {
 
     //Product API GET
     useEffect(() => {
+        //Client List
         NorthWindClient.get("customer/all")
         .then(data => {
             setClients(data);
@@ -41,7 +35,20 @@ const ClientCatalog = () => {
         })
         .catch(error => {
             console.error("Server Error", error);
-            setAlert("danger", "Server Error: Get Clients", error.message);
+            setAlert("danger", "Server Error: Customer All", error.message);
+        });
+
+        //Unique Country Region Combinations
+        NorthWindClient.get("customer/regions")
+        .then(data => {
+            setCountryRegions(data.regions);
+            setCountries([...new Set(data.regions.map(item => item.country))]);
+            setRegions([...new Set(data.regions.map(item => item.region))]);
+            clearAlert();
+        })
+        .catch(error => {
+            console.error("Server Error", error);
+            setAlert("danger", "Server Error: Customer Regions", error.message);
         });
     }, [])
 
@@ -60,18 +67,23 @@ const ClientCatalog = () => {
 
         //Search filter exists
         if(inputSearch?.trim() !== ""){
+            //Check contact name
             const nameMatch = tmpFilter?.filter(
                 option => option.contactInfo.contactName.toLowerCase().includes(inputSearch)
             );
-
+            //Check company name
             const companyMatch = tmpFilter?.filter(
                 option => option.companyName.toLowerCase().includes(inputSearch)
             );
 
+            //Join two searches
             const match = nameMatch.concat(companyMatch);
 
-            if(match){
-                tmpFilter = match;
+            //Filter out duplicates from concat
+            const unique = match.filter((value, index, arr) => index === arr.indexOf(value));
+
+            if(unique){
+                tmpFilter = unique;
             } 
         }
 
@@ -87,7 +99,9 @@ const ClientCatalog = () => {
         <ClientEntry 
             id={index += 1}
             key={`client_${nanoid()}`}
-            client={item} 
+            client={item}
+            clientCountryRegions={countryRegions}
+            clientCountries={countries} 
             catalogHandler={setClients}
             catalogClients={clients}
         />
@@ -98,15 +112,19 @@ const ClientCatalog = () => {
             id={index += 1}
             key={`clientFilt_${nanoid()}`}
             client={item} 
+            clientCountryRegions={countryRegions}
+            clientCountries={countries} 
+            catalogHandler={setClients}
+            catalogClients={clients}
         />
     ));
 
-    const regionBtns = regions?.map((value, index) => (
+    const regionBtns = regions?.map((item, index) => (
         <CategoryBtn 
-            btnText={value}
-            btnValue={value}
+            btnText={item}
+            btnValue={item}
             btnEvent={setRegionFilter}
-            btnActive={value === regionFilter}
+            btnActive={item === regionFilter}
             id={index += 1}
             key={`regionButt_${index}`}
             btnStyle={{height:"60px"}}
