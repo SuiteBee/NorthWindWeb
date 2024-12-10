@@ -44,10 +44,13 @@ const Orders = () => {
     if(orderDetail !== null){
         //Order Detail View
      return (
-        <div className="h-100 text-white">
-            <div className="d-flex">
-                <h1 className="display-1 p-2">Order Details</h1>
-                <div className="align-self-start ms-auto">
+        <div className="h-100 text-white mt-2">
+            <div className="d-flex justify-content-between bg-primary border rounded border-2 w-100">
+                <div />
+                <div className="">
+                    <h1 className="display-1 p-2">Order Details</h1>
+                </div>
+                <div className="align-self-center">
                     <button 
                         type="button" 
                         className="btn btn__danger btn__close"
@@ -55,7 +58,6 @@ const Orders = () => {
                         <img src={CloseIcon}/>
                     </button>
                 </div>
-                
             </div>
 
             {orderDetail}

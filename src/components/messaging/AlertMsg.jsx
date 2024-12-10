@@ -57,9 +57,7 @@ const AlertMsg = () => {
                                 </button>
                             </div>
                         </div>
-                        <p className="fs-4">
-                            {msg}
-                        </p>
+                        {msg}
                     </div>
                         
                     </Alert>

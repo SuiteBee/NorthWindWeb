@@ -18,10 +18,11 @@ const OrderGrid = (props) => {
     }
 
     //Render a disabled input checkbox to the cell (checkbox)
-    function renderCompleted(isComplete){
+    function renderCompleted(item){
+        let shipped = item.row.isCompleted;
         return(
-            <span className={`badge bg-${isComplete ? "success" : "warning"} mx-2`}>
-                {isComplete ? "Shipped" : "Incomplete"}
+            <span className={`badge bg-${shipped ? "success" : "warning"} mx-2`}>
+                {shipped ? "Shipped" : "Incomplete"}
             </span>
 
             
@@ -48,7 +49,7 @@ const OrderGrid = (props) => {
                 orderTotal: "$" + moneyString(order.orderTotal), 
                 carrierName: order.sendTo.shipCarrier, 
                 //Mark order complete when shipped
-                isCompleted: order.sendTo.shippedDate ? "true" : "false",
+                isCompleted: order.fulfilled,
                 viewOrder: order
             }
         )
@@ -74,6 +75,9 @@ const OrderGrid = (props) => {
                             paginationModel: {
                                 pageSize: 10
                             }
+                        },
+                        sorting: {
+                            sortModel: [{ field: "orderDate", sort: "desc" }]
                         }
                     }}
                     //Styling
