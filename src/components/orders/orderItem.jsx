@@ -1,8 +1,21 @@
+//////////////////////////////////////////
+//Hooks
+//////////////////////////////////////////
+import { useState } from "react";
+
+//////////////////////////////////////////
+//Components
+//////////////////////////////////////////
 import ProductItem from "@/components/orders/ProductItem";
 import {nanoid} from "nanoid";
-import { moneyString } from "@/components/utility/DisplayHelpers"
+import { moneyString } from "@/components/utility/DisplayHelpers";
+import DetailModal from "@/components/orders/DetailModal";
 
-const OrderItem = (order) => {
+const OrderItem = (props) => {
+
+    const[order, setOrder] = useState(props.order)
+    const[showDetailModal, setDetailModal] = useState(false);
+    const[detailModalAction, setDetailModalAction] = useState("");
 
     const prodList = order.value.items?.map((item, index) => (
         <ProductItem 
@@ -11,6 +24,16 @@ const OrderItem = (order) => {
             prod={item} 
         />
     ));
+
+    function ShipOrder(){
+        setDetailModalAction("ship");
+        setDetailModal(true);
+    }
+
+    function DeleteOrder(){
+        setDetailModalAction("delete");
+        setDetailModal(true);
+    }
 
     return (
         <>
@@ -30,34 +53,33 @@ const OrderItem = (order) => {
 
                         <div className="bg-dark border rounded border-white mt-4">
                             <div className="d-flex justify-content-between">
-                                <div className="col-6">
+                                <div className="col-12">
                                     <div className="container ps-5 pt-5">
                                         <div className="row gap-2 justify-content-start my-2">
                                             <h1>Sales Rep</h1>
                                         </div>
                                         <div className="row gap-2 justify-content-start my-2">
-                                            <div className="col-2 badge bg-secondary">Name</div>
-                                            <div className="col-2 badge bg-info">{order.value.completedBy.firstName}</div>
-                                            <div className="col-2 badge bg-info">{order.value.completedBy.lastName}</div>
+                                            <div className="col-3 badge bg-info">{order.value.completedBy.firstName}</div>
+                                            <div className="col-3 badge bg-info">{order.value.completedBy.lastName}</div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div className="d-flex justify-content-between">
-                                <div className="col-6">
+                            <div className="d-flex flex-wrap flex-lg-nowrap justify-content-between">
+                                <div className="col-12 col-lg-6">
                                     <div className="container p-5">
                                         <div className="row gap-2 justify-content-start my-2">
                                             <h1>Shipping Info</h1>
                                         </div>
                                         <div className="row gap-2 justify-content-start my-2">
                                             <div className="col-4 badge bg-secondary">Company</div>
-                                            <div className="col-6 badge bg-info">{order.value.orderedBy.companyName}</div>
+                                            <div className="col-8 badge bg-info">{order.value.orderedBy.companyName}</div>
                                         </div>
                                         <div className="row gap-2 justify-content-start my-2">
                                             <div className="col-4 badge bg-secondary">Address</div>
                                         </div>
                                         <div className="row gap-2 justify-content-start my-2">
-                                            <div className="col-4 badge bg-info">{order.value.sendTo.address.street}</div>
+                                            <div className="col-6 badge bg-info">{order.value.sendTo.address.street}</div>
                                             <div className="col-4 badge bg-info">{order.value.sendTo.address.city}</div>
                                         </div>
                                         <div className="row gap-2 justify-content-start my-2">
@@ -66,26 +88,26 @@ const OrderItem = (order) => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="col-6">
+                                <div className="col-12 col-lg-6">
                                     <div className="container p-5">
                                         <div className="row gap-2 justify-content-start my-2">
                                             <h1>Price Breakdown</h1>
                                         </div>
                                         <div className="row gap-2 justify-content-start my-2">
                                             <div className="col-3 badge bg-secondary">Items</div>
-                                            <div className="col-3 badge bg-success">{order.value.items.length}</div>
+                                            <div className="col-7 badge bg-success">{order.value.items.length}</div>
                                         </div>
                                         <div className="row gap-2 justify-content-start my-2">
                                             <div className="col-3 badge bg-secondary">Subotal</div>
-                                            <div className="col-3 badge bg-success">${moneyString(order.value.orderSubtotal)}</div>
+                                            <div className="col-7 badge bg-success">${moneyString(order.value.orderSubtotal)}</div>
                                         </div>
                                         <div className="row gap-2 justify-content-start my-2">
                                             <div className="col-3 badge bg-secondary">Shipping</div>
-                                            <div className="col-3 badge bg-success">${moneyString(order.value.sendTo.shipCost)}</div>
+                                            <div className="col-7 badge bg-success">${moneyString(order.value.sendTo.shipCost)}</div>
                                         </div>
                                         <div className="row gap-2 justify-content-start my-2">
                                             <div className="col-3 badge bg-secondary">Total</div>
-                                            <div className="col-3 badge bg-success">${moneyString(order.value.orderTotal)}</div>
+                                            <div className="col-7 badge bg-success">${moneyString(order.value.orderTotal)}</div>
                                         </div>
                                     </div>
                                 </div>
@@ -97,28 +119,33 @@ const OrderItem = (order) => {
                         <h1 className="text-center">
                             Actions
                         </h1>
-                        <hr />
-                        <div className="container">
-                            <div className="row justify-content-center my-2" style={{display: order.value.fulfilled ? "none" : ""}}>
-                                <button 
-                                    type="button" 
-                                    className="btn btn-success btn-long">
-                                    Ship
-                                </button>
-                            </div>
-                            <div className="row justify-content-center my-2" style={{display: order.value.fulfilled ? "none" : ""}}>
-                                <button 
-                                    type="button" 
-                                    className="btn btn-danger btn-long">
-                                    Delete
-                                </button>
-                            </div>
-                            <div className="row justify-content-center my-2" style={{display: order.value.fulfilled ? "" : "none"}}>
-                                <button 
-                                    type="button" 
-                                    className="btn btn-secondary btn-long">
-                                    None
-                                </button>
+                        <hr className="pb-6" />
+                        <div className="bg-dark border rounded border-white">
+                            <div className="container my-4">
+                                <div className="row justify-content-center m-2" style={{display: order.value.fulfilled ? "none" : ""}}>
+                                    <button 
+                                        type="button" 
+                                        className="btn btn-success"
+                                        onClick={ShipOrder}>
+                                        Ship
+                                    </button>
+                                </div>
+                                <div className="row justify-content-center m-2" style={{display: order.value.fulfilled ? "none" : ""}}>
+                                    <button 
+                                        type="button" 
+                                        className="btn btn-danger"
+                                        onClick={DeleteOrder}>
+                                        Delete
+                                    </button>
+                                </div>
+                                <div className="row justify-content-center m-2" style={{display: order.value.fulfilled ? "" : "none"}}>
+                                    <button 
+                                        type="button" 
+                                        className="btn btn-secondary"
+                                        disabled>
+                                        None
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -132,6 +159,16 @@ const OrderItem = (order) => {
                     {prodList}
                 </div>
             </div>
+
+            <DetailModal 
+                showModal={showDetailModal} 
+                hideModal={setDetailModal} 
+                order={order.value}
+                action={detailModalAction}
+                orderListHandler={props.orderListHandler}
+                orderList={props.orderList}
+                hideDetails={props.hideDetails}
+            />
         </>
     );
 }

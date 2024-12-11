@@ -13,6 +13,18 @@ class APIClient{
         return await response.json();
     }
 
+    async remove(url, options){
+        const response = await fetch(`${API_BASE_URL}${url}`, options);
+        if(!response.ok){
+            const error = new Error("HTTP Error");
+            error.status = response.status;
+            error.response = await response.json();
+            throw error;
+        }
+        
+        return await response;
+    }
+
     get(url){
         return this.request(url, {
             method: "GET",
@@ -43,7 +55,7 @@ class APIClient{
     }
 
     delete(url){
-        return this.request(url, {
+        return this.remove(url, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",

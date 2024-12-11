@@ -6,7 +6,7 @@ import { useState } from "react";
 //////////////////////////////////////////
 //Components
 //////////////////////////////////////////
-import ClientModal from "@/components/clients/ClientModal"
+import ClientModal from "@/components/clients/ClientModal";
 
 //////////////////////////////////////////
 //Assets

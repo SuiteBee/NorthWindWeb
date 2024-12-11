@@ -13,7 +13,14 @@ const Orders = () => {
     const { setAlert, clearAlert } = useAlert();
 
     function viewOrder(toView){
-        setOrderDetail(OrderItem(toView));
+        setOrderDetail(
+            <OrderItem 
+                order={toView} 
+                orderListHandler={setOrderList}
+                orderList={orderList}
+                hideDetails={setOrderDetail}
+            />
+        )
     }
 
     function closeOrderView(){
