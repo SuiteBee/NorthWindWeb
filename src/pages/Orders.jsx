@@ -92,30 +92,31 @@ const Orders = () => {
     } else{
         //Order Grid
         return(
-            <div className="h-100 p-5">
+            <div className="h-100">
                 <h1 className="display-1 p-2 text-white">Orders</h1>
                 <hr className="text-white w-80 h-10" style={{height: "3px"}}/>
                 <div className="d-flex px-4 gap-3 justify-content-start">
                     <div className="col-sm-auto">
-                        <button 
-                            type="button" 
-                            className="btn btn-primary btn-long" 
-                            onClick={createNewOrder}>
-                            Create
-                        </button>
-                    </div>
-                    <div className="col-sm-auto">
-                        <button 
-                            type="button" 
-                            className="btn btn-primary btn-long" 
-                            onClick={createNewOrder}>
-                            Update
-                        </button>
+                        <div className="d-flex pb-2">
+                            <h1 className="p-2 text-white">Create</h1>
+                            <div className="px-5 py-2">
+                                <button 
+                                    type="button" 
+                                    className="btn btn-primary btn-long"
+                                    onClick={createNewOrder}>
+                                    New
+                                </button>
+                            </div>
+                        </div>
+
+                        <hr />
                     </div>
                 </div>
                 
-                <div>
-                    <OrderGrid allOrders={orderList} viewOrder={viewOrder}/>
+                <div className="container-fluid px-4 pt-4">
+                    <div className="row">
+                        <OrderGrid allOrders={orderList} viewOrder={viewOrder}/>
+                    </div>                 
                 </div>
             </div>
         )

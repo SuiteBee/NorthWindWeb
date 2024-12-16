@@ -54,7 +54,7 @@ const OrderItem = (props) => {
                         <div className="bg-dark border rounded border-white mt-4">
                             <div className="d-flex justify-content-between">
                                 <div className="col-12">
-                                    <div className="container ps-5 pt-5">
+                                    <div className="container m-0 ps-5 pt-5">
                                         <div className="row gap-2 justify-content-start my-2">
                                             <h1>Sales Rep</h1>
                                         </div>
@@ -115,12 +115,13 @@ const OrderItem = (props) => {
                         </div>
                     </div>
 
-                    <div className="col-2">
+                    <div className="col-3 ms-4">
                         <h1 className="text-center">
                             Actions
                         </h1>
-                        <hr className="pb-6" />
-                        <div className="bg-dark border rounded border-white">
+                        <hr />
+                        <br />
+                        <div className="bg-dark border rounded border-white mt-4">
                             <div className="container my-4">
                                 <div className="row justify-content-center m-2" style={{display: order.value.fulfilled ? "none" : ""}}>
                                     <button 

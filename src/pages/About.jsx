@@ -5,12 +5,12 @@ const About = () => {
         <>
             <div className="h-100">
                 <h1 className="display-1 p-2 text-white text-center">About</h1>
-                <hr className="text-white w-80" style={{height: "3px"}}/>
+                <hr />
             </div>
 
-            <div className="w-50">
+            <div className="w-100">
                 <h2 className="p-2 text-white text-center bg-primary border border-2 display-4">Purpose</h2>
-                <hr className="text-white" style={{height: "3px"}}/>
+                <hr />
                 <div className="p-2 bg-dark border border-2">
                     <p>
                         The reason for creating this site was to gain a functional knowledge of the React
@@ -35,11 +35,11 @@ const About = () => {
                 </div>
             </div>
 
-            <hr className="text-white w-50" style={{height: "3px"}}/>
+            <hr />
 
-            <div className="w-50">
+            <div className="w-100">
                 <h2 className="p-2 text-white text-center bg-success border border-2 display-4">Tech</h2>
-                <hr className="text-white w-50" style={{height: "3px"}}/>
+                <hr />
                 <div className="p-2 bg-dark border border-2">
                     <p className="text-decoration-underline">
                         Data Source
@@ -84,11 +84,11 @@ const About = () => {
                 </div>
             </div>
             
-            <hr className="text-white w-50" style={{height: "3px"}}/>
+            <hr />
 
-            <div className="w-50">
+            <div className="w-100">
                 <h2 className="p-2 text-white text-center bg-warning border border-2 display-4">Bio</h2>
-                <hr className="text-white w-50" style={{height: "3px"}}/>
+                <hr />
                 <div className="p-2 bg-dark border border-2">
                     <p>
                         I have a lengthy history of full-stack development for a large enterprise insurance
@@ -106,33 +106,37 @@ const About = () => {
                 </div>
             </div>
 
-            <hr className="text-white w-50" style={{height: "3px"}}/>
+            <hr />
 
-            <div>
-                <h2 className="p-2 text-white">Credits - Assets</h2>
-                <hr className="text-white w-25" style={{height: "3px"}}/>
-                <p>
-                    Following Vectors and icons from <a href="https://www.svgrepo.com">SVG Repo</a>
-                    <br />
-                    Under <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons by Attribution</a> License
-                    <br />
-                    <br />
-                    Product Catalog icons by <a href="https://www.behance.net/james_chou?ref=svgrepo.com">Yu Chun Chou</a>
-                    
-                </p>
+            <div className="w-100">
+                <h2 className="p-2 text-white text-center bg-secondary border border-2 display-4">Credits - Assets</h2>
+                <hr />
+                <div className="p-2 bg-dark border border-2">
+                    <p>
+                        Following Vectors and icons from <a href="https://www.svgrepo.com">SVG Repo</a>
+                        <br />
+                        Under <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons by Attribution</a> License
+                        <br />
+                        <br />
+                        Product Catalog icons by <a href="https://www.behance.net/james_chou?ref=svgrepo.com">Yu Chun Chou</a>
+                        
+                    </p>
 
-                <hr className="text-white w-25" style={{height: "3px"}}/>
+                    <hr />
 
-                <p>
-                    Following Vectors and icons from <a href="https://fonts.google.com/icons">Google</a>
-                    <br />
-                    Under <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache 2.0</a> License
+                    <p>
+                        Following Vectors and icons from <a href="https://fonts.google.com/icons">Google</a>
+                        <br />
+                        Under <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache 2.0</a> License
 
-                    <br />
-                    <br />
-                    Navigation Icons
-                </p>
+                        <br />
+                        <br />
+                        Navigation Icons
+                    </p>
+                </div>
             </div>
+
+            <br />
         </>
     );
 };

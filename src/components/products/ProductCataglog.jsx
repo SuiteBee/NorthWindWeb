@@ -116,8 +116,8 @@ const ProductCatalog = () => {
     ));
 
     const productSearch = (
-        <div className="mb-3">
-            <div style={{width: "500px"}}>
+        <div className="pb-3">
+            <div style={{width: "400px"}}>
                 <input 
                     type="text"
                     className="form-control text-black"
@@ -147,13 +147,13 @@ const ProductCatalog = () => {
                     </div>
                 </div>
                 
-                <hr className="text-white w-80" style={{height: "3px"}}/>
-                <div className="row row-cols-auto justify-content-start pb-5">
+                <div className="row row-cols-auto justify-content-start py-2">
                     {categoryBtns}
                 </div>
+                <hr />
             </div>
             <div>
-                <div className="d-flex">
+                <div className="d-flex pb-2">
                     <h1 className="p-2 text-white">Search</h1>
                     <div className="px-5 py-2">
                         <button 
@@ -164,10 +164,10 @@ const ProductCatalog = () => {
                         </button>
                     </div>
                 </div>
-                <hr className="text-white w-50" style={{height: "3px"}}/>
                 {productSearch}
+                <hr />
             </div>
-            <div className="text-center fst-italic pt-5">
+            <div className="text-center fst-italic text-decoration-underline pt-5">
                 Click on any product entry to update prices or to re-stock
             </div>
         </div>

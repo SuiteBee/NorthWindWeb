@@ -47,7 +47,7 @@ export const Navbar = (props) => {
                     </NavLink>
                     <NavLink className="nav-link" to="/products" onClick={handleClick}>
                         <img className="me-2" src={CatalogIcon}></img>
-                        Catalog
+                        Products
                     </NavLink>
                     <NavLink className="nav-link" to="/about" onClick={handleClick}>
                         <img className="me-2" src={AboutIcon}></img>

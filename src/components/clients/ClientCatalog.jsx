@@ -132,8 +132,8 @@ const ClientCatalog = () => {
     ));
 
     const clientSearch = (
-        <div className="mb-3">
-            <div style={{width: "500px"}}>
+        <div className="pb-3">
+            <div style={{width: "400px"}}>
                 <input 
                     type="text"
                     className="form-control text-black"
@@ -151,7 +151,22 @@ const ClientCatalog = () => {
     <>
         <div className="orderItem">
             <div>
-                <div className="d-flex">
+                <div className="d-flex pb-2">
+                    <h1 className="p-2 text-white">Create</h1>
+                    <div className="px-5 py-2">
+                        <button 
+                            type="button" 
+                            className="btn btn-primary btn-long"
+                            onClick={() => setRegionFilter("")}>
+                            New
+                        </button>
+                    </div>
+                </div>
+
+                <hr />
+            </div>
+            <div>
+                <div className="d-flex pb-2">
                     <h1 className="p-2 text-white">Regions</h1>
                     <div className="px-5 py-2">
                         <button 
@@ -163,13 +178,13 @@ const ClientCatalog = () => {
                     </div>
                 </div>
                 
-                <hr className="text-white w-80" style={{height: "3px"}}/>
-                <div className="row row-cols-auto justify-content-start pb-5">
+                <div className="row row-cols-auto justify-content-start pb-2">
                     {regionBtns}
                 </div>
+                <hr />
             </div>
             <div>
-                <div className="d-flex">
+                <div className="d-flex pb-2">
                     <h1 className="p-2 text-white">Search</h1>
                     <div className="px-5 py-2">
                         <button 
@@ -180,10 +195,10 @@ const ClientCatalog = () => {
                         </button>
                     </div>
                 </div>
-                <hr className="text-white w-50" style={{height: "3px"}}/>
                 {clientSearch}
+                <hr />
             </div>
-            <div className="text-center fst-italic pt-5">
+            <div className="text-center fst-italic text-decoration-underline pt-5">
                 Click on any client entry to update address or contact info
             </div>
         </div>

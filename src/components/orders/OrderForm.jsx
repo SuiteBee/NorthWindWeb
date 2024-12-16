@@ -105,6 +105,8 @@ const OrderForm = () => {
                             value={inputShipName}
                             onChange={(e) => setInputShipName(e.target.value)}
                             required
+                            disabled={selectedCompany ? false : true}
+                            style={selectedCompany ? {backgroundColor:"white"} : {backgroundColor: "gray"}}
                         />
                     </div>
                 </div>
