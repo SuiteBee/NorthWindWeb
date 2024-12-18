@@ -10,6 +10,7 @@ import {
 //////////////////////////////////////////
 import Home from "@/pages/Home.jsx";
 import Orders from "@/pages/Orders.jsx";
+import NewOrder from "@/pages/NewOrder.jsx";
 import Customers from "@/pages/Customers.jsx";
 import Products from "@/pages/Products.jsx";
 import About from "@/pages/About.jsx";
@@ -23,6 +24,7 @@ export const PageRouter = () => {
                 <Route path="/" element ={<Layout />}>
                     <Route index element={<Home />} />
                     <Route path="/orders" element={<Orders />} />
+                    <Route path="/orders/new" element={<NewOrder />} />
                     <Route path="/customers" element={<Customers />} />
                     <Route path="/products" element={<Products />} />
                     <Route path="/about" element={<About />} />

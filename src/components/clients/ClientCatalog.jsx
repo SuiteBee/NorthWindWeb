@@ -203,7 +203,7 @@ const ClientCatalog = () => {
             </div>
         </div>
 
-        <div className="container pb-5 pt-5">
+        <div className="container-fluid p-4">
             <div className="row row-cols-auto justify-content-start">
                 {regionFilter?.trim() == "" && inputSearch?.trim() == "" ? clientList : filteredList}
             </div>

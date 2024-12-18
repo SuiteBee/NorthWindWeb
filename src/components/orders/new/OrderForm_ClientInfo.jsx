@@ -2,17 +2,17 @@ import { useState, useEffect } from "react";
 import { NorthWindClient } from "@/components/api/NorthWindClient";
 import useAlert from "@/hooks/useAlert";
 
-const OrderForm = () => {
+const OrderForm_ClientInfo = (props) => {
     const[companies, setCompanies] = useState(null);
-    const[inputCompany, setInputCompany] = useState("");
-    const[selectedCompany, setSelectedCompany] = useState(null);
+    const[inputCompany, setInputCompany] = useState(props.client?.companyName);
+    const[selectedCompany, setSelectedCompany] = useState(props.client);
 
-    const[inputShipName, setInputShipName] = useState("");
-    const[inputStreet, setInputStreet] = useState("");
-    const[inputCity, setInputCity] = useState("");
-    const[inputZip, setInputZip] = useState("");
-    const[inputCountry, setInputCountry] = useState("");
-    const[inputRegion, setInputRegion] = useState("");
+    const[companyName, setCompanyName] = useState(props.client?.companyName);
+    const[companyStreet, setCompanyStreet] = useState(props.client?.address.street);
+    const[companyCity, setCompanyCity] = useState(props.client?.address.city);
+    const[companyZip, setCompanyZip] = useState(props.client?.address.postalCode);
+    const[companyCountry, setCompanyCountry] = useState(props.client?.address.country);
+    const[companyRegion, setCompanyRegion] = useState(props.client?.address.region);
 
     const { setAlert, clearAlert } = useAlert();
 
@@ -22,10 +22,29 @@ const OrderForm = () => {
 
         const match = companies?.find(option => option.id === value);
         if(match){
-            setInputCompany(match.companyName)
+            setInputCompany(match.companyName);
             setSelectedCompany(match.id);
+
+            //Set Company Address Info
+            setCompanyName(match.companyName);
+            setCompanyStreet(match.address.street);
+            setCompanyCity(match.address.city);
+            setCompanyZip(match.address.postalCode);
+            setCompanyCountry(match.address.country);
+            setCompanyRegion(match.address.region);
+
+            props.setClient(match);
         } else{
             setSelectedCompany(null);
+
+            setCompanyName("");
+            setCompanyStreet("");
+            setCompanyCity("");
+            setCompanyZip("");
+            setCompanyCountry("");
+            setCompanyRegion("");
+
+            props.setClient(null);
         }
     }
 
@@ -100,13 +119,10 @@ const OrderForm = () => {
                     <div className="input-group">
                         <input 
                             type="text"
-                            className="form-control text-black"
-                            id="ShipName" 
-                            value={inputShipName}
-                            onChange={(e) => setInputShipName(e.target.value)}
-                            required
-                            disabled={selectedCompany ? false : true}
-                            style={selectedCompany ? {backgroundColor:"white"} : {backgroundColor: "gray"}}
+                            className="form-control text-black input-disabled"
+                            id="CompanyName" 
+                            value={companyName}
+                            disabled
                         />
                     </div>
                 </div>
@@ -117,11 +133,10 @@ const OrderForm = () => {
                     <div className="input-group">
                         <input 
                             type="text"
-                            className="form-control text-black"
-                            id="ShipStreet" 
-                            value={inputStreet}
-                            onChange={(e) => setInputStreet(e.target.value)}
-                            required
+                            className="form-control text-black input-disabled"
+                            id="CompanyStreet" 
+                            value={companyStreet}
+                            disabled
                         />
                     </div>
                 </div>
@@ -132,11 +147,10 @@ const OrderForm = () => {
                     <div className="input-group">
                         <input 
                             type="text"
-                            className="form-control text-black"
-                            id="ShipCity" 
-                            value={inputCity}
-                            onChange={(e) => setInputCity(e.target.value)}
-                            required
+                            className="form-control text-black input-disabled"
+                            id="CompanyCity" 
+                            value={companyCity}
+                            disabled
                         />
                     </div>
                 </div>
@@ -145,11 +159,10 @@ const OrderForm = () => {
                     <div className="input-group">
                         <input 
                             type="text"
-                            className="form-control text-black"
-                            id="ShipZip" 
-                            value={inputZip}
-                            onChange={(e) => setInputZip(e.target.value)}
-                            required
+                            className="form-control text-black input-disabled"
+                            id="CompanyZip" 
+                            value={companyZip}
+                            disabled
                         />
                     </div>
                 </div>
@@ -160,11 +173,10 @@ const OrderForm = () => {
                     <div className="input-group">
                         <input 
                             type="text"
-                            className="form-control text-black"
-                            id="ShipZip" 
-                            value={inputCountry}
-                            onChange={(e) => setInputCountry(e.target.value)}
-                            required
+                            className="form-control text-black input-disabled"
+                            id="CompanyCountry" 
+                            value={companyCountry}
+                            disabled
                         />
                     </div>
                 </div>
@@ -173,17 +185,23 @@ const OrderForm = () => {
                     <div className="input-group">
                         <input 
                             type="text"
-                            className="form-control text-black"
-                            id="ShipRegion" 
-                            value={inputRegion}
-                            onChange={(e) => setInputRegion(e.target.value)}
-                            required
+                            className="form-control text-black input-disabled"
+                            id="CompanyRegion" 
+                            value={companyRegion}
+                            disabled
                         />
                     </div>
                 </div>
             </div>
+
+            {/*
+            <input className="form-check-input" type="checkbox" value="" checked/>
+            <label className="form-check-label mx-2">
+                Ship To This Address
+            </label>
+            */}
         </form>
     );
 }
 
-export default OrderForm;
+export default OrderForm_ClientInfo;

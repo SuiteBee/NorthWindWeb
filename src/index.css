@@ -299,3 +299,20 @@ button {
 .dropdown-toggle {
   font-weight: normal;
 }
+
+.input-disabled {
+  background-color: gray !important;
+}
+
+.breadcrumb-active {
+  color: #4d4dff;
+}
+
+.breadcrumb-inactive {
+  color: gray;
+  text-decoration: none;
+}
+
+.breadcrumb-previous {
+  color: gray;
+} 

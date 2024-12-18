@@ -1,16 +1,23 @@
-import { NorthWindClient } from "@/components/api/NorthWindClient";
+//////////////////////////////////////////
+//Hooks
+//////////////////////////////////////////
 import React, { useState, useEffect } from "react";
+import useAlert from "@/hooks/useAlert";
+import { useNavigate } from "react-router-dom";
+
+//////////////////////////////////////////
+//Components
+//////////////////////////////////////////
+import { NorthWindClient } from "@/components/api/NorthWindClient";
 import OrderGrid from "@/components/orders/OrderGrid";
 import OrderItem from "@/components/orders/OrderItem";
-import OrderForm from "@/components/orders/OrderForm";
 import CloseIcon from "@/assets/icon/closeIcon.svg";
-import useAlert from "@/hooks/useAlert";
 
 const Orders = () => {
     const [orderList, setOrderList] = useState(null);
     const [orderDetail, setOrderDetail] = useState(null);
-    const [newOrder, setNewOrder] = useState(false);
     const { setAlert, clearAlert } = useAlert();
+    const navigate = useNavigate();
 
     function viewOrder(toView){
         setOrderDetail(
@@ -26,13 +33,9 @@ const Orders = () => {
     function closeOrderView(){
         setOrderDetail(null);
     }
-
-    function closeNewOrder(){
-        setNewOrder(false);
-    }
-
-    function createNewOrder(){
-        setNewOrder(true);
+    
+    const newOrderClick = () => {
+        navigate("/orders/new");
     }
 
     //Popualate Order grid with all orders
@@ -70,26 +73,7 @@ const Orders = () => {
             {orderDetail}
         </div>
      )       
-    } else if (newOrder) {
-        //New Order Form
-        return (
-            <div className="h-100 text-white p-5">
-                <div className="d-flex">
-                    <h1 className="display-1 p-2">New Order</h1>
-                    <div className="align-self-start ms-auto">
-                        <button 
-                            type="button" 
-                            className="btn btn__danger btn__close"
-                            onClick={closeNewOrder}>
-                            <img src={CloseIcon}/>
-                        </button>
-                    </div>
-                </div>
-
-                <OrderForm />
-            </div>
-        )
-    } else{
+    } else {
         //Order Grid
         return(
             <div className="h-100">
@@ -103,7 +87,7 @@ const Orders = () => {
                                 <button 
                                     type="button" 
                                     className="btn btn-primary btn-long"
-                                    onClick={createNewOrder}>
+                                    onClick={newOrderClick}>
                                     New
                                 </button>
                             </div>
