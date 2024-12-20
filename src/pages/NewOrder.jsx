@@ -41,6 +41,15 @@ const NewOrder = () => {
         setBreadcrumb(nextCrumb);
     }
 
+    function nextStep_disabled(){
+        switch(breadcrumb){
+            case "client":
+                return clientInfo == null;
+            case "product":
+                return productInfo == null;
+        }
+    }
+
     const Order_step = () => {
         switch(breadcrumb){
             case "client":
@@ -51,33 +60,37 @@ const NewOrder = () => {
     };
 
     return (
-        <div className="h-100 text-white p-5">
-            <div className="d-flex">
-                <h1 className="display-1 p-2">New Order</h1>
-            </div>
+        <>
+            <div className="h-100 text-white p-5">
+                <div className="d-flex">
+                    <h1 className="display-1 p-2">New Order</h1>
+                </div>
 
-            <div>
-                <a className={breadcrumb_class("client")}>Client Info</a> &nbsp;/&nbsp;
-                <a className={breadcrumb_class("product")}>Products</a> &nbsp;/&nbsp;
-                <a className={breadcrumb_class("shipping")}>Shipping</a> &nbsp;/&nbsp;
-                <a className={breadcrumb_class("submit")}>Submit</a> 
-            </div>
+                <div>
+                    <a className={breadcrumb_class("client")}>Client Info</a> &nbsp;/&nbsp;
+                    <a className={breadcrumb_class("product")}>Products</a> &nbsp;/&nbsp;
+                    <a className={breadcrumb_class("shipping")}>Shipping</a> &nbsp;/&nbsp;
+                    <a className={breadcrumb_class("submit")}>Submit</a> 
 
-            <hr />
+                    <div className="d-flex">
+                        <div className="col-6 py-4">
+                            <button 
+                                type="button" 
+                                className="btn btn-success btn-long float-start"
+                                onClick={nextStep_click}
+                                disabled={nextStep_disabled()}>
+                                Next
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <hr />
+
+            </div>
 
             <Order_step />
-
-            <div className="d-flex">
-                <div className="col-6 py-2">
-                    <button 
-                        type="button" 
-                        className="btn btn-success btn-long float-end"
-                        onClick={nextStep_click}>
-                        Next
-                    </button>
-                </div>
-            </div>
-        </div>
+        </>
     )
 }
 

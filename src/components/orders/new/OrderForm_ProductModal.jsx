@@ -12,9 +12,9 @@ const OrderForm_ProductModal = (props) => {
 
     const[product, setProduct] = useState(props.prod);
     
-    const[discountPct, setDiscountPct] = useState(0);
+    const[discountPct, setDiscountPct] = useState(props.discount);
     const[discountPrice, setDiscountPrice] = useState(props.prod.itemPrice);
-    const[orderAmount, setOrderAmount] = useState(0);
+    const[orderQuantity, setOrderQuantity] = useState(props.quantity);
 
     const productTitle = () => {
         if(product.discontinued){
@@ -36,8 +36,15 @@ const OrderForm_ProductModal = (props) => {
         }
     }
 
-    function HandleSubmit(event){
-        
+    function HandleSubmit(){
+        if(orderQuantity > 0){
+            props.prod.quantity = orderQuantity;
+            props.prod.discount = discountPct;
+            props.prod.discountPrice = discountPrice;
+            props.prod.subtotal = (orderQuantity * discountPrice);
+            
+            props.handleAddCart(props.prod);
+        }
     }
 
     function CalculateDiscount(val){
@@ -54,9 +61,9 @@ const OrderForm_ProductModal = (props) => {
 
     function HandleAmountChange(val){
         if(val > product.stockAmt){
-            setOrderAmount(product.stockAmt);
+            setOrderQuantity(product.stockAmt);
         }else{
-            setOrderAmount(val);
+            setOrderQuantity(val);
         }
     }
 
@@ -172,8 +179,8 @@ const OrderForm_ProductModal = (props) => {
                                 step="1"
                                 className="ms-2"
                                 style={{height:"25px",width:"50px", fontSize:"15px"}}
-                                id="orderAmount" 
-                                value={orderAmount.toString()}
+                                id="orderQuantity" 
+                                value={orderQuantity.toString()}
                                 onChange={e => HandleAmountChange(e.target.value)}
                             />
                         </div>
@@ -185,8 +192,9 @@ const OrderForm_ProductModal = (props) => {
                         <button 
                             type="submit" 
                             className="btn btn-success btn-long"
-                            onClick={HandleSubmit}>
-                            Buy
+                            onClick={HandleSubmit}
+                            disabled={orderQuantity === 0}>
+                            Add To Cart
                         </button>
                     </div>
                     

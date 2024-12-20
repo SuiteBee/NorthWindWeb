@@ -69,10 +69,6 @@ const OrderForm_ProductEntry = (props) => {
         }
     }
 
-    function handleAdd(){
-        props.addCart(props.prod);
-    }
-
     return (
         <>
             <div className="card bg-dark text-white m-2" style={{width: "35rem"}} onClick={() => setProductModal(true)}>
@@ -121,6 +117,9 @@ const OrderForm_ProductEntry = (props) => {
                 showModal={showProductModal} 
                 hideModal={setProductModal} 
                 prod={props.prod}
+                quantity={props.quantity}
+                discount={props.discount}
+                handleAddCart={props.handleAddCart}
             />
         </>
         

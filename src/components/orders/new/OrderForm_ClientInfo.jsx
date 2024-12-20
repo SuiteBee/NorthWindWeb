@@ -106,8 +106,7 @@ const OrderForm_ClientInfo = (props) => {
     );
 
     return (
-        <form className="px-2" onSubmit={handleSubmit}>
-            <hr className="text-white w-50" style={{height: "3px"}}/>
+        <form className="ps-5" onSubmit={handleSubmit}>
             <div className="d-flex">
                 <div className="col-6">
                     {companySearch}   

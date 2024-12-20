@@ -9,12 +9,28 @@ import { useState, useEffect } from "react";
 //////////////////////////////////////////
 import { NorthWindClient } from "@/components/api/NorthWindClient";
 import OrderForm_ProductEntry from "@/components/orders/new/OrderForm_ProductEntry";
+import OrderForm_ProductCart from "@/components/orders/new/OrderForm_ProductCart";
 import {nanoid} from "nanoid";
+import { moneyString } from "@/components/utility/DisplayHelpers";
 
+//////////////////////////////////////////
+//Bootstrap
+//////////////////////////////////////////
+import Offcanvas from 'react-bootstrap/Offcanvas';
 
-const OrderForm_Products = () => {
+//////////////////////////////////////////
+//Assets
+//////////////////////////////////////////
+import CloseIcon from "@/assets/icon/closeIcon.svg";
+import CartIcon from "@/assets/icon/shopCartIcon.svg";
+
+const OrderForm_Products = (props) => {
     const[allProducts, setAllProducts] = useState(null);
     const[cart, setCart] = useState([]);
+
+    const [showCart, setShowCart] = useState(false);
+    const handleCloseCart = () => setShowCart(false);
+    const handleShowCart = () => setShowCart(true);
     
     const { setAlert, clearAlert } = useAlert();
 
@@ -32,13 +48,39 @@ const OrderForm_Products = () => {
         });
     }, []);
 
-    const AddToCart = (item) => {
-        if(item.inStock){
-            let exists = cart.find(p => p.productId === item.productId);
-            if(!exists){
-                setCart((oldCart) => [...oldCart, item]);
-            }
+    //Check for existing productInfo when initializing cart
+    useEffect(() => {
+        if(props.product) {
+            setCart(props.product);
+        } else{
+            setCart([]);
         }
+    }, []);
+
+    const AddToCart = (item) => {
+        const existingItem = cart.find(p => p.productId === item.productId);
+        if(!existingItem){
+            setCart([...cart, item]);
+
+            props.setProduct([...cart, item]);
+        } else {
+            const cartIndex = cart.findIndex(p => p.productId === item.productId);
+            const cartSwap = [...cart];
+            cartSwap[cartIndex] = item;
+            setCart(cartSwap);
+            
+            props.setProduct(cartSwap);
+        }
+    }
+
+    const CartQuantity = (productId) => {
+        const cartProd = cart.find(p => p.productId === productId);
+        return cartProd ? cartProd.quantity : 0;
+    }
+
+    const CartDiscount = (productId) => {
+        const cartProd = cart.find(p => p.productId === productId);
+        return cartProd ? cartProd.discount : 0;
     }
 
     const prodList = allProducts?.map((item, index) => (
@@ -46,25 +88,33 @@ const OrderForm_Products = () => {
             id={index += 1}
             key={`prod_${nanoid()}`}
             prod={item} 
-            addCart={AddToCart}
+            quantity={CartQuantity(item.productId)}
+            discount={CartDiscount(item.productId)}
+            handleAddCart={AddToCart}
         />
     ));
 
     const cartList = cart?.map((item, index) => (
-        <>
-            <div className="col-10">
-                {item.productName}
-            </div>
-            <div className="col-2">
-                {item.stockAmt}
-            </div>
-        </>
+        <OrderForm_ProductCart
+            id={index += 1}
+            key={`cart_${nanoid()}`}
+            prod={item}
+        />
     ));
+
+    function SumCart(){
+        let sum = 0;
+        cart.forEach((item) => {
+            const subtotal = item.quantity * item.discountPrice;
+            sum += subtotal;
+        });
+        return sum;
+    }
 
     return (
     <>
-        <div className="d-flex pt-5">
-            <div className="col-8">
+        <div className="d-flex ps-2 pe-8">
+            <div className="col-12">
                 <div className="text-center">
                     <h1 className="text-decoration-underline">Products</h1>
                 </div>
@@ -74,20 +124,44 @@ const OrderForm_Products = () => {
                     </div>
                 </div>
             </div>
-            <div className="col-4">
-                <div className="text-center">
-                    <h1 className="text-decoration-underline">Cart</h1>
-                </div>
-                <div className="bg-dark mt-4">
-                    <div className="container-fluid p-4">
-                        <div className="row row-cols-auto justify-content-start">
-                            {cartList}
-                        </div>
-                    </div>
+        </div>
+
+        <div className="position-fixed top-0 end-0">
+            <div className="pe-4 pt-9">
+                <div className="rounded bg-success" style={{display: cart.length > 0 ? "" : "none"}}>
+                    <button className="btn-default" type="button" onClick={handleShowCart}>
+                        <img src={CartIcon}></img>
+                    </button>
                 </div>
             </div>
         </div>
        
+        <Offcanvas className="bg-dark" show={showCart} onHide={handleCloseCart} placement="end">
+            <Offcanvas.Header className="justify-content-between border-bottom m-2">
+            <div className="display-1 text-white">Cart</div>
+            <div>
+                <button className="btn-default" type="button" onClick={handleCloseCart}>
+                    <img src={CloseIcon}></img>
+                </button>
+            </div>
+            
+            </Offcanvas.Header>
+            <Offcanvas.Body>
+                <div className="bg-dark mt-4">
+                    <div className="container-fluid p-4">
+                        {cartList}
+                    </div>
+                    <hr />
+                    <div className="pe-4 float-end">
+                        Total
+                    </div>
+                    <br />
+                    <div className="pe-4 float-end">
+                        ${moneyString(SumCart())}
+                    </div>
+                </div>
+            </Offcanvas.Body>
+        </Offcanvas>
     </>
     );
 }
