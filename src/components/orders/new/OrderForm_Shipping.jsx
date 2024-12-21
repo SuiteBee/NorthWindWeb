@@ -1,0 +1,264 @@
+//////////////////////////////////////////
+//Hooks
+//////////////////////////////////////////
+import { useState, useCallback, useEffect } from "react";
+import useAlert from "@/hooks/useAlert";
+
+//////////////////////////////////////////
+//Components
+//////////////////////////////////////////
+import Dropdown from "react-bootstrap/Dropdown";
+import DropdownButton from "react-bootstrap/DropdownButton";
+import { NorthWindClient } from "@/components/api/NorthWindClient";
+
+const OrderForm_Shipping = (props) => {
+    const[company, setCompany] = useState(props.client);
+    const[shippingInfo, setShippingInfo] = useState(props.shipping);
+
+    const[formState, setFormState] = useState({
+        useCompanyAddress: shippingInfo?.useCompanyAddress,
+        carrier: shippingInfo?.carrier,
+        name: shippingInfo?.name,
+        street: shippingInfo?.street,
+        city: shippingInfo?.city,
+        postalCode: shippingInfo?.postalCode,
+        country: shippingInfo?.country,
+        region: shippingInfo?.region
+    });
+
+    const[countryRegions, setCountryRegions] = useState(null);
+    const[countries, setCountries] = useState(null);
+    const[carriers, setCarriers] = useState(null);
+
+    const { setAlert, clearAlert } = useAlert();
+
+    useEffect(() => {
+        //Unique Country Region Combinations
+        NorthWindClient.get("customer/regions")
+        .then(data => {
+            setCountryRegions(data.regions);
+            setCountries([...new Set(data.regions.map(item => item.country))]);
+            clearAlert();
+        })
+        .catch(error => {
+            console.error("Server Error", error);
+            setAlert("danger", "Server Error: Customer Regions", error.message);
+        });
+
+        //Shipping Options
+        NorthWindClient.get("order/carriers")
+        .then(data => {
+            setCarriers([...new Set(data.carriers.map(item => item.companyName))]);
+            clearAlert();
+        })
+        .catch(error => {
+            console.error("Server Error", error);
+            setAlert("danger", "Server Error: Shipping Carriers", error.message);
+        });
+    }, []);
+
+    const countryOptions = countries?.map((item, index) => (
+        <Dropdown.Item key={`country_${index}`} eventKey={item}>{item}</Dropdown.Item>
+    ));
+
+    const carrierOptions = carriers?.map((item, index) => (
+        <Dropdown.Item key={`carrier_${index}`} eventKey={item}>{item}</Dropdown.Item>
+    ));
+
+    function HandleCountryDDLChange(eventKey){
+        const selectedCountry = eventKey;
+        const selectedRegion = countryRegions.find(
+            r => r.country === selectedCountry).region;
+
+        setFormState({
+            ...formState,
+            region: selectedRegion,
+            country: selectedCountry
+        });
+    }
+
+    function UseCompanyCheck_Click(e){
+        setFormState({
+            ...formState,
+            useCompanyAddress: e.target.checked
+        });
+    }
+
+    function UseCompanyCheck_Change(e){
+        if(e.target.checked){
+            const newShipping = {
+                useCompanyAddress: true,
+                name: company.companyName,
+                street: company.address.street,
+                city: company.address.city,
+                postalCode: company.address.postalCode,
+                country: company.address.country,
+                region: company.address.region
+            }
+            setFormState({
+                newShipping
+            });
+            props.setShipping(newShipping);
+        } else {
+            const newShipping = {
+                useCompanyAddress: false,
+                name: "",
+                street: "",
+                city: "",
+                postalCode: "",
+                country: "",
+                region: ""
+            }
+            setFormState({
+                newShipping
+            });
+            props.setShipping(newShipping);
+        }
+    }
+
+    function HandleFormChange(event){
+        const value = event.target.value;
+        setFormState({
+            ...formState,
+            [event.target.name]: value
+        });
+    }
+
+    function saveForm_click(event){
+        const validProps = (({useCompanyAddress, ...v}) => v)(formState);
+        if(Object.values(validProps).every(s => !!s)){
+            props.setShipping(formState);
+            clearAlert();
+        } else{
+            setAlert("danger", "Validation", "Please fill out all fields to save address.");
+        }
+    }
+
+    return (
+        <form className="ps-5">
+            <div className="d-flex gap-3 mb-3">
+                <div className="col-6">
+                    <input className="form-check-input align-text-bottom" type="checkbox" value="" 
+                        checked={formState.useCompanyAddress} 
+                        onClick={e => UseCompanyCheck_Click(e)}
+                        onChange={e => UseCompanyCheck_Change(e)}
+                    />
+                    <label className="form-check-label mx-4">
+                        Ship To Company Address
+                    </label>
+                </div>
+            </div>
+            <div className="d-flex gap-3 mb-3">
+                <div className="col-6">
+                    <label className="form-label">Name</label>
+                    <div className="input-group">
+                        <input 
+                            type="text"
+                            className={`form-control ${formState.useCompanyAddress ? "text-black input-disabled" : "text-black"}`}
+                            id="shipName" 
+                            name="name"
+                            value={formState.name}
+                            disabled={formState.useCompanyAddress}
+                            onChange={HandleFormChange}
+                        />
+                    </div>
+                </div>
+            </div>
+            <div className="d-flex gap-3 mb-3">
+                <div className="col-4">
+                    <label className="form-label">Address</label>
+                    <div className="input-group">
+                        <input 
+                            type="text"
+                            className={`form-control ${formState.useCompanyAddress ? "text-black input-disabled" : "text-black"}`}
+                            id="shipStreet" 
+                            name="street"
+                            value={formState.street}
+                            disabled={formState.useCompanyAddress}
+                            onChange={HandleFormChange}
+                        />
+                    </div>
+                </div>
+            </div>
+            <div className="d-flex gap-3 mb-3">
+                <div className="col-3">
+                    <label className="form-label">City</label>
+                    <div className="input-group">
+                        <input 
+                            type="text"
+                            className={`form-control ${formState.useCompanyAddress ? "text-black input-disabled" : "text-black"}`}
+                            id="shipCity" 
+                            name="city"
+                            value={formState.city}
+                            disabled={formState.useCompanyAddress}
+                            onChange={HandleFormChange}
+                        />
+                    </div>
+                </div>
+                <div className="col-2">
+                    <label className="form-label">Postal Code</label>
+                    <div className="input-group">
+                        <input 
+                            type="text"
+                            className={`form-control ${formState.useCompanyAddress ? "text-black input-disabled" : "text-black"}`}
+                            id="shipZip" 
+                            name="postalCode"
+                            value={formState.postalCode}
+                            disabled={formState.useCompanyAddress}
+                            onChange={HandleFormChange}
+                        />
+                    </div>
+                </div>
+            </div>
+            <div className="d-flex gap-3 mb-3">
+                <div className="col-2">
+                    <label className="form-label">Country</label>
+                    <div className="input-group">
+                        <DropdownButton 
+                            className="border border-white" 
+                            id="countryDropdownBtn" 
+                            variant="light"
+                            size="sm"
+                            name="country"
+                            title={formState.country}
+                            onSelect={HandleCountryDDLChange}
+                            disabled={formState.useCompanyAddress}>
+                            {countryOptions}
+                        </DropdownButton>
+                    </div>
+                </div>
+            </div>
+            <div className="d-flex gap-3 mb-3">
+                <div className="col-2">
+                    <label className="form-label">Region</label>
+                    <div className="input-group">
+                        <input 
+                            type="text"
+                            className="form-control text-black input-disabled"
+                            style={{width:"125px", height:"25px", fontSize:"15px"}}
+                            id="currentRegion" 
+                            name="region"
+                            value={formState.region}
+                            disabled
+                        />
+                    </div>
+                </div>
+            </div>
+
+            <div className="d-flex gap-3 mb-3">
+                <div className="col-2">
+                    <button 
+                        type="button" 
+                        className="btn btn-primary btn-long float-start"
+                        onClick={saveForm_click}
+                        style={{display: formState.useCompanyAddress ? "none" : ""}}
+                        >
+                        Save
+                    </button>
+                </div>
+            </div>
+        </form>
+    );
+}
+
+export default OrderForm_Shipping;
