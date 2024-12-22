@@ -9,8 +9,7 @@ import CloseIcon from "@/assets/icon/closeIcon.svg";
 import useAlert from "@/hooks/useAlert";
 
 const AlertMsg = () => {
-    const {type, title, msg} = useAlert();
-    const [show, setShow] = useState(true);
+    const {type, title, msg, show, setShow} = useAlert();
 
     const toggleAlerts = () => {
         setShow(!show);

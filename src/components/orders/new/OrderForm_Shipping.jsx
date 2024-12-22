@@ -1,7 +1,7 @@
 //////////////////////////////////////////
 //Hooks
 //////////////////////////////////////////
-import { useState, useCallback, useEffect } from "react";
+import { useState, useEffect } from "react";
 import useAlert from "@/hooks/useAlert";
 
 //////////////////////////////////////////
@@ -18,6 +18,8 @@ const OrderForm_Shipping = (props) => {
     const[formState, setFormState] = useState({
         useCompanyAddress: shippingInfo?.useCompanyAddress,
         carrier: shippingInfo?.carrier,
+        carrierId: shippingInfo?.carrierId,
+        shipCost: shippingInfo?.shipCost,
         name: shippingInfo?.name,
         street: shippingInfo?.street,
         city: shippingInfo?.city,
@@ -48,7 +50,7 @@ const OrderForm_Shipping = (props) => {
         //Shipping Options
         NorthWindClient.get("order/carriers")
         .then(data => {
-            setCarriers([...new Set(data.carriers.map(item => item.companyName))]);
+            setCarriers(data.carriers);
             clearAlert();
         })
         .catch(error => {
@@ -62,7 +64,7 @@ const OrderForm_Shipping = (props) => {
     ));
 
     const carrierOptions = carriers?.map((item, index) => (
-        <Dropdown.Item key={`carrier_${index}`} eventKey={item}>{item}</Dropdown.Item>
+        <Dropdown.Item key={`carrier_${index}`} eventKey={item.companyName} value={item.id}>{item.companyName}</Dropdown.Item>
     ));
 
     function HandleCountryDDLChange(eventKey){
@@ -77,6 +79,36 @@ const OrderForm_Shipping = (props) => {
         });
     }
 
+    function HandleCarrierDDLChange(eventKey){
+        const selectedCarrier = eventKey;
+        const selectedId = carriers.find(c => c.companyName === eventKey).id;
+        setFormState({
+            ...formState,
+            carrier: selectedCarrier,
+            carrierId: selectedId
+        });
+
+        props.setShipping({
+            ...formState,
+            carrier: selectedCarrier,
+            carrierId: selectedId
+        });
+    }
+
+    function HandleShipCostChange(val){
+        var tmpCost = val === "" ? 0 : parseFloat(val);
+
+        if(!tmpCost && tmpCost != 0) return;
+
+        const reg = /(?<![\d.])(\d{1,4}|\d{0,4}\.\d{1,2})?(?![\d.])/
+        if(reg.test(tmpCost.toString())) {
+            setFormState({
+                ...formState,
+                ["shipCost"]: tmpCost
+            });
+        } 
+    }
+
     function UseCompanyCheck_Click(e){
         setFormState({
             ...formState,
@@ -87,6 +119,7 @@ const OrderForm_Shipping = (props) => {
     function UseCompanyCheck_Change(e){
         if(e.target.checked){
             const newShipping = {
+                ...formState,
                 useCompanyAddress: true,
                 name: company.companyName,
                 street: company.address.street,
@@ -101,6 +134,7 @@ const OrderForm_Shipping = (props) => {
             props.setShipping(newShipping);
         } else {
             const newShipping = {
+                ...formState,
                 useCompanyAddress: false,
                 name: "",
                 street: "",
@@ -125,6 +159,8 @@ const OrderForm_Shipping = (props) => {
     }
 
     function saveForm_click(event){
+        clearAlert();
+        
         const validProps = (({useCompanyAddress, ...v}) => v)(formState);
         if(Object.values(validProps).every(s => !!s)){
             props.setShipping(formState);
@@ -137,7 +173,39 @@ const OrderForm_Shipping = (props) => {
     return (
         <form className="ps-5">
             <div className="d-flex gap-3 mb-3">
-                <div className="col-6">
+                <div className="col-2">
+                    <label className="form-label">Carrier</label>
+                    <div className="input-group">
+                        <DropdownButton 
+                            className="border border-white" 
+                            id="carrierDropdownBtn" 
+                            variant="light"
+                            size="sm"
+                            name="carrier"
+                            title={formState.carrier ? formState.carrier : "Select"}
+                            onSelect={HandleCarrierDDLChange}>
+                            {carrierOptions}
+                        </DropdownButton>
+                    </div>
+                </div>           
+            </div>
+            <div className="d-flex gap-3 mb-3">
+                <div className="col-4 col-sm-3 col-lg-2">
+                    <label className="form-label">Ship Cost</label>
+                    <div className="input-group">
+                        <input 
+                            type="number"
+                            className="form-control text-black"
+                            id="cost" 
+                            name="shipCost"
+                            value={formState.shipCost}
+                            onChange={e => HandleShipCostChange(e.target.value)}
+                        />
+                    </div>
+                </div>
+            </div>
+            <div className="d-flex gap-3 mb-3">
+                <div className="col-9 col-sm-8 col-lg-4">
                     <input className="form-check-input align-text-bottom" type="checkbox" value="" 
                         checked={formState.useCompanyAddress} 
                         onClick={e => UseCompanyCheck_Click(e)}
@@ -149,7 +217,7 @@ const OrderForm_Shipping = (props) => {
                 </div>
             </div>
             <div className="d-flex gap-3 mb-3">
-                <div className="col-6">
+                <div className="col-9 col-sm-8 col-lg-4">
                     <label className="form-label">Name</label>
                     <div className="input-group">
                         <input 
@@ -165,7 +233,7 @@ const OrderForm_Shipping = (props) => {
                 </div>
             </div>
             <div className="d-flex gap-3 mb-3">
-                <div className="col-4">
+                <div className="col-9 col-sm-8 col-lg-4">
                     <label className="form-label">Address</label>
                     <div className="input-group">
                         <input 
@@ -181,7 +249,7 @@ const OrderForm_Shipping = (props) => {
                 </div>
             </div>
             <div className="d-flex gap-3 mb-3">
-                <div className="col-3">
+                <div className="col-6 col-sm-6 col-lg-2">
                     <label className="form-label">City</label>
                     <div className="input-group">
                         <input 
@@ -195,7 +263,7 @@ const OrderForm_Shipping = (props) => {
                         />
                     </div>
                 </div>
-                <div className="col-2">
+                <div className="col-4 col-sm-4 col-lg-2">
                     <label className="form-label">Postal Code</label>
                     <div className="input-group">
                         <input 
@@ -229,7 +297,7 @@ const OrderForm_Shipping = (props) => {
                 </div>
             </div>
             <div className="d-flex gap-3 mb-3">
-                <div className="col-2">
+                <div className="col-5 col-sm-5 col-lg-2">
                     <label className="form-label">Region</label>
                     <div className="input-group">
                         <input 
@@ -251,7 +319,6 @@ const OrderForm_Shipping = (props) => {
                         type="button" 
                         className="btn btn-primary btn-long float-start"
                         onClick={saveForm_click}
-                        style={{display: formState.useCompanyAddress ? "none" : ""}}
                         >
                         Save
                     </button>

@@ -3,7 +3,8 @@ import { createContext, useState } from 'react';
 const initialState = {
   type: "",
   title: "",
-  msg: ""
+  msg: "",
+  show: true
 };
 
 const AlertContext = createContext({
@@ -16,17 +17,20 @@ export const AlertProvider = ({ children }) => {
   const [type, setType] = useState("");
   const [title, setTitle] = useState("");
   const [msg, setMsg] = useState("");
+  const [show, setShow] = useState(true);
 
   const clearAlert = () => {
     setType("");
     setTitle("");
     setMsg("");
+    setShow(false);
   }
 
   const setAlert = (type, title, msg) => {
     setType(type);
     setTitle(title);
     setMsg(msg);
+    setShow(true);
   };
 
   return (
@@ -35,6 +39,8 @@ export const AlertProvider = ({ children }) => {
         type,
         title,
         msg,
+        show,
+        setShow,
         setAlert,
         clearAlert
       }}

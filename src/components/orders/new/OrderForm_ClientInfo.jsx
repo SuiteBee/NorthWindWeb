@@ -108,12 +108,12 @@ const OrderForm_ClientInfo = (props) => {
     return (
         <form className="ps-5" onSubmit={handleSubmit}>
             <div className="d-flex">
-                <div className="col-6">
+                <div className="col-9 col-sm-8 col-lg-4">
                     {companySearch}   
                 </div>
             </div>
             <div className="d-flex gap-3 mb-3">
-                <div className="col-6">
+                <div className="col-9 col-sm-8 col-lg-4">
                     <label className="form-label">Name</label>
                     <div className="input-group">
                         <input 
@@ -127,7 +127,7 @@ const OrderForm_ClientInfo = (props) => {
                 </div>
             </div>
             <div className="d-flex gap-3 mb-3">
-                <div className="col-4">
+                <div className="col-9 col-sm-8 col-lg-4">
                     <label className="form-label">Address</label>
                     <div className="input-group">
                         <input 
@@ -141,7 +141,7 @@ const OrderForm_ClientInfo = (props) => {
                 </div>
             </div>
             <div className="d-flex gap-3 mb-3">
-                <div className="col-3">
+                <div className="col-6 col-sm-6 col-lg-2">
                     <label className="form-label">City</label>
                     <div className="input-group">
                         <input 
@@ -153,7 +153,7 @@ const OrderForm_ClientInfo = (props) => {
                         />
                     </div>
                 </div>
-                <div className="col-2">
+                <div className="col-4 col-sm-4 col-lg-2">
                     <label className="form-label">Postal Code</label>
                     <div className="input-group">
                         <input 
@@ -167,7 +167,7 @@ const OrderForm_ClientInfo = (props) => {
                 </div>
             </div>
             <div className="d-flex gap-3 mb-3">
-                <div className="col-2">
+                <div className="col-5 col-sm-5 col-lg-2">
                     <label className="form-label">Country</label>
                     <div className="input-group">
                         <input 
@@ -179,7 +179,7 @@ const OrderForm_ClientInfo = (props) => {
                         />
                     </div>
                 </div>
-                <div className="col-3">
+                <div className="col-5 col-sm-5 col-lg-2">
                     <label className="form-label">Region</label>
                     <div className="input-group">
                         <input 

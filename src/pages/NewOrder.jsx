@@ -10,6 +10,7 @@ import useAlert from "@/hooks/useAlert";
 import OrderForm_ClientInfo from "@/components/orders/new/OrderForm_ClientInfo";
 import OrderForm_Products from "@/components/orders/new/OrderForm_Products";
 import OrderForm_Shipping from "@/components/orders/new/OrderForm_Shipping";
+import OrderForm_Submit from "@/components/orders/new/OrderForm_Submit";
 
 const breadcrumbArr = [
     "client",
@@ -63,6 +64,8 @@ const NewOrder = () => {
         if(nextCrumb === "shipping" && !shippingInfo){
             const initialShipping = {
                 useCompanyAddress: true,
+                carrier: null,
+                shipCost: 0,
                 name: clientInfo.companyName,
                 street: clientInfo.address.street,
                 city: clientInfo.address.city,
@@ -94,6 +97,8 @@ const NewOrder = () => {
                 return <OrderForm_Products product={productInfo} setProduct={setProductInfo}/>
             case "shipping":
                 return <OrderForm_Shipping client={clientInfo} shipping={shippingInfo} setShipping={setShippingInfo}/>
+            case "submit":
+                return <OrderForm_Submit client={clientInfo} product={productInfo} shipping={shippingInfo}/>
         }
     };
 
@@ -111,7 +116,7 @@ const NewOrder = () => {
                     <a className={breadcrumb_class("submit")} onClick={() => breadcrumb_click("submit")}>Submit</a> 
 
                     <div className="d-flex">
-                        <div className="col-6 py-4">
+                        <div className="col-6 py-4" style={{display: breadcrumb === "submit" ? "none" : ""}}>
                             <button 
                                 type="button" 
                                 className="btn btn-success btn-long float-start"

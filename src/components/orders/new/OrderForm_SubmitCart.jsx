@@ -1,6 +1,6 @@
 import { moneyString } from "@/components/utility/DisplayHelpers";
 
-const OrderForm_ProductCart = (props) => {
+const OrderForm_SubmitCart = (props) => {
 
     const discountAmount = (
         props.prod.discount > 0 ? ` - ${props.prod.discount}%` : ""
@@ -46,20 +46,10 @@ const OrderForm_ProductCart = (props) => {
                 </div>
             </div>
             <br />
-            <div className="row row-cols-auto justify-content-start">
-                <div className="col-12">
-                    <button 
-                        type="button" 
-                        className="btn btn-danger float-end"
-                        onClick={() => props.remove(props.prod)}>
-                        Remove
-                    </button>
-                </div>
-            </div>
 
             <hr />
         </>
     );
 }
 
-export default OrderForm_ProductCart;
+export default OrderForm_SubmitCart;

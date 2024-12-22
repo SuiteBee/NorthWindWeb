@@ -73,6 +73,23 @@ const OrderForm_Products = (props) => {
         }
     }
 
+    const RemoveFromCart = (item) => {
+        const existingItem = cart.find(p => p.productId === item.productId);
+        if(existingItem){
+            if(cart.length == 1){
+                setCart([]);
+
+                props.setProduct(null);
+            }else{
+                const cartIndex = cart.findIndex(p => p.productId === item.productId);
+                const cartSplice = [...cart.splice(cartIndex, 1)];
+                setCart(cartSplice);
+
+                props.setProduct(cartSplice);
+            }
+        }
+    }
+
     const CartQuantity = (productId) => {
         const cartProd = cart.find(p => p.productId === productId);
         return cartProd ? cartProd.quantity : 0;
@@ -99,6 +116,7 @@ const OrderForm_Products = (props) => {
             id={index += 1}
             key={`cart_${nanoid()}`}
             prod={item}
+            remove={RemoveFromCart}
         />
     ));
 
@@ -147,11 +165,10 @@ const OrderForm_Products = (props) => {
             
             </Offcanvas.Header>
             <Offcanvas.Body>
-                <div className="bg-dark mt-4">
+                <div className="bg-dark">
                     <div className="container-fluid p-4">
                         {cartList}
                     </div>
-                    <hr />
                     <div className="pe-4 float-end">
                         Total
                     </div>

@@ -95,7 +95,7 @@ const ProductItem = (props) => {
                         Item Price
                     </span>
                     <span className="float-end">
-                        ${moneyString(props.prod.purchasePrice)}
+                        ${moneyString(props.prod.itemPrice)}
                     </span>
                 </li>
                 <li className="list-group-item bg-dark text-white border-white">
