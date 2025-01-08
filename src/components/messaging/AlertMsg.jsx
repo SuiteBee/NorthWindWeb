@@ -1,12 +1,20 @@
-import { useState } from "react";
-import Alert from "react-bootstrap/Alert";
+//////////////////////////////////////////
+//Hooks
+//////////////////////////////////////////
+import useAlert from "@/hooks/useAlert";
 
+//////////////////////////////////////////
+//Assets
+//////////////////////////////////////////
 import InfoCircle from "@/assets/icon/infoCircle.svg";
 import ExclamationTriangle from "@/assets/icon/exclamationTriangle.svg";
 import CheckCircle from "@/assets/icon/CheckCircle.svg";
 import CloseIcon from "@/assets/icon/closeIcon.svg";
 
-import useAlert from "@/hooks/useAlert";
+//////////////////////////////////////////
+//Bootstrap
+//////////////////////////////////////////
+import Alert from "react-bootstrap/Alert";
 
 const AlertMsg = () => {
     const {type, title, msg, show, setShow} = useAlert();
@@ -35,18 +43,18 @@ const AlertMsg = () => {
     if(msg !== ""){
         return (
             <>
-                <div className="position-fixed end-0 me-5 mt-8 w-40">
+                <div className="position-absolute end-0 top-120 me-3">
                     <Alert 
-                        className={`p-2 w-auto bg-${type} border-${type}`} 
+                        className={`p-2 w-auto bg-${type} border-dark border-2`} 
                         key={type} 
                         variant={type} 
                         show={show}>
 
-                    <div className="container">
+                    <div className="container text-dark">
                         <div className="row pt-2">
                             <div className="col-auto">
                                 <h3 className="fw-bold float-end">
-                                    <img className="px-2 pb-1 align-text-center" src={getIcon()} />
+                                    <img className="px-2 pb-1 align-text-bottom" src={getIcon()} />
                                     {title}
                                 </h3>
                             </div>

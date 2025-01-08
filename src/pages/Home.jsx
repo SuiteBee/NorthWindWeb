@@ -1,14 +1,19 @@
-import { NorthWindClient } from "../components/api/NorthWindClient";
+//////////////////////////////////////////
+//Hooks
+//////////////////////////////////////////
 import React, { useState, useEffect } from "react";
+import useAlert from "@/hooks/useAlert";
 
+//////////////////////////////////////////
+//Components
+//////////////////////////////////////////
+import { NorthWindClient } from "../components/api/NorthWindClient";
 import DashboardTotals from "../components/dashboard/DashboardTotals";
 import RevenueChart from "../components/dashboard/RevenueChart";
 import CategoryChart from "../components/dashboard/CategoryChart";
 import CategoryRevenueChart from "../components/dashboard/CategoryRevenueChart";
 import PendingShipGauge from "../components/dashboard/PendingShipGauge";
 import CategoryHeatmap from "../components/dashboard/CategoryHeatmap";
-
-import useAlert from "@/hooks/useAlert";
 
 const Home = () => {
 

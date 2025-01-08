@@ -45,6 +45,10 @@ const DetailModal = (props) => {
 
             //API Delete - Delete pending order record
             NorthWindClient.delete(`order/delete/${order.orderId}`)
+            .then(() => {
+                clearAlert();
+                setAlert("success", "Success", `Order ${order.orderId} Removed`);
+            })
             .catch(error => {
                 console.error("Server Error", error);
                 setAlert("danger", "Server Error: Delete Order", error.message);

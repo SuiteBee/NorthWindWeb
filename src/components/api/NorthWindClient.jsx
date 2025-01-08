@@ -4,10 +4,7 @@ class APIClient{
     async request(url, options){
         const response = await fetch(`${API_BASE_URL}${url}`, options);
         if(!response.ok){
-            const error = new Error("HTTP Error");
-            error.status = response.status;
-            error.response = await response.json();
-            throw error;
+            await notOk(response);
         }
         
         return await response.json();
@@ -16,13 +13,23 @@ class APIClient{
     async remove(url, options){
         const response = await fetch(`${API_BASE_URL}${url}`, options);
         if(!response.ok){
-            const error = new Error("HTTP Error");
-            error.status = response.status;
-            error.response = await response.json();
-            throw error;
+            await notOk(response);
         }
         
         return await response;
+    }
+
+    async notOk(response){
+        const error = new Error("HTTP Error");
+        error.status = response.status;
+        
+        try{
+            error.response = await response.json();
+        }catch{
+            error.response = null;
+        }
+
+        throw error;
     }
 
     get(url){
