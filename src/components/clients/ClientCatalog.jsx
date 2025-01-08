@@ -3,6 +3,7 @@
 //////////////////////////////////////////
 import useAlert from "@/hooks/useAlert";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 //////////////////////////////////////////
 //Components
@@ -24,6 +25,7 @@ const ClientCatalog = () => {
     const[inputSearch, setInputSearch] = useState("");
 
     const { setAlert, clearAlert } = useAlert();
+    const navigate = useNavigate();
 
     //Product API GET
     useEffect(() => {
@@ -31,7 +33,6 @@ const ClientCatalog = () => {
         NorthWindClient.get("customer/all")
         .then(data => {
             setClients(data);
-            clearAlert();
         })
         .catch(error => {
             console.error("Server Error", error);
@@ -44,7 +45,6 @@ const ClientCatalog = () => {
             setCountryRegions(data.regions);
             setCountries([...new Set(data.regions.map(item => item.country))]);
             setRegions([...new Set(data.regions.map(item => item.region))]);
-            clearAlert();
         })
         .catch(error => {
             console.error("Server Error", error);
@@ -146,18 +146,22 @@ const ClientCatalog = () => {
             </div>
         </div>
     );
+
+    const newClientClick = () => {
+        navigate("/customers/new");
+    }
     
     return (
     <>
         <div className="orderItem">
             <div>
-                <div className="d-flex pb-2">
+                <div className="d-flex">
                     <h1 className="p-2 text-white">Create</h1>
-                    <div className="px-5 py-2">
+                    <div className="px-6 py-2">
                         <button 
                             type="button" 
                             className="btn btn-primary btn-long"
-                            onClick={() => setRegionFilter("")}>
+                            onClick={newClientClick}>
                             New
                         </button>
                     </div>
@@ -178,7 +182,7 @@ const ClientCatalog = () => {
                     </div>
                 </div>
                 
-                <div className="row row-cols-auto justify-content-start pb-2">
+                <div className="row row-cols-auto justify-content-start">
                     {regionBtns}
                 </div>
                 <hr />
@@ -198,7 +202,7 @@ const ClientCatalog = () => {
                 {clientSearch}
                 <hr />
             </div>
-            <div className="text-center fst-italic text-decoration-underline pt-5">
+            <div className="text-center fst-italic text-decoration-underline pt-3">
                 Click on any client entry to update address or contact info
             </div>
         </div>

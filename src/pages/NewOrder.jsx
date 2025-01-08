@@ -1,8 +1,7 @@
 //////////////////////////////////////////
 //Hooks
 //////////////////////////////////////////
-import React, { useState, useEffect, useCallback } from "react";
-import useAlert from "@/hooks/useAlert";
+import React, { useState, useEffect } from "react";
 
 //////////////////////////////////////////
 //Components

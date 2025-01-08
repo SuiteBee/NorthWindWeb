@@ -192,13 +192,6 @@ const OrderForm_ClientInfo = (props) => {
                     </div>
                 </div>
             </div>
-
-            {/*
-            <input className="form-check-input" type="checkbox" value="" checked/>
-            <label className="form-check-label mx-2">
-                Ship To This Address
-            </label>
-            */}
         </form>
     );
 }

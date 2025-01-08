@@ -1,4 +1,4 @@
-export const newOrder = (order) => {
+export const newOrderRequest = (order) => {
     return {
         customerId: order.client.id,
         employeeId: 6,

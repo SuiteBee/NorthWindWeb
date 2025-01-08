@@ -43,9 +43,9 @@ const Orders = () => {
         NorthWindClient.get("order/all")
         .then(data => {
             setOrderList(data);
-            clearAlert();
         })
         .catch(error => {
+            clearAlert();
             console.error("Server Error", error);
             setAlert("danger", "Server Error: Order Grid", error.message);
         });
@@ -76,8 +76,8 @@ const Orders = () => {
     } else {
         //Order Grid
         return(
-            <div className="h-100">
-                <h1 className="display-1 p-2 text-white">Orders</h1>
+            <div className="h-100 pt-3">
+                <h1 className="display-1 p-2 text-white text-center bg-primary border border-2">Orders</h1>
                 <hr className="text-white w-80 h-10" style={{height: "3px"}}/>
                 <div className="d-flex px-4 gap-3 justify-content-start">
                     <div className="col-sm-auto">

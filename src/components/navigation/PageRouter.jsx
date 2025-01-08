@@ -12,6 +12,7 @@ import Home from "@/pages/Home.jsx";
 import Orders from "@/pages/Orders.jsx";
 import NewOrder from "@/pages/NewOrder.jsx";
 import Customers from "@/pages/Customers.jsx";
+import NewClient from "@/pages/NewClient.jsx";
 import Products from "@/pages/Products.jsx";
 import About from "@/pages/About.jsx";
 import Logout from "@/pages/Logout.jsx";
@@ -26,6 +27,7 @@ export const PageRouter = () => {
                     <Route path="/orders" element={<Orders />} />
                     <Route path="/orders/new" element={<NewOrder />} />
                     <Route path="/customers" element={<Customers />} />
+                    <Route path="/customers/new" element={<NewClient />} />
                     <Route path="/products" element={<Products />} />
                     <Route path="/about" element={<About />} />
                     <Route path="/logout" element={<Logout />} />

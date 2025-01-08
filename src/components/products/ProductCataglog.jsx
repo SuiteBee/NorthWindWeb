@@ -116,7 +116,7 @@ const ProductCatalog = () => {
     ));
 
     const productSearch = (
-        <div className="pb-3">
+        <div className="pb-2">
             <div style={{width: "400px"}}>
                 <input 
                     type="text"
@@ -167,7 +167,7 @@ const ProductCatalog = () => {
                 {productSearch}
                 <hr />
             </div>
-            <div className="text-center fst-italic text-decoration-underline pt-5">
+            <div className="text-center fst-italic text-decoration-underline pt-3">
                 Click on any product entry to update prices or to re-stock
             </div>
         </div>

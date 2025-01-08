@@ -11,21 +11,23 @@ import { NorthWindClient } from "@/components/api/NorthWindClient";
 import {nanoid} from "nanoid";
 import OrderForm_SubmitCart from "@/components/orders/new/OrderForm_SubmitCart";
 import { moneyString } from "@/components/utility/DisplayHelpers";
-import { newOrder } from "@/components/api/models/NewOrderRequest";
+import { newOrderRequest } from "@/components/api/models/NewOrderRequest";
 
 const OrderForm_Submit = (props) => {
     const { setAlert, clearAlert } = useAlert();
     const navigate = useNavigate();
 
     function HandleSubmit(){
-        const order = newOrder(props);
+        const order = newOrderRequest(props);
         
         //Submit New Order
         NorthWindClient.post("order/create", order)
         .then(data => {
+            clearAlert();
             setAlert("success", "Success", `Order ${data.orderId} Submitted`);
         })
         .catch(error => {
+            clearAlert();
             console.error("Server Error", error);
             setAlert("danger", "Server Error: Submit Order", error.message);
         });
