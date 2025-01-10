@@ -1,10 +1,14 @@
+import {
+    getReasonPhrase
+} from "http-status-codes";
+
 const API_BASE_URL = "https://localhost:44303/api/";
 
 class APIClient{
     async request(url, options){
         const response = await fetch(`${API_BASE_URL}${url}`, options);
         if(!response.ok){
-            await notOk(response);
+            return this.notOk(response);
         }
         
         return await response.json();
@@ -13,14 +17,14 @@ class APIClient{
     async remove(url, options){
         const response = await fetch(`${API_BASE_URL}${url}`, options);
         if(!response.ok){
-            await notOk(response);
+            return this.notOk(response);
         }
         
         return await response;
     }
 
     async notOk(response){
-        const error = new Error("HTTP Error");
+        const error = new Error(`HTTP Error: ${response.status} ${getReasonPhrase(response.status)}`);
         error.status = response.status;
         
         try{

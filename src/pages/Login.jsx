@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 import { NorthWindClient } from "@/components/api/NorthWindClient";
 
 const Login = () => {
+    const[errorMsg, setErrorMsg] = useState("");
     const[formState, setFormState] = useState({
         usr: "",
         pwd: ""
@@ -22,6 +23,8 @@ const Login = () => {
     const navigate = useNavigate();
 
     function HandleFormChange(event){
+        setErrorMsg("");
+
         const value = event.target.value;
         setFormState({
             ...formState,
@@ -37,9 +40,13 @@ const Login = () => {
             navigate("/");
         })
         .catch(error => {
-            clearAlert();
-            console.error("Server Error", error);
-            setAlert("danger", "Server Error: Submit Order", error.message);
+            setErrorMsg("Username or password is incorrect.");
+
+            //clear password
+            setFormState({
+                ...formState,
+                ["pwd"]: ""
+            });
         });
     }
 
@@ -96,6 +103,10 @@ const Login = () => {
                             onClick={handleSubmit}>
                             Login
                         </button>
+                    </div>
+
+                    <div className="pt-5 text-center" style={{display: `${errorMsg ? "" : ""}`}}>
+                        {errorMsg}
                     </div>
                 </div>
             </div>
