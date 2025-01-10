@@ -1,0 +1,12 @@
+.breadcrumb-active {
+    color: #4d4dff;
+}
+
+.breadcrumb-inactive {
+    color: gray;
+    text-decoration: none;
+}
+
+.breadcrumb-previous {
+    color: white;
+} 

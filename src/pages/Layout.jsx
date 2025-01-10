@@ -36,10 +36,10 @@ function Layout() {
   return (
     <>
       <div className="sticky-top p-2 d-flex flex-nowrap align-items-center text-white bg-dark justify-content-between border-bottom border-black">
-        <div className="display-1 col-auto text-center border-end px-3">
+        <div className="display-1 col-auto text-center border-end px-3" style={{fontFamily: "Merriweather"}}>
           NW
         </div>
-        <div className="display-4 col-8 flex-fill px-3">
+        <div className="display-4 col-8 flex-fill px-3" style={{fontFamily: "Lora"}}>
           Northwind
         </div>
 
@@ -56,7 +56,7 @@ function Layout() {
 
       <Offcanvas className="bg-dark" show={showNav} onHide={handleCloseNav}>
         <Offcanvas.Header className="justify-content-between border-bottom m-2">
-          <div className="display-1 text-white">Menu</div>
+          <div className="display-1 text-white" style={{fontFamily:"Poppins"}}>Menu</div>
           <div>
             <button className="btn-default" type="button" onClick={handleCloseNav}>
               <img src={CloseIcon}></img>

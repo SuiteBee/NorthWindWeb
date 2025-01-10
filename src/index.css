@@ -252,67 +252,21 @@ button {
   margin-left: 30px;
 }
 
-.nav-link {
-  color: white ;
-  font-weight: 400;
+.loginBack{
+  background-image: url(../assets/background/siteBack.jpg);
+  background-position: 50% 85%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100vw;
+  height: 100vh;
 }
 
-.nav-link.active {
-  color: gray !important;
+.loginField{
+  border:none !important;
+  background-color: #212529 !important;
 }
 
-.nav-link:hover {
-  color: lightskyblue;
+.loginField:focus {
+  outline:none !important;
+  box-shadow: none !important;
 }
-
-.modal {
-  top: 25% !important;
-  overflow-y: hidden !important;
-}
-
-.modal-content {
-  background: none;
-}
-
-.modal-dialog {
-  height: 100%;
-  width: 100%;
-}
-
-.modal-backdrop {
-  opacity: 0.9 !important;
-}
-
-.dropdown-menu {
-  background: white;
-}
-
-.dropdown-item {
-  color: black;
-}
-
-.dropdown-item:hover {
-  background: #0d6efd;
-  color: white;
-}
-
-.dropdown-toggle {
-  font-weight: normal;
-}
-
-.input-disabled {
-  background-color: gray !important;
-}
-
-.breadcrumb-active {
-  color: #4d4dff;
-}
-
-.breadcrumb-inactive {
-  color: gray;
-  text-decoration: none;
-}
-
-.breadcrumb-previous {
-  color: white;
-} 

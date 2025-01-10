@@ -48,26 +48,76 @@ $font-family-sans-serif: "Poppins", sans-serif;
 //Required
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
 
+//External
+//Google Fonts
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600&display=swap");
+
 //Classes utilizing bootstrap
 .dashboardTotal {
     @extend .border;
     @extend .border-3; 
+    @extend .border-white; 
     @extend .rounded;
     @extend .text-center;
     @extend .text-dark;
-    @extend .fw-bolder; 
+    @extend .fw-bold; 
     @extend .mx-3; 
     @extend .mt-3; 
     @extend .fs-1;
+    font-family: 'Poppins';
+}
+
+.pageHeader {
+    @extend .display-3;
+    @extend .p-2;
+    @extend .text-dark;
+    @extend .text-center;
+    @extend .border;
+    @extend .border-2;
+    @extend .border-dark;
+    font-family: 'Poppins';
+    font-weight:500;
+}
+
+.aboutHeader{
+    @extend .display-3;
+    @extend .p-2;
+    @extend .text-white;
+    @extend .text-center;
+    font-family: 'Lora';
+    font-weight:500;
+}
+
+.aboutSubHeader{
+    @extend .display-6;
+    @extend .p-2;
+    @extend .text-white;
+    @extend .text-center;
+    @extend .border;
+    @extend .border-2;
+    @extend .border-dark;
+}
+
+.aboutBlock{
+    @extend .p-2;
+    @extend .bg-dark;
+    @extend .border;
+    @extend .border-2;
+    @extend .border-secondary;
+}
+
+.aboutText{
+    @extend .p-2;
+    @extend .fs-4;
+    font-family: "Merriweather";
 }
 
 //Internal
 @import "src/index";
 @import "src/styles/navbar";
-
-//External
-
-//Google Fonts
-@import url("https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600&display=swap");
+@import "src/styles/dropdown";
+@import "src/styles/breadcrumbs";
+@import "src/styles/modal";
 

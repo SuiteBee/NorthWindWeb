@@ -1,0 +1,21 @@
+.modal {
+    top: 25% !important;
+    overflow-y: hidden !important;
+}
+
+.modal-content {
+    background: none;
+}
+
+.modal-dialog {
+    height: 100%;
+    width: 100%;
+}
+
+.modal-backdrop {
+    opacity: 0.9 !important;
+}
+
+.input-disabled {
+    background-color: gray !important;
+}

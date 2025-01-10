@@ -21,6 +21,21 @@
     }
 }
 
+.nav-link {
+    font-family: "Poppins";
+    font-size: x-large;
+    color: white ;
+    font-weight: 400;
+}
+
+.nav-link.active {
+    color: gray !important;
+}
+
+.nav-link:hover {
+    color: lightskyblue;
+}
+  
 .navLink:nth-child(7){
     margin-top: 10em;
 }

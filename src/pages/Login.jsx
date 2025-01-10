@@ -1,0 +1,106 @@
+import React from "react";
+
+//////////////////////////////////////////
+//Hooks
+//////////////////////////////////////////
+import { useState, useEffect } from "react";
+import useAlert from "@/hooks/useAlert";
+import { useNavigate } from "react-router-dom";
+
+//////////////////////////////////////////
+//Components
+//////////////////////////////////////////
+import { NorthWindClient } from "@/components/api/NorthWindClient";
+
+const Login = () => {
+    const[formState, setFormState] = useState({
+        usr: "",
+        pwd: ""
+    });
+
+    const { setAlert, clearAlert } = useAlert();
+    const navigate = useNavigate();
+
+    function HandleFormChange(event){
+        const value = event.target.value;
+        setFormState({
+            ...formState,
+            [event.target.name]: value
+        });
+    }
+
+    function handleSubmit(event){
+        //Authenticate user
+        NorthWindClient.post("user/authenticate", formState)
+        .then(data => {
+            //Navigate to dashboard
+            navigate("/");
+        })
+        .catch(error => {
+            clearAlert();
+            console.error("Server Error", error);
+            setAlert("danger", "Server Error: Submit Order", error.message);
+        });
+    }
+
+    return (
+        <>
+            <div className="loginBack">
+                <div className="w-20 position-absolute top-50 start-50 translate-middle">
+                    <div className="m-3 fs-1 text-center" style={{fontFamily:"poppins"}}>
+                        Northwind Employee Sign-In
+                    </div>
+                    <div className="bg-dark border border-white rounded-4">
+                        <form onSubmit={handleSubmit}>
+                            <div className="d-inline-flex ps-6 mx-3 mt-3" style={{alignItems:"center", justifyItems:"left"}}>
+                                <div className="col-4">
+                                    <span>Username:</span>
+                                </div>
+                                <div className="col-8">
+                                    <div className="input-group">                                      
+                                        <input 
+                                            type="text"
+                                            className="form-control fs-3 loginField"
+                                            id="usr" 
+                                            name="usr"
+                                            value={formState.usr}
+                                            onChange={HandleFormChange}
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                            <hr className="w-100" />
+                            <div className="d-inline-flex px-6 mx-3 mb-3" style={{alignItems:"center", justifyItems:"left"}}>
+                                <div className="col-4">
+                                    <span>Password:</span>
+                                </div>
+                                <div className="col-8">
+                                    <div className="input-group">
+                                        <input 
+                                            type="password"
+                                            className="form-control fs-3 loginField"
+                                            id="pwd" 
+                                            name="pwd"
+                                            value={formState.pwd}
+                                            onChange={HandleFormChange}
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div className="d-flex p-3 justify-content-end">
+                        <button 
+                            type="button" 
+                            className="btn btn-success btn-long"
+                            onClick={handleSubmit}>
+                            Login
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </>
+    );
+};
+
+export default Login;

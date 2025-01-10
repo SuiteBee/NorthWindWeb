@@ -77,7 +77,7 @@ const Orders = () => {
         //Order Grid
         return(
             <div className="h-100 pt-3">
-                <h1 className="display-3 p-2 text-black text-center bg-primary border border-2 border-dark">Orders</h1>
+                <h1 className="pageHeader bg-primary">Orders</h1>
                 <hr className="text-white w-80 h-10" style={{height: "3px"}}/>
                 <div className="d-flex px-4 gap-3 justify-content-start">
                     <div className="col-sm-auto">

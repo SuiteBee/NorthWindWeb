@@ -15,6 +15,7 @@ import Customers from "@/pages/Customers.jsx";
 import NewClient from "@/pages/NewClient.jsx";
 import Products from "@/pages/Products.jsx";
 import About from "@/pages/About.jsx";
+import Login from "@/pages/Login.jsx";
 import Logout from "@/pages/Logout.jsx";
 import Layout from "@/pages/Layout.jsx";
 
@@ -22,7 +23,8 @@ export const PageRouter = () => {
     return (
         <Router>
             <Routes>
-                <Route path="/" element ={<Layout />}>
+                <Route path="/login" element={<Login />} />
+                <Route path="/" element={<Layout />}>
                     <Route index element={<Home />} />
                     <Route path="/orders" element={<Orders />} />
                     <Route path="/orders/new" element={<NewOrder />} />

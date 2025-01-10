@@ -34,27 +34,27 @@ export const Navbar = (props) => {
             <div className="container-fluid h-100">
                 <div className="navbar-nav h-100 row-gap-2 fs-4">
                     <NavLink className="nav-link" to="/" onClick={handleClick}>
-                        <img className="me-2" src={HomeIcon}></img>
+                        <img className="me-4" src={HomeIcon}></img>
                         Dashboard
                     </NavLink>
                     <NavLink className="nav-link" to="/orders" onClick={handleClick}>
-                        <img className="me-2" src={OrderIcon}></img>
+                        <img className="me-4" src={OrderIcon}></img>
                         Orders
                     </NavLink>
                     <NavLink className="nav-link" to="/customers" onClick={handleClick}>
-                        <img className="me-2" src={ClientsIcon}></img>
+                        <img className="me-4" src={ClientsIcon}></img>
                         Clients
                     </NavLink>
                     <NavLink className="nav-link" to="/products" onClick={handleClick}>
-                        <img className="me-2" src={CatalogIcon}></img>
+                        <img className="me-4" src={CatalogIcon}></img>
                         Products
                     </NavLink>
                     <NavLink className="nav-link" to="/about" onClick={handleClick}>
-                        <img className="me-2" src={AboutIcon}></img>
+                        <img className="me-4" src={AboutIcon}></img>
                         About
                     </NavLink>
                     <NavLink className="nav-link mt-auto" to="/logout" onClick={handleClick}>
-                        <img className="me-2" src={LogoutIcon}></img>
+                        <img className="me-4" src={LogoutIcon}></img>
                         Log Out
                     </NavLink>
                 </div>
