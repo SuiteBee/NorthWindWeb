@@ -33,7 +33,7 @@ export const Navbar = (props) => {
         <>
             <div className="container-fluid h-100">
                 <div className="navbar-nav h-100 row-gap-2 fs-4">
-                    <NavLink className="nav-link" to="/" onClick={handleClick}>
+                    <NavLink className="nav-link" to="/dashboard" onClick={handleClick}>
                         <img className="me-4" src={HomeIcon}></img>
                         Dashboard
                     </NavLink>

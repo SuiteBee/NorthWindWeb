@@ -3,6 +3,7 @@
 //////////////////////////////////////////
 import React, { useState, useEffect } from "react";
 import useAlert from "@/hooks/useAlert";
+import useUser from "@/hooks/useUser";
 
 //////////////////////////////////////////
 //Components
@@ -20,10 +21,11 @@ const Home = () => {
     const [dashCharts, setDashCharts] = useState(null);
 
     const { setAlert, clearAlert } = useAlert();
+    const { token } = useUser();
 
     //GET order total stats
     useEffect(() => {
-         NorthWindClient.get("dashboard/charts")
+         NorthWindClient.get("dashboard/charts", token)
         .then(data => {
             setDashCharts(data);
             clearAlert();

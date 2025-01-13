@@ -3,6 +3,7 @@
 //////////////////////////////////////////
 import { useCallback, useState } from 'react';
 import { Outlet } from 'react-router-dom';
+import useUser from "@/hooks/useUser";
 
 //////////////////////////////////////////
 //Assets
@@ -22,8 +23,8 @@ import AlertMsg from '@/components/messaging/AlertMsg';
 //////////////////////////////////////////
 import Offcanvas from 'react-bootstrap/Offcanvas';
 
-
 function Layout() {
+  const { firstName, lastName, role } = useUser();
   const [showNav, setNav] = useState(false);
 
   const handleCloseNav = () => setNav(false);
@@ -46,6 +47,10 @@ function Layout() {
         <div className="col-1 d-flex justify-content-end mx-3">
           <div className="mx-3 align-self-center">
             <AlertMsg />
+          </div>
+
+          <div className="mx-3 align-self-center fs-4">
+            {`${role} ${firstName} ${lastName}`}
           </div>
 
           <button className="btn-default" type="button" onClick={handleShowNav}>

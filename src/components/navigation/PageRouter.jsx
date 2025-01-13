@@ -23,9 +23,9 @@ export const PageRouter = () => {
     return (
         <Router>
             <Routes>
-                <Route path="/login" element={<Login />} />
-                <Route path="/" element={<Layout />}>
-                    <Route index element={<Home />} />
+                <Route path="/" element={<Login />} />
+                <Route element={<Layout />}>
+                    <Route path="/dashboard" element={<Home />} />
                     <Route path="/orders" element={<Orders />} />
                     <Route path="/orders/new" element={<NewOrder />} />
                     <Route path="/customers" element={<Customers />} />

@@ -4,8 +4,9 @@ import React from "react";
 //Hooks
 //////////////////////////////////////////
 import { useState, useEffect } from "react";
-import useAlert from "@/hooks/useAlert";
 import { useNavigate } from "react-router-dom";
+
+import useUser from "@/hooks/useUser";
 
 //////////////////////////////////////////
 //Components
@@ -19,8 +20,8 @@ const Login = () => {
         pwd: ""
     });
 
-    const { setAlert, clearAlert } = useAlert();
     const navigate = useNavigate();
+    const { setAuthorizedUser } = useUser();
 
     function HandleFormChange(event){
         setErrorMsg("");
@@ -34,10 +35,13 @@ const Login = () => {
 
     function handleSubmit(event){
         //Authenticate user
-        NorthWindClient.post("user/authenticate", formState)
+        NorthWindClient.authenticate("user/authenticate", formState)
         .then(data => {
+            //Store user info
+            setAuthorizedUser(data.authorizedUser, data.token);
+
             //Navigate to dashboard
-            navigate("/");
+            navigate("/dashboard");
         })
         .catch(error => {
             setErrorMsg("Username or password is incorrect.");
