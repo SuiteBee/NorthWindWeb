@@ -3,6 +3,8 @@
 //////////////////////////////////////////
 import { useState, useEffect } from "react";
 import useAlert from "@/hooks/useAlert";
+import useUser from "@/hooks/useUser";
+import { useNavigate } from "react-router-dom";
 
 //////////////////////////////////////////
 //Components
@@ -33,10 +35,12 @@ const OrderForm_Shipping = (props) => {
     const[carriers, setCarriers] = useState(null);
 
     const { setAlert, clearAlert } = useAlert();
+    const { token } = useUser();
+    const navigate = useNavigate();
 
     useEffect(() => {
         //Unique Country Region Combinations
-        NorthWindClient.get("customer/regions")
+        NorthWindClient.get("customer/regions", token)
         .then(data => {
             setCountryRegions(data.regions);
             setCountries([...new Set(data.regions.map(item => item.country))]);
@@ -45,10 +49,11 @@ const OrderForm_Shipping = (props) => {
         .catch(error => {
             console.error("Server Error", error);
             setAlert("danger", "Server Error: Customer Regions", error.message);
+            if(error.status === 401) navigate("/logout");
         });
 
         //Shipping Options
-        NorthWindClient.get("order/carriers")
+        NorthWindClient.get("order/carriers", token)
         .then(data => {
             setCarriers(data.carriers);
             clearAlert();
@@ -56,6 +61,7 @@ const OrderForm_Shipping = (props) => {
         .catch(error => {
             console.error("Server Error", error);
             setAlert("danger", "Server Error: Shipping Carriers", error.message);
+            if(error.status === 401) navigate("/logout");
         });
     }, []);
 

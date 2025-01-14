@@ -4,6 +4,7 @@
 import useAlert from "@/hooks/useAlert";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import useUser from "@/hooks/useUser";
 
 //////////////////////////////////////////
 //Components
@@ -25,22 +26,24 @@ const ClientCatalog = () => {
     const[inputSearch, setInputSearch] = useState("");
 
     const { setAlert, clearAlert } = useAlert();
+    const { token } = useUser();
     const navigate = useNavigate();
 
     //Product API GET
     useEffect(() => {
         //Client List
-        NorthWindClient.get("customer/all")
+        NorthWindClient.get("customer/all", token)
         .then(data => {
             setClients(data);
         })
         .catch(error => {
             console.error("Server Error", error);
             setAlert("danger", "Server Error: Customer All", error.message);
+            if(error.status === 401) navigate("/logout");
         });
 
         //Unique Country Region Combinations
-        NorthWindClient.get("customer/regions")
+        NorthWindClient.get("customer/regions", token)
         .then(data => {
             setCountryRegions(data.regions);
             setCountries([...new Set(data.regions.map(item => item.country))]);
@@ -49,6 +52,7 @@ const ClientCatalog = () => {
         .catch(error => {
             console.error("Server Error", error);
             setAlert("danger", "Server Error: Customer Regions", error.message);
+            if(error.status === 401) navigate("/logout");
         });
     }, [])
 

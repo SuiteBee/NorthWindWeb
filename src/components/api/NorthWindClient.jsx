@@ -36,16 +36,6 @@ class APIClient{
         throw error;
     }
 
-    get(url, tkn){
-        return this.request(url, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${tkn}`
-            },
-        });
-    }
-
     authenticate(url, data){
         return this.request(url, {
             method: "POST",
@@ -56,6 +46,16 @@ class APIClient{
         });
     }
 
+    get(url, tkn){
+        return this.request(url, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${tkn}`
+            },
+        });
+    }
+    
     post(url, tkn, data){
         return this.request(url, {
             method: "POST",

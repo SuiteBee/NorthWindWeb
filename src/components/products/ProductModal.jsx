@@ -3,6 +3,8 @@
 //////////////////////////////////////////
 import useAlert from "@/hooks/useAlert";
 import { useState, useEffect } from "react";
+import useUser from "@/hooks/useUser";
+import { useNavigate } from "react-router-dom";
 
 //////////////////////////////////////////
 //Components
@@ -19,6 +21,8 @@ const ProductModal = (props) => {
     const[addStock, setAddStock] = useState(0);
 
     const { setAlert, clearAlert } = useAlert();
+    const { token } = useUser();
+    const navigate = useNavigate();
 
     //Apply markup  
     useEffect(() => {
@@ -52,7 +56,7 @@ const ProductModal = (props) => {
         product.stockAmt += addStock;
         
         //Send API update for this product modal
-        NorthWindClient.put(`product/update/${product.productId}`, product)
+        NorthWindClient.put(`product/update/${product.productId}`, token, product)
         .then(data => {
             setProduct(data);
             clearAlert();
@@ -60,6 +64,7 @@ const ProductModal = (props) => {
         .catch(error => {
             console.error("Server Error", error);
             setAlert("danger", "Server Error: Update Price", error.message);
+            if(error.status === 401) navigate("/logout");
         });
 
         //Reset modal to default

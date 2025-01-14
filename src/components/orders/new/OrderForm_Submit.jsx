@@ -3,6 +3,7 @@
 //////////////////////////////////////////
 import useAlert from "@/hooks/useAlert";
 import { useNavigate } from "react-router-dom";
+import useUser from "@/hooks/useUser";
 
 //////////////////////////////////////////
 //Components
@@ -15,13 +16,14 @@ import { newOrderRequest } from "@/components/api/models/NewOrderRequest";
 
 const OrderForm_Submit = (props) => {
     const { setAlert, clearAlert } = useAlert();
+     const { token, empId } = useUser();
     const navigate = useNavigate();
 
     function HandleSubmit(){
-        const order = newOrderRequest(props);
+        const order = newOrderRequest(props, empId);
         
         //Submit New Order
-        NorthWindClient.post("order/create", order)
+        NorthWindClient.post("order/create", token, order)
         .then(data => {
             clearAlert();
             setAlert("success", "Success", `Order ${data.orderId} Submitted`);
@@ -30,6 +32,7 @@ const OrderForm_Submit = (props) => {
             clearAlert();
             console.error("Server Error", error);
             setAlert("danger", "Server Error: Submit Order", error.message);
+            if(error.status === 401) navigate("/logout");
         });
 
         //Navigate back to orders page

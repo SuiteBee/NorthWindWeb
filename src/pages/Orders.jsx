@@ -4,6 +4,7 @@
 import React, { useState, useEffect } from "react";
 import useAlert from "@/hooks/useAlert";
 import { useNavigate } from "react-router-dom";
+import useUser from "@/hooks/useUser";
 
 //////////////////////////////////////////
 //Components
@@ -16,7 +17,9 @@ import CloseIcon from "@/assets/icon/closeIcon.svg";
 const Orders = () => {
     const [orderList, setOrderList] = useState(null);
     const [orderDetail, setOrderDetail] = useState(null);
+
     const { setAlert, clearAlert } = useAlert();
+    const { token } = useUser();
     const navigate = useNavigate();
 
     function viewOrder(toView){
@@ -40,7 +43,7 @@ const Orders = () => {
 
     //Popualate Order grid with all orders
     useEffect(() => {
-        NorthWindClient.get("order/all")
+        NorthWindClient.get("order/all", token)
         .then(data => {
             setOrderList(data);
         })
@@ -48,6 +51,7 @@ const Orders = () => {
             clearAlert();
             console.error("Server Error", error);
             setAlert("danger", "Server Error: Order Grid", error.message);
+            if(error.status === 401) navigate("/logout");
         });
     }, [])
 

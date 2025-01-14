@@ -4,6 +4,7 @@
 import React, { useState, useEffect } from "react";
 import useAlert from "@/hooks/useAlert";
 import { useNavigate } from "react-router-dom";
+import useUser from "@/hooks/useUser";
 
 //////////////////////////////////////////
 //Components
@@ -36,11 +37,12 @@ const NewClient = () => {
     const[countries, setCountries] = useState(null);
 
     const { setAlert, clearAlert } = useAlert();
+    const { token } = useUser();
     const navigate = useNavigate();
 
     useEffect(() => {
         //Unique Country Region Combinations
-        NorthWindClient.get("customer/regions")
+        NorthWindClient.get("customer/regions", token)
         .then(data => {
             setCountryRegions(data.regions);
             setCountries([...new Set(data.regions.map(item => item.country))]);
@@ -49,10 +51,11 @@ const NewClient = () => {
             clearAlert();
             console.error("Server Error", error);
             setAlert("danger", "Server Error: Customer Regions", error.message);
+            if(error.status === 401) navigate("/logout");
         });
 
         //List of existing company identifiers
-        NorthWindClient.get("customer/all")
+        NorthWindClient.get("customer/all", token)
         .then(data => {
             setCompIdentifiers([...new Set(data.map(client => client.id))]);
         })
@@ -60,6 +63,7 @@ const NewClient = () => {
             clearAlert();
             console.error("Server Error", error);
             setAlert("danger", "Server Error: Customer Identifiers", error.message);
+            if(error.status === 401) navigate("/logout");
         });
     }, []);
 
@@ -109,7 +113,7 @@ const NewClient = () => {
             const client = newClientRequest(formState);
 
             //Submit New client
-            NorthWindClient.post("customer/create", client)
+            NorthWindClient.post("customer/create", token, client)
             .then(data => {
                 clearAlert();
                 setAlert("success", "Success", `Client ${data.id} Submitted`);
@@ -121,6 +125,7 @@ const NewClient = () => {
                 clearAlert();
                 console.error("Server Error", error);
                 setAlert("danger", "Server Error: Submit Client", error.message);
+                if(error.status === 401) navigate("/logout");
             });
         }
     }

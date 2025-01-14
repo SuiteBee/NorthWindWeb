@@ -3,6 +3,8 @@
 //////////////////////////////////////////
 import useAlert from "@/hooks/useAlert";
 import { useState, useEffect } from "react";
+import useUser from "@/hooks/useUser";
+import { useNavigate } from "react-router-dom";
 
 //////////////////////////////////////////
 //Components
@@ -41,10 +43,12 @@ const ProductCatalog = () => {
     const[inputProduct, setInputProduct] = useState("");
     
     const { setAlert, clearAlert } = useAlert();
+    const { token } = useUser();
+    const navigate = useNavigate();
 
     //Product API GET
     useEffect(() => {
-        NorthWindClient.get("product/all")
+        NorthWindClient.get("product/all", token)
         .then(data => {
             setProducts(data);
             clearAlert();
@@ -52,6 +56,7 @@ const ProductCatalog = () => {
         .catch(error => {
             console.error("Server Error", error);
             setAlert("danger", "Server Error: Get Products", error.message);
+            if(error.status === 401) navigate("/logout");
         });
     }, [])
 

@@ -27,23 +27,24 @@ export const UserProvider = ({ children }) => {
   }
   const sessionToken = sessionStorage.getItem("nwToken");
 
-  const [empId, setEmpId] = useState(sessionUser?.employeeId);
-  const [user, setUser] = useState(sessionUser?.userName);
-  const [firstName, setFirstName] = useState(sessionUser?.firstName);
-  const [lastName, setLastName] = useState(sessionUser?.lastName);
-  const [roleId, setRoleId] = useState(sessionUser?.roleId);
-  const [role, setRole] = useState(sessionUser?.roleName);
-
+  const [empId, setEmpId] = useState(sessionUser ? sessionUser.employeeId : -1);
+  const [user, setUser] = useState(sessionUser? sessionUser.userName : "");
+  const [firstName, setFirstName] = useState(sessionUser ? sessionUser.firstName : "");
+  const [lastName, setLastName] = useState(sessionUser ? sessionUser.lastName : "");
+  const [roleId, setRoleId] = useState(sessionUser ? sessionUser.roleId : -1);
+  const [role, setRole] = useState(sessionUser ? sessionUser.roleName : "");
   const[token, setToken] = useState(sessionToken);
 
   const logout = () => {
+    sessionStorage.removeItem("nwUser");
+    sessionStorage.removeItem("nwToken");
+
     setEmpId(-1);
     setUser("");
     setFirstName("");
     setLastName("");
     setRoleId(-1);
     setRole("");
-
     setToken("");
   }
 

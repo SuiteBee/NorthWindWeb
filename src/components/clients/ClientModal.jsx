@@ -2,7 +2,9 @@
 //Hooks
 //////////////////////////////////////////
 import useAlert from "@/hooks/useAlert";
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import useUser from "@/hooks/useUser";
+import { useNavigate } from "react-router-dom";
 
 //////////////////////////////////////////
 //Components
@@ -15,6 +17,9 @@ import { NorthWindClient } from "@/components/api/NorthWindClient";
 const ClientModal = (props) => {
 
     const { setAlert, clearAlert } = useAlert();
+    const { token } = useUser();
+    const navigate = useNavigate();
+
     const[client, setClient] = useState(props.client);
 
     const[formState, setFormState] = useState({
@@ -48,7 +53,7 @@ const ClientModal = (props) => {
         client.contactInfo.fax = formState.fax;
 
         //Send API update for this product modal
-        NorthWindClient.put(`customer/update/${client.id}`, client)
+        NorthWindClient.put(`customer/update/${client.id}`, token, client)
         .then(data => {
             setClient(data);
             clearAlert();
@@ -56,6 +61,7 @@ const ClientModal = (props) => {
         .catch(error => {
             console.error("Server Error", error);
             setAlert("danger", "Server Error: Update Client", error.message);
+            if(error.status === 401) navigate("/logout");
         });
 
         //Update parent state to refresh catalog

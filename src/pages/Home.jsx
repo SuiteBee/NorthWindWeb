@@ -4,6 +4,7 @@
 import React, { useState, useEffect } from "react";
 import useAlert from "@/hooks/useAlert";
 import useUser from "@/hooks/useUser";
+import { useNavigate } from "react-router-dom";
 
 //////////////////////////////////////////
 //Components
@@ -22,6 +23,7 @@ const Home = () => {
 
     const { setAlert, clearAlert } = useAlert();
     const { token } = useUser();
+    const navigate = useNavigate();
 
     //GET order total stats
     useEffect(() => {
@@ -33,6 +35,7 @@ const Home = () => {
         .catch(error => {
             console.error("Server Error", error);
             setAlert("danger", "Server Error: Dashboard Charts", error.message);
+            if(error.status === 401) navigate("/logout");
         });
     }, [])
 

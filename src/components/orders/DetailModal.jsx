@@ -3,6 +3,8 @@
 //////////////////////////////////////////
 import useAlert from "@/hooks/useAlert";
 import { useState } from "react";
+import useUser from "@/hooks/useUser";
+import { useNavigate } from "react-router-dom";
 
 //////////////////////////////////////////
 //Components
@@ -13,6 +15,9 @@ import { NorthWindClient } from "@/components/api/NorthWindClient";
 const DetailModal = (props) => {
 
     const { setAlert, clearAlert } = useAlert();
+    const { token } = useUser();
+    const navigate = useNavigate();
+    
     const[order, setOrder] = useState(props.order);
 
     function HandleSubmit(event){
@@ -22,7 +27,7 @@ const DetailModal = (props) => {
             let orderIndex = props.orderList.indexOf(order);
 
             //API PUT - Update ship date and set model
-            NorthWindClient.put(`order/ship/${order.orderId}`)
+            NorthWindClient.put(`order/ship/${order.orderId}`, token)
             .then(data => {
                 setOrder(data);
 
@@ -38,13 +43,14 @@ const DetailModal = (props) => {
             .catch(error => {
                 console.error("Server Error", error);
                 setAlert("danger", "Server Error: Ship Order", error.message);
+                if(error.status === 401) navigate("/logout");
             });
         } else if(props.action === "delete"){
 
             let orderIndex = props.orderList.indexOf(order);
 
             //API Delete - Delete pending order record
-            NorthWindClient.delete(`order/delete/${order.orderId}`)
+            NorthWindClient.delete(`order/delete/${order.orderId}`, token)
             .then(() => {
                 clearAlert();
                 setAlert("success", "Success", `Order ${order.orderId} Removed`);
@@ -52,6 +58,7 @@ const DetailModal = (props) => {
             .catch(error => {
                 console.error("Server Error", error);
                 setAlert("danger", "Server Error: Delete Order", error.message);
+                if(error.status === 401) navigate("/logout");
             });
 
             //Remove record from array

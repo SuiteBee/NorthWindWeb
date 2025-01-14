@@ -1,7 +1,7 @@
-export const newOrderRequest = (order) => {
+export const newOrderRequest = (order, empId) => {
     return {
         customerId: order.client.id,
-        employeeId: 6,
+        employeeId: empId,
         carrierId: order.shipping.carrierId,
         shipCost: order.shipping.shipCost,
         shipName: order.shipping.name,

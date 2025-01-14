@@ -3,6 +3,8 @@
 //////////////////////////////////////////
 import { useState, useEffect } from "react";
 import useAlert from "@/hooks/useAlert";
+import useUser from "@/hooks/useUser";
+import { useNavigate } from "react-router-dom";
 
 //////////////////////////////////////////
 //Components
@@ -22,6 +24,8 @@ const OrderForm_ClientInfo = (props) => {
     const[companyRegion, setCompanyRegion] = useState(props.client?.address.region);
 
     const { setAlert, clearAlert } = useAlert();
+    const { token } = useUser();
+    const navigate = useNavigate();
 
     function handleCompanyChange(event){
         const value = event.target.value;
@@ -73,7 +77,7 @@ const OrderForm_ClientInfo = (props) => {
 
     //Popualate Company DataList
     useEffect(() => {
-        NorthWindClient.get("customer/all")
+        NorthWindClient.get("customer/all", token)
         .then(data => {
             setCompanies(data);
             clearAlert();
@@ -81,6 +85,7 @@ const OrderForm_ClientInfo = (props) => {
         .catch(error => {
             console.error("Server Error", error);
             setAlert("danger", "Server Error: Client List", error.message);
+            if(error.status === 401) navigate("/logout");
         });
     }, [])
 
