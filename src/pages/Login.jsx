@@ -63,11 +63,11 @@ const Login = () => {
                     </div>
                     <div className="bg-dark border border-white rounded-4">
                         <form onSubmit={handleSubmit}>
-                            <div className="d-inline-flex ps-6 mx-3 mt-3" style={{alignItems:"center", justifyItems:"left"}}>
-                                <div className="col-4">
-                                    <span>Username:</span>
+                            <div className="d-flex mx-3 mt-3 justify-content-start align-items-center">
+                                <div className="col-5 col-sm-4 col-md-3 col-lg-3">
+                                    <span>Username</span>
                                 </div>
-                                <div className="col-8">
+                                <div className="col-7 col-sm-8 col-md-9 col-lg-9">
                                     <div className="input-group">                                      
                                         <input 
                                             type="text"
@@ -81,11 +81,11 @@ const Login = () => {
                                 </div>
                             </div>
                             <hr className="w-100" />
-                            <div className="d-inline-flex px-6 mx-3 mb-3" style={{alignItems:"center", justifyItems:"left"}}>
-                                <div className="col-4">
-                                    <span>Password:</span>
+                            <div className="d-flex mx-3 mb-3 justify-content-start align-items-center">
+                                <div className="col-5 col-sm-4 col-md-3 col-lg-3">
+                                    <span>Password</span>
                                 </div>
-                                <div className="col-8">
+                                <div className="col-7 col-sm-8 col-md-9 col-lg-9">
                                     <div className="input-group">
                                         <input 
                                             type="password"

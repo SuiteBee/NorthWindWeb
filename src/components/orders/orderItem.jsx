@@ -59,8 +59,8 @@ const OrderItem = (props) => {
                                             <h1>Sales Rep</h1>
                                         </div>
                                         <div className="row gap-2 justify-content-start my-2">
-                                            <div className="col-3 badge bg-info">{order.value.completedBy.firstName}</div>
-                                            <div className="col-3 badge bg-info">{order.value.completedBy.lastName}</div>
+                                            <div className="col-3 badge bg-primary">{order.value.completedBy.firstName}</div>
+                                            <div className="col-3 badge bg-primary">{order.value.completedBy.lastName}</div>
                                         </div>
                                     </div>
                                 </div>
@@ -72,19 +72,19 @@ const OrderItem = (props) => {
                                             <h1>Shipping Info</h1>
                                         </div>
                                         <div className="row gap-2 justify-content-start my-2">
-                                            <div className="col-4 badge bg-secondary">Company</div>
-                                            <div className="col-8 badge bg-info">{order.value.orderedBy.companyName}</div>
+                                            <div className="col-6 badge bg-secondary">Company</div>
+                                            <div className="col-10 badge bg-primary">{order.value.orderedBy.companyName}</div>
                                         </div>
                                         <div className="row gap-2 justify-content-start my-2">
-                                            <div className="col-4 badge bg-secondary">Address</div>
+                                            <div className="col-6 badge bg-secondary">Address</div>
                                         </div>
                                         <div className="row gap-2 justify-content-start my-2">
-                                            <div className="col-6 badge bg-info">{order.value.sendTo.address.street}</div>
-                                            <div className="col-4 badge bg-info">{order.value.sendTo.address.city}</div>
+                                            <div className="col-6 badge bg-primary">{order.value.sendTo.address.street}</div>
+                                            <div className="col-4 badge bg-primary">{order.value.sendTo.address.city}</div>
                                         </div>
                                         <div className="row gap-2 justify-content-start my-2">
-                                            <div className="col-3 badge bg-info">{order.value.sendTo.address.postalCode}</div>
-                                            <div className="col-4 badge bg-info">{order.value.sendTo.address.country}</div>
+                                            <div className="col-6 badge bg-primary">{order.value.sendTo.address.postalCode}</div>
+                                            <div className="col-4 badge bg-primary">{order.value.sendTo.address.country}</div>
                                         </div>
                                     </div>
                                 </div>
@@ -95,19 +95,19 @@ const OrderItem = (props) => {
                                         </div>
                                         <div className="row gap-2 justify-content-start my-2">
                                             <div className="col-3 badge bg-secondary">Items</div>
-                                            <div className="col-7 badge bg-success">{order.value.items.length}</div>
+                                            <div className="col-3 badge bg-success">{order.value.items.length}</div>
                                         </div>
                                         <div className="row gap-2 justify-content-start my-2">
-                                            <div className="col-3 badge bg-secondary">Subotal</div>
-                                            <div className="col-7 badge bg-success">${moneyString(order.value.orderSubtotal)}</div>
+                                            <div className="col-3 badge bg-secondary">Subtotal</div>
+                                            <div className="col-3 badge bg-success text-end">${moneyString(order.value.orderSubtotal)}</div>
                                         </div>
                                         <div className="row gap-2 justify-content-start my-2">
                                             <div className="col-3 badge bg-secondary">Shipping</div>
-                                            <div className="col-7 badge bg-success">${moneyString(order.value.sendTo.shipCost)}</div>
+                                            <div className="col-3 badge bg-success text-end">${moneyString(order.value.sendTo.shipCost)}</div>
                                         </div>
                                         <div className="row gap-2 justify-content-start my-2">
                                             <div className="col-3 badge bg-secondary">Total</div>
-                                            <div className="col-7 badge bg-success">${moneyString(order.value.orderTotal)}</div>
+                                            <div className="col-3 badge bg-success text-end">${moneyString(order.value.orderTotal)}</div>
                                         </div>
                                     </div>
                                 </div>

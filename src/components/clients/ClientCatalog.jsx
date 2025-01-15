@@ -143,7 +143,7 @@ const ClientCatalog = () => {
                     className="form-control text-black"
                     style={{height:"30px", fontSize:"15px"}}
                     id="searchClient" 
-                    placeholder="Type to search..."
+                    placeholder="Type to search by business/owner..."
                     value={inputSearch}
                     onChange={handleInputChange}
                 />

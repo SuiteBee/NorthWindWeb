@@ -128,7 +128,7 @@ const ProductCatalog = () => {
                     className="form-control text-black"
                     style={{height:"30px", fontSize:"15px"}}
                     id="searchProduct" 
-                    placeholder="Type to search..."
+                    placeholder="Type to search by product name..."
                     value={inputProduct}
                     onChange={handleInputChange}
                 />

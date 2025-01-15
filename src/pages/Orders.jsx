@@ -59,21 +59,20 @@ const Orders = () => {
         //Order Detail View
      return (
         <div className="h-100 text-white mt-2">
-            <div className="d-flex justify-content-between bg-primary border rounded border-2 w-100">
+            <div className="d-flex justify-content-between p-2 bg-primary border border-2 border-dark">
                 <div />
-                <div className="">
-                    <h1 className="display-1 p-2">Order Details</h1>
-                </div>
                 <div className="align-self-center">
+                    <h1 className="display-3 text-dark text-center" style={{fontFamily:"poppins", fontWeight:"500"}}>Order Details</h1>
+                </div>
+                <div>
                     <button 
                         type="button" 
-                        className="btn btn__danger btn__close"
+                        className="orderItem-close"
                         onClick={closeOrderView}>
                         <img src={CloseIcon}/>
                     </button>
                 </div>
             </div>
-
             {orderDetail}
         </div>
      )       

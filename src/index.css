@@ -248,6 +248,10 @@ button {
   margin-right: 10px;
 }
 
+.orderItem-close {
+  filter: invert(1);
+}
+
 .prodItem {
   margin-left: 30px;
 }
