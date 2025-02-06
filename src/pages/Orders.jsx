@@ -79,7 +79,7 @@ const Orders = () => {
     } else {
         //Order Grid
         return(
-            <div className="h-100 pt-3">
+            <div className="h-100 pt-3 pb-3">
                 <h1 className="pageHeader bg-primary">Orders</h1>
                 <hr className="text-white w-80 h-10" style={{height: "3px"}}/>
                 <div className="d-flex px-4 gap-3 justify-content-start">

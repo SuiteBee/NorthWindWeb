@@ -50,7 +50,7 @@ const OrderForm_ProductModal = (props) => {
     function CalculateDiscount(val){
         let tmpPct = val / 100;
         let tmpDiscount = product.itemPrice * tmpPct;
-        let tmpPrice = product.itemPrice - tmpDiscount;
+        let tmpPrice = product.itemPrice - tmpDiscount.toFixed(2);
         setDiscountPrice(tmpPrice);
     }
 
@@ -191,7 +191,7 @@ const OrderForm_ProductModal = (props) => {
                     <div className="d-flex justify-content-end">
                         <button 
                             type="submit" 
-                            className="btn btn-success btn-long"
+                            className="btn btn-success btn-lg"
                             onClick={HandleSubmit}
                             disabled={orderQuantity === 0}>
                             Add To Cart

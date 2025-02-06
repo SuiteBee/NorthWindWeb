@@ -44,7 +44,11 @@ const Login = () => {
             navigate("/dashboard");
         })
         .catch(error => {
-            setErrorMsg("Username or password is incorrect.");
+            if(error.status === 401){
+                setErrorMsg("Username or password is incorrect.");
+            } else{
+                setErrorMsg(`${error.message}\nIs the API backend active?`);
+            }
 
             //clear password
             setFormState({
@@ -57,7 +61,7 @@ const Login = () => {
     return (
         <>
             <div className="loginBack">
-                <div className="w-20 position-absolute top-50 start-50 translate-middle">
+                <div className="position-absolute top-50 start-50 translate-middle">
                     <div className="m-3 fs-1 text-center" style={{fontFamily:"poppins"}}>
                         Northwind Employee Sign-In
                     </div>
@@ -109,7 +113,7 @@ const Login = () => {
                         </button>
                     </div>
 
-                    <div className="pt-5 text-center" style={{display: `${errorMsg ? "" : ""}`}}>
+                    <div className="pt-5 text-center" style={{whiteSpace: "pre-wrap", display: `${errorMsg ? "" : "none"}`}}>
                         {errorMsg}
                     </div>
                 </div>

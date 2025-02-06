@@ -6,7 +6,8 @@ const API_BASE_URL = "https://localhost:44303/api/";
 
 class APIClient{
     async request(url, options){
-        const response = await fetch(`${API_BASE_URL}${url}`, options);
+        const response = await fetch(`${API_BASE_URL}${url}`, options)
+        
         if(!response.ok){
             return this.notOk(response);
         }

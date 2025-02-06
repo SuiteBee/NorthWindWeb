@@ -23,6 +23,7 @@ const NewOrder = () => {
 
     const [clientInfo, setClientInfo] = useState(null);
     const [productInfo, setProductInfo] = useState(null);
+    const [cartOpen, setCartOpen] = useState(false);
     const [shippingInfo, setShippingInfo] = useState(null);
     const [shippingComplete, setShippingComplete] = useState(true);
 
@@ -93,7 +94,7 @@ const NewOrder = () => {
             case "client":
                 return <OrderForm_ClientInfo client={clientInfo} setClient={setClientInfo}/>
             case "product":
-                return <OrderForm_Products product={productInfo} setProduct={setProductInfo}/>
+                return <OrderForm_Products product={productInfo} setProduct={setProductInfo} cartOpen={cartOpen} setCartOpen={setCartOpen}/>
             case "shipping":
                 return <OrderForm_Shipping client={clientInfo} shipping={shippingInfo} setShipping={setShippingInfo}/>
             case "submit":
@@ -103,7 +104,7 @@ const NewOrder = () => {
 
     return (
         <>
-            <div className="h-100 text-white p-5">
+            <div className="h-100 text-white pt-5 ps-5">
                 <div className="d-flex">
                     <h1 className="display-1 p-2">New Order</h1>
                 </div>

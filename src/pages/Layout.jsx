@@ -59,7 +59,7 @@ function Layout() {
         </div>
       </div>
 
-      <Offcanvas className="bg-dark" show={showNav} onHide={handleCloseNav}>
+      <Offcanvas className="bg-dark" show={showNav} onHide={handleCloseNav} placement={"end"}>
         <Offcanvas.Header className="justify-content-between border-bottom m-2">
           <div className="display-1 text-white" style={{fontFamily:"Poppins"}}>Menu</div>
           <div>

@@ -56,6 +56,7 @@ const OrderForm_Products = (props) => {
     //Check for existing productInfo when initializing cart
     useEffect(() => {
         if(props.product) {
+            setShowCart(props.cartOpen);
             setCart(props.product);
         } else{
             setCart([]);
@@ -67,13 +68,14 @@ const OrderForm_Products = (props) => {
         if(!existingItem){
             setCart([...cart, item]);
 
+            props.setCartOpen(showCart);
             props.setProduct([...cart, item]);
         } else {
             const cartIndex = cart.findIndex(p => p.productId === item.productId);
             const cartSwap = [...cart];
             cartSwap[cartIndex] = item;
-            setCart(cartSwap);
-            
+
+            props.setCartOpen(showCart);
             props.setProduct(cartSwap);
         }
     }
@@ -82,15 +84,14 @@ const OrderForm_Products = (props) => {
         const existingItem = cart.find(p => p.productId === item.productId);
         if(existingItem){
             if(cart.length == 1){
-                setCart([]);
-
+                props.setCartOpen(false);
                 props.setProduct(null);
             }else{
                 const cartIndex = cart.findIndex(p => p.productId === item.productId);
-                const cartSplice = [...cart.splice(cartIndex, 1)];
-                setCart(cartSplice);
+                const altCart = cart.toSpliced(cartIndex, 1);
 
-                props.setProduct(cartSplice);
+                props.setCartOpen(showCart);
+                props.setProduct(altCart);
             }
         }
     }
@@ -115,7 +116,7 @@ const OrderForm_Products = (props) => {
             handleAddCart={AddToCart}
         />
     ));
-
+    
     const cartList = cart?.map((item, index) => (
         <OrderForm_ProductCart
             id={index += 1}
@@ -137,7 +138,7 @@ const OrderForm_Products = (props) => {
     return (
     <>
         <div className="d-flex ps-2 pe-8">
-            <div className="col-12">
+            <div className="col-10">
                 <div className="text-center">
                     <h1 className="text-decoration-underline">Products</h1>
                 </div>
@@ -158,8 +159,8 @@ const OrderForm_Products = (props) => {
                 </div>
             </div>
         </div>
-       
-        <Offcanvas className="bg-dark" show={showCart} onHide={handleCloseCart} placement="end">
+        
+        <Offcanvas className="bg-dark mt-7 pt-5 z-0" show={showCart} onHide={handleCloseCart} placement="end" backdrop={false} scroll={true}>
             <Offcanvas.Header className="justify-content-between border-bottom m-2">
             <div className="display-1 text-white">Cart</div>
             <div>
@@ -170,7 +171,7 @@ const OrderForm_Products = (props) => {
             
             </Offcanvas.Header>
             <Offcanvas.Body>
-                <div className="bg-dark">
+                <div className="bg-dark pb-5">
                     <div className="container-fluid p-4">
                         {cartList}
                     </div>
