@@ -79,14 +79,14 @@ Following vectors and icons from [SVG Repo](https://www.svgrepo.com)
 Under [Creative Commons by Attribution License](https://creativecommons.org/licenses/by/4.0/)
 
 Product Catalog Icons by [Yu Chun Chou](https://www.behance.net/james_chou)
-![Produce](/src/assets/products/apple.svg =25x25)
-![Grains](/src/assets/products/bread.svg =25x25)
-![Confections](/src/assets/products/donut.svg =25x25)
-![Beverages](/src/assets/products/drink.svg =25x25)
-![Condiments](/src/assets/products/jar.svg =25x25)
-![Seafood](/src/assets/products/lobster.svg =25x25)
-![Meat](/src/assets/products/meat.svg =25x25)
-![Dairy](/src/assets/products/milk.svg =25x25)
+<img src="/src/assets/products/apple.svg" width="25" height="25">
+<img src="/src/assets/products/bread.svg" width="25" height="25">
+<img src="/src/assets/products/donut.svg" width="25" height="25">
+<img src="/src/assets/products/drink.svg" width="25" height="25">
+<img src="/src/assets/products/jar.svg" width="25" height="25">
+<img src="/src/assets/products/lobster.svg" width="25" height="25">
+<img src="/src/assets/products/meat.svg" width="25" height="25">
+<img src="/src/assets/products/milk.svg" width="25" height="25">
 
 Following vectors and icons from [Google](https://fonts.google.com/icons)
 
