@@ -79,27 +79,31 @@ under [Creative Commons by Attribution License](https://creativecommons.org/lice
 
 Product Catalog Icons by [Yu Chun Chou](https://www.behance.net/james_chou)
 
-<img src="/src/assets/products/apple.svg" width="25" height="25">
-<img src="/src/assets/products/bread.svg" width="25" height="25">
-<img src="/src/assets/products/donut.svg" width="25" height="25">
-<img src="/src/assets/products/drink.svg" width="25" height="25">
-<img src="/src/assets/products/jar.svg" width="25" height="25">
-<img src="/src/assets/products/lobster.svg" width="25" height="25">
-<img src="/src/assets/products/meat.svg" width="25" height="25">
-<img src="/src/assets/products/milk.svg" width="25" height="25">
+<div>
+    <img src="/src/assets/products/apple.svg" width="25" height="25">
+    <img src="/src/assets/products/bread.svg" width="25" height="25">
+    <img src="/src/assets/products/donut.svg" width="25" height="25">
+    <img src="/src/assets/products/drink.svg" width="25" height="25">
+    <img src="/src/assets/products/jar.svg" width="25" height="25">
+    <img src="/src/assets/products/lobster.svg" width="25" height="25">
+    <img src="/src/assets/products/meat.svg" width="25" height="25">
+    <img src="/src/assets/products/milk.svg" width="25" height="25">
+</div>
 
 Following vectors and icons from [Google](https://fonts.google.com/icons)
 under [Apache 2.0 License](https://www.apache.org/licenses/LICENSE-2.0)
 
 Navigation Icons
 
-<img src="/src/assets/icon/homeIcon.svg" width="25" height="25">
-<img src="/src/assets/icon/taskIcon.svg" width="25" height="25">
-<img src="/src/assets/icon/orderIcon.svg" width="25" height="25">
-<img src="/src/assets/icon/clientsIcon.svg" width="25" height="25">
-<img src="/src/assets/icon/productIcon.svg" width="25" height="25">
-<img src="/src/assets/icon/aboutIcon.svg" width="25" height="25">
-<img src="/src/assets/icon/logoutIcon.svg" width="25" height="25">
+<div>
+    <img src="/src/assets/icon/homeIcon.svg" width="25" height="25">
+    <img src="/src/assets/icon/taskIcon.svg" width="25" height="25">
+    <img src="/src/assets/icon/orderIcon.svg" width="25" height="25">
+    <img src="/src/assets/icon/clientsIcon.svg" width="25" height="25">
+    <img src="/src/assets/icon/productIcon.svg" width="25" height="25">
+    <img src="/src/assets/icon/aboutIcon.svg" width="25" height="25">
+    <img src="/src/assets/icon/logoutIcon.svg" width="25" height="25">
+</div>
 
 Client Profile Icon
 
