@@ -75,7 +75,7 @@ As well as
 
 + REACT
 + native fetch (api calls)
-+ Vite (for enhanced development)</li
++ Vite (for enhanced development)
 + Node.js (required by Vite)
 + SASS
 + Bootstrap
