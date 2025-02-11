@@ -133,6 +133,18 @@ The following GIF illustrates the new order process.
 + MUI X (Dashboard Charts)
 
 ## Credits
+
+<details>
+<summary><h3>Components</h3></summary>
+
+Dashboard charts and order grid from [MUI-X](https://mui.com/x/)
+under [MIT License](https://www.tldrlegal.com/license/mit-license)
+
+Dashboard heatmap from [arunghosh](https://github.com/arunghosh/react-grid-heatmap)
+under [MIT License](https://www.tldrlegal.com/license/mit-license)
+
+</details>
+
 <details>
 <summary><h3>Assets</h3></summary>
 
