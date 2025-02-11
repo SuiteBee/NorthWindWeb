@@ -39,15 +39,15 @@ const CategoryChart = (props) => {
                         highlightScope: { fade: "global", highlight: "item" },
                         faded: { innerRadius: 30, additionalRadius: -30, color: "gray" },
                         arcLabelMinAngle: 30,
-                        arcLabelRadius: "65%",
+                        arcLabelRadius: "60%",
                         //Pie Y position
-                        cy: 160,
+                        cy: 190,
                         data: catData,
                         valueFormatter
                     }
                 ]}
                 height={400}
-                margin={{ right: 0, bottom: 100 }}
+                margin={{ right: 0, bottom: 50 }}
                 sx={{
                     //Slice labels
                     [`& .${pieArcLabelClasses.root}`]: {
@@ -83,6 +83,7 @@ const CategoryChart = (props) => {
                     },
                     //Overhead legend
                     legend: {
+                      hidden: true,
                       padding: { top: 20, left: 20, bottom: 20, right: 20 },
                       direction: "row",
                       position: { vertical: "bottom", horizontal: "middle" },

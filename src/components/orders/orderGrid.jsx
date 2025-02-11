@@ -40,33 +40,54 @@ const OrderGrid = (props) => {
 
     const orderGridCols_xsm = [
         { field: "id", headerName: "ID", headerClassName: "orderHeader", width: 75 },
-        { field: "orderDate", headerName: "Date", headerClassName: "orderHeader", width: 115 },
+        { 
+            field: "orderDate", headerName: "Date", headerClassName: "orderHeader", width: 115,
+            valueFormatter: (d) => {return `${d.toISOString().substring(0,10)}`}
+        },
         { field: "isCompleted", headerName: "", headerClassName: "orderHeader", width: 100, align: "center", renderCell: renderCompleted },
         { field: "viewOrder", headerName: "", renderCell: renderView, align: "center", width:75 }
     ];
 
     const orderGridCols_sm = [
         { field: "id", headerName: "ID", headerClassName: "orderHeader", width: 75 },
-        { field: "orderDate", headerName: "Date", headerClassName: "orderHeader", width: 115 },
-        { field: "orderTotal", headerName: "Order Total", headerClassName: "orderHeader", width: 125, align: "right" },
+        { 
+            field: "orderDate", headerName: "Date", headerClassName: "orderHeader", width: 115,
+            valueFormatter: (d) => {return `${d.toISOString().substring(0,10)}`}
+        },
+        { 
+            field: "orderTotal", headerName: "Order Total", headerClassName: "orderHeader", width: 125, align: "right",
+            valueFormatter: (v) => {return `$${moneyString(v)}`}
+        },
         { field: "isCompleted", headerName: "", headerClassName: "orderHeader", width: 100, align: "center", renderCell: renderCompleted },
         { field: "viewOrder", headerName: "", renderCell: renderView, align: "center", width:75 }
     ];
 
     const orderGridCols_md = [
         { field: "id", headerName: "ID", headerClassName: "orderHeader", width: 75},
-        { field: "orderDate", headerName: "Date", headerClassName: "orderHeader", width: 115 },
+        { 
+            field: "orderDate", headerName: "Date", headerClassName: "orderHeader", width: 115,
+            valueFormatter: (d) => {return `${d.toISOString().substring(0,10)}`}
+        },
         { field: "companyName", headerName: "Company", headerClassName: "orderHeader", width: 225 },
-        { field: "orderTotal", headerName: "Order Total", headerClassName: "orderHeader", width: 125, align: "right" },
+        { 
+            field: "orderTotal", headerName: "Order Total", headerClassName: "orderHeader", width: 125, align: "right",
+            valueFormatter: (v) => {return `$${moneyString(v)}`}
+        },
         { field: "isCompleted", headerName: "", headerClassName: "orderHeader", width: 100, align: "center", renderCell: renderCompleted },
         { field: "viewOrder", headerName: "", renderCell: renderView, align: "center", width:75 }
     ];
 
     const orderGridCols_lg = [
         { field: "id", headerName: "ID", headerClassName: "orderHeader", width: 75},
-        { field: "orderDate", headerName: "Date", headerClassName: "orderHeader", width: 115 },
+        { 
+            field: "orderDate", headerName: "Date", headerClassName: "orderHeader", width: 115,
+            valueFormatter: (d) => {return `${d.toISOString().substring(0,10)}`}
+        },
         { field: "companyName", headerName: "Company", headerClassName: "orderHeader", width: 225 },
-        { field: "orderTotal", headerName: "Order Total", headerClassName: "orderHeader", width: 125, align: "right" },
+        { 
+            field: "orderTotal", headerName: "Order Total", headerClassName: "orderHeader", width: 125, align: "right",
+            valueFormatter: (v) => {return `$${moneyString(v)}`}
+        },
         { field: "carrierName", headerName: "Carrier", headerClassName: "orderHeader", width: 150 },
         { field: "isCompleted", headerName: "", headerClassName: "orderHeader", width: 100, align: "center", renderCell: renderCompleted },
         { field: "viewOrder", headerName: "", renderCell: renderView, align: "center", width:75 }
@@ -74,11 +95,23 @@ const OrderGrid = (props) => {
 
     const orderGridCols_xlg = [
         { field: "id", headerName: "ID", headerClassName: "orderHeader", width: 75},
-        { field: "orderDate", headerName: "Date", headerClassName: "orderHeader", width: 115 },
+        { 
+            field: "orderDate", headerName: "Date", headerClassName: "orderHeader", width: 115,
+            valueFormatter: (d) => {return `${d.toISOString().substring(0,10)}`}
+        },
         { field: "companyName", headerName: "Company", headerClassName: "orderHeader", width: 225 },
-        { field: "orderSubtotal", headerName: "Subtotal", headerClassName: "orderHeader", width: 125, align: "right" },
-        { field: "orderShipping", headerName: "Shipping", headerClassName: "orderHeader", width: 125, align: "right" },
-        { field: "orderTotal", headerName: "Order Total", headerClassName: "orderHeader", width: 125, align: "right" },
+        { 
+            field: "orderSubtotal", headerName: "Subtotal", headerClassName: "orderHeader", width: 125, align: "right",
+            valueFormatter: (v) => {return `$${moneyString(v)}`}
+        },
+        { 
+            field: "orderShipping", headerName: "Shipping", headerClassName: "orderHeader", width: 125, align: "right",
+            valueFormatter: (v) => {return `$${moneyString(v)}`}
+        },
+        { 
+            field: "orderTotal", headerName: "Order Total", headerClassName: "orderHeader", width: 125, align: "right",
+            valueFormatter: (v) => {return `$${moneyString(v)}`}
+         },
         { field: "carrierName", headerName: "Carrier", headerClassName: "orderHeader", width: 150 },
         { field: "isCompleted", headerName: "", headerClassName: "orderHeader", width: 100, align: "center", renderCell: renderCompleted },
         { field: "viewOrder", headerName: "", renderCell: renderView, align: "center", width:75 }
@@ -86,11 +119,23 @@ const OrderGrid = (props) => {
 
     const orderGridCols_xxlg = [
         { field: "id", headerName: "ID", headerClassName: "orderHeader", width: 75},
-        { field: "orderDate", headerName: "Date", headerClassName: "orderHeader", width: 115 },
+        { 
+            field: "orderDate", headerName: "Date", headerClassName: "orderHeader", width: 115,
+            valueFormatter: (d) => {return `${d.toISOString().substring(0,10)}`}
+        },
         { field: "companyName", headerName: "Company", headerClassName: "orderHeader", width: 300 },
-        { field: "orderSubtotal", headerName: "Subtotal", headerClassName: "orderHeader", width: 125, align: "right" },
-        { field: "orderShipping", headerName: "Shipping", headerClassName: "orderHeader", width: 125, align: "right" },
-        { field: "orderTotal", headerName: "Order Total", headerClassName: "orderHeader", width: 125, align: "right" },
+        { 
+            field: "orderSubtotal", headerName: "Subtotal", headerClassName: "orderHeader", width: 125, align: "right",
+            valueFormatter: (v) => {return `$${moneyString(v)}`}
+        },
+        { 
+            field: "orderShipping", headerName: "Shipping", headerClassName: "orderHeader", width: 125, align: "right",
+            valueFormatter: (v) => {return `$${moneyString(v)}`}
+        },
+        { 
+            field: "orderTotal", headerName: "Order Total", headerClassName: "orderHeader", width: 125, align: "right",
+            valueFormatter: (v) => {return `$${moneyString(v)}`}
+        },
         { field: "carrierName", headerName: "Carrier", headerClassName: "orderHeader", width: 150 },
         { field: "region", headerName: "Region", headerClassName: "orderHeader", width: 150 },
         { field: "country", headerName: "Country", headerClassName: "orderHeader", width: 150 },
@@ -131,12 +176,12 @@ const OrderGrid = (props) => {
         (order) => (
             { 
                 id: order.orderId, 
-                orderDate: order.orderDate, 
+                orderDate: new Date(order.orderDate), 
                 companyName: order.orderedBy.companyName, 
                 //Display cost format x,xxx.xx
-                orderSubtotal: "$" + moneyString(order.orderSubtotal),
-                orderShipping: "$" + moneyString(order.sendTo.shipCost),
-                orderTotal: "$" + moneyString(order.orderTotal), 
+                orderSubtotal: order.orderSubtotal,
+                orderShipping: order.sendTo.shipCost,
+                orderTotal: order.orderTotal, 
                 carrierName: order.sendTo.shipCarrier, 
                 region: order.sendTo.address.region,
                 country: order.sendTo.address.country,

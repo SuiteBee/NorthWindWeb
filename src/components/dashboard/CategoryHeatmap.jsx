@@ -1,5 +1,4 @@
 
-import { fontSize, fontWeight } from "@mui/system";
 import React from "react";
 import { HeatMapGrid } from 'react-grid-heatmap'
 

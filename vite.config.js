@@ -10,4 +10,19 @@ export default defineConfig({
     },
   },
   plugins: [react()],
+  server: {
+    cors: {
+      //Backend api running locally
+      origin: 'https://localhost:44303/',
+    },
+  },
+  esbuild: {
+    jsxFactory: 'React.createElement',
+    jsxFragment: 'React.Fragment',
+  },
+  css: {
+    modules: {
+      localsConvention: 'camelCaseOnly',
+    }
+  }
 })

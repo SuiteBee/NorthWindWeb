@@ -113,7 +113,7 @@ const Login = () => {
                         </button>
                     </div>
 
-                    <div className="pt-5 text-center" style={{whiteSpace: "pre-wrap", display: `${errorMsg ? "" : "none"}`}}>
+                    <div className="pt-5 text-center position-absolute w-100" style={{whiteSpace: "pre-wrap", display: `${errorMsg ? "" : "none"}`}}>
                         {errorMsg}
                     </div>
                 </div>
