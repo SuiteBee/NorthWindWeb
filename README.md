@@ -67,7 +67,57 @@ As well as
 
 ## Features
 <details>
-<summary><h3>Features</h3></summary>
+<summary><h3>Dashboard</h3></summary>
+
+After login users are greeted with the dashboard, displaying various charts and data points pertaining to the business.
+
+![dashboard_header](https://github.com/user-attachments/assets/94514ca1-9fa9-4770-a801-e53ceb6c4bef)
+
+The first four charts leverage components from MUI-X and the first three offer some hover interaction for a more detailed view.
+
+![dashboard_charts](https://github.com/user-attachments/assets/099eb786-f9fd-40f1-8c9d-7d60c0009296)
+![dashboard_revenue_hover](https://github.com/user-attachments/assets/990f661f-ded3-4fd7-908a-47338f98d788)
+![dashboard_categories_hover](https://github.com/user-attachments/assets/d40141af-efb7-40de-a67c-6028fbbbdc02)
+![dashboard_category_revenue_hover](https://github.com/user-attachments/assets/c969608a-21d8-49aa-82c3-b2b0cedb21b8)
+
+The last chart taking up two columns is the order heatmap which leverages an open source npm package react-grid-heatmap.
+
+![dashboard_heatmap](https://github.com/user-attachments/assets/aba012da-4efe-4ff1-93f5-3f05b428b9d9)
+
+</details>
+
+<details>
+<summary><h3>Orders</h3></summary>
+
+The orders page allows users to create new orders as well as display all the orders made in a datagrid with shipping status and an option for a more detailed view.
+The datagrid can be ordered by any of the listed columns. 
+The number of columns shown will depend on the size of the browser window, some columns are hidden as the window shrink to keep the datagrid in view.
+
+### Orders Page
+
+![orders](https://github.com/user-attachments/assets/2489598e-31e0-4e62-b686-02cc1b3fbc06)
+
+### Detail View
+
+Clicking the view button within an order record will display the following page to see the order breakdown. 
+User has options to ship or delete the order from here. Once marked as shipped, the order can no longer be deleted. 
+
+![order_details](https://github.com/user-attachments/assets/38372e09-ad75-48e9-bef7-f48f506a31b5)
+
+### New Order Process
+
+The following GIF illustrates the new order process. 
+
++ Steps
+  - You must have a registered customer account to reference the new order
+  - Select as many products as you like
+  - Adjust quantity and markup in the pop-up modal
+  - Review the order in the cart and remove items as necessary
+  - Determine the shipping cost, carrier used and destination
+  - The steps listed at the top will act as breadcrumbs to navigate
+  - Review the full order and submit when ready
+
+![order_new](https://github.com/user-attachments/assets/0dee3d92-1921-4676-83a5-468d309942b7)
 
 </details>
 
@@ -75,7 +125,7 @@ As well as
 
 + REACT
 + native fetch (api calls)
-+ Vite (for enhanced development)</li
++ Vite (for enhanced development)
 + Node.js (required by Vite)
 + SASS
 + Bootstrap
@@ -83,6 +133,18 @@ As well as
 + MUI X (Dashboard Charts)
 
 ## Credits
+
+<details>
+<summary><h3>Components</h3></summary>
+
+Dashboard charts and order grid from [MUI-X](https://mui.com/x/)
+under [MIT License](https://www.tldrlegal.com/license/mit-license)
+
+Dashboard heatmap from [arunghosh](https://github.com/arunghosh/react-grid-heatmap)
+under [MIT License](https://www.tldrlegal.com/license/mit-license)
+
+</details>
+
 <details>
 <summary><h3>Assets</h3></summary>
 
