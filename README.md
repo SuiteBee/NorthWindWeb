@@ -1,5 +1,8 @@
 # Northwind Web
 
+> [!TIP]
+> See usage section in release README for login credentials
+
 ## Purpose
 <details open>
 <summary><h3>What is it?</h3></summary>
@@ -66,6 +69,18 @@ As well as
 </details>
 
 ## Features
+
+<details>
+<summary><h3>Login</h3></summary>
+
+### Login Page
+
+The landing page for the site is a login screen or alternatively if a URL is accessed without a valid token, users will be redirected here.
+
+![login](https://github.com/user-attachments/assets/4a4ae5fc-fd9d-456b-b388-8fe7d8447a29)
+
+</details>
+
 <details>
 <summary><h3>Dashboard</h3></summary>
 
@@ -89,11 +104,11 @@ The last chart taking up two columns is the order heatmap which leverages an ope
 <details>
 <summary><h3>Orders</h3></summary>
 
+### Orders Page
+
 The orders page allows users to create new orders as well as display all the orders made in a datagrid with shipping status and an option for a more detailed view.
 The datagrid can be ordered by any of the listed columns. 
 The number of columns shown will depend on the size of the browser window, some columns are hidden as the window shrink to keep the datagrid in view.
-
-### Orders Page
 
 ![orders](https://github.com/user-attachments/assets/2489598e-31e0-4e62-b686-02cc1b3fbc06)
 
@@ -118,6 +133,27 @@ The following GIF illustrates the new order process.
   - Review the full order and submit when ready
 
 ![order_new](https://github.com/user-attachments/assets/0dee3d92-1921-4676-83a5-468d309942b7)
+
+</details>
+
+<details>
+<summary><h3>Clients</h3></summary>
+
+### Clients Page
+
+On the clients page users can add or modify existing customers. The top of the page also has options to filter by client region and search by the business or owner name. 
+
+![clients](https://github.com/user-attachments/assets/6c254c29-f874-46f2-acdf-0ee54f5ca8b3)
+
+The region and search bar filters are not mutually exclusive and can be applied together. 
+The search term applies to the full string and return entries that contain the substring as seen below.
+
+![clients_filtered](https://github.com/user-attachments/assets/4cf14115-8af3-4dbb-b004-69029301cb11)
+
+By clicking on any of the client entries, the user is presented with a modal to modify the street address of the business or the contact info.
+
+![clients_modal](https://github.com/user-attachments/assets/f6a27e95-c684-4f42-b921-1a8c05dd4ee1)
+
 
 </details>
 
