@@ -7,7 +7,7 @@
 <details open>
 <summary><h3>What is it?</h3></summary>
 
-This repo contains the front-end of a web app for a fictional global food distributor **Northwind** utilizing primarily JavaScript via React.
+This repo contains the front-end for a fictional global food distributor **Northwind** utilizing primarily JavaScript via React.
 The whole project is based upon a legacy sample database from Microsoft of the same name. 
 The **Northwind** database provided a source for customers, inventory, orders, suppliers, shipping info and employees to build a real-world applicable site around. 
 
@@ -15,9 +15,9 @@ The **Northwind** database provided a source for customers, inventory, orders, s
 <details>
 <summary><h3>Why make it?</h3></summary>
 
-The reason for creating this site was to gain a functional knowledge of the JavaScript library React as well as to improve upon my own frontend development in general. 
+The reason for creating this site was to gain functional knowledge of the JavaScript library React as well as to improve upon my own front-end development in general. 
 The project started as a simple task manager tutorial to learn the basics of how React was structured and the component lifecycle.
-Once that was complete, I made the jump to designing an entire front-end for a fictional distribution company.
+Once that was complete, I made the jump to designing an entire site for a made-up distribution company.
 
 This being a fictional use case, the project will be feature rich, but not feature complete. 
 There will be some obvious opportunities left for improvement. 
@@ -27,26 +27,28 @@ As a learning experience it only needs to go so far in its reach.
 <details>
 <summary><h3>Who made it?</h3></summary>
 
-A developer trying to ever expand his skills and knowledge of IT. 
+A developer trying to ever expand his skills and knowledge in IT. 
 I have a lengthy history of full-stack development for a large enterprise company where I had to manage a wide variety of web based applications 
-across many repos that implemented varying dependencies and tech.
+across many repos that implemented varying tech stacks.
 
 I spent much of my time there
++ Implementing new site functionality across the full lifecycle from UI to DB
 + Maintaining legacy projects
 + Migrating business logic to API's
-+ Implementing new site functionality
++ Collaborating with business analysts to bring projects to life
 + Testing new code and writing unit tests
 + Overhauling existing logical systems
-+ Inserting mass table data
++ Verifying and inserting mass table data
 + Restructuring tables
-+ Auditing legacy data and resolving issues
++ Creating or modifying stored procedures
++ Auditing legacy data then resolving the data and root cause
 + Investigating long standing complex bugs
 + Reviewing pull requests
                         
 The nature of the business depended on the immutability of bound contracts. Data integrity was priority 
 number one so all theses tasks were performed with calculated regard to maintain that integrity.
 
-While working for the enterprise above I simultaneously spent a large portion of my free time working with an indie game
+While working for the enterprise above I also spent a large portion of my free time working with an indie game
 studio as the sole developer to create mobile games in Unity 3D. 
 The team consisted of a studio head that ran scrum 
 meetings, one or two artists, a marketing and web designer, a sound designer and myself.
@@ -59,6 +61,7 @@ Many of my tasks with this group involved handling logic for
 + Player Interactions
 + Animation Transitions
 + Enemy AI
++ Physics Simulations
 
 As well as 
 + Importing assets to the game engine
