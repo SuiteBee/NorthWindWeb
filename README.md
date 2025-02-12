@@ -154,6 +154,17 @@ By clicking on any of the client entries, the user is presented with a modal to 
 
 ![clients_modal](https://github.com/user-attachments/assets/f6a27e95-c684-4f42-b921-1a8c05dd4ee1)
 
+</details>
+
+<details>
+<summary><h3>Products</h3></summary>
+
+### Products Page
+
+The products page allows users to add stock, set the price or apply a markup to the existing price.
+Like the clients page we have a filter and search bar to filter by product category or product name.
+
+![products](https://github.com/user-attachments/assets/0538159a-4fe2-4bc1-ac4f-00c1f9dac433)
 
 </details>
 
