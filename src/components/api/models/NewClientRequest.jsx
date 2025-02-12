@@ -1,6 +1,6 @@
 export const newClientRequest = (client) => {
     return {
-        companyIdentifier: client.clientId,
+        companyIdentifier: client.clientId.toUpperCase(),
         companyName: client.company,
         contactInfo: {
             contactName: client.name,

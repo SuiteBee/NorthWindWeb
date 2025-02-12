@@ -147,202 +147,177 @@ const NewClient = () => {
                 </div>
 
                 <form>
-                    <div className="d-flex gap-3 py-3">
-                        <div className="col-9 col-sm-8 col-lg-4">
-                            <h1 className="display-5 p-2 text-white text-center bg-primary border border-2">
-                                Company Info
-                            </h1>
-                        </div>
-                    </div>
-                    
-                    <div className="d-flex gap-3 mb-3">
-                        <div className="col-4 col-sm-3 col-lg-2">
-                            <label className="form-label">Client ID</label>
-                            <div className="input-group">
-                                <input 
-                                    type="text"
-                                    className="form-control text-black"
-                                    id="clientId" 
-                                    name="clientId"
-                                    value={formState.clientId}
-                                    onChange={HandleFormChange}
-                                />
+                    <div className="container-fluid">
+                        <div className="row row-cols-auto gap-5 pb-5">
+                            <div className="col-12 col-lg-5">
+                                <h1 className="fs-3 p-2 text-white text-center bg-primary border border-2">
+                                    Company Info
+                                </h1>
+                                <label className="form-label">Client ID</label>
+                                <div className="input-group pb-2 w-20">
+                                    <input 
+                                        type="text"
+                                        className="form-control text-black"
+                                        id="clientId" 
+                                        name="clientId"
+                                        value={formState.clientId}
+                                        onChange={HandleFormChange}
+                                        maxLength={5}
+                                        minLength={5}
+                                    />
+                                </div>
+                                <label className="form-label">Company</label>
+                                <div className="input-group pb-2 w-50">
+                                    <input 
+                                        type="text"
+                                        className="form-control text-black"
+                                        id="company" 
+                                        name="company"
+                                        value={formState.company}
+                                        onChange={HandleFormChange}
+                                    />
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div className="d-flex gap-3 mb-3">
-                        <div className="col-9 col-sm-8 col-lg-4">
-                            <label className="form-label">Company</label>
-                            <div className="input-group">
-                                <input 
-                                    type="text"
-                                    className="form-control text-black"
-                                    id="company" 
-                                    name="company"
-                                    value={formState.company}
-                                    onChange={HandleFormChange}
-                                />
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div className="d-flex gap-3 py-3">
-                        <div className="col-9 col-sm-8 col-lg-4">
-                            <h1 className="display-5 p-2 text-white text-center bg-primary border border-2">
-                                Representative
-                            </h1>
-                        </div>
-                    </div>
 
-                    <div className="d-flex gap-3 mb-3">
-                        <div className="col-9 col-sm-8 col-lg-4">
-                            <label className="form-label">Name</label>
-                            <div className="input-group">
-                                <input 
-                                    type="text"
-                                    className="form-control text-black"
-                                    id="shipName" 
-                                    name="name"
-                                    value={formState.name}
-                                    onChange={HandleFormChange}
-                                />
-                            </div>
-                        </div>
-                    </div>
-                    <div className="d-flex gap-3 mb-3">
-                        <div className="col-9 col-sm-8 col-lg-4">
-                            <label className="form-label">Title</label>
-                            <div className="input-group">
-                                <input 
-                                    type="text"
-                                    className="form-control text-black"
-                                    id="title" 
-                                    name="title"
-                                    value={formState.title}
-                                    onChange={HandleFormChange}
-                                />
-                            </div>
-                        </div>
-                    </div>
+                            <div className="col-12 col-lg-5">
+                                <h1 className="fs-3 p-2 text-white text-center bg-primary border border-2">
+                                    Representative
+                                </h1>
+                                <label className="form-label">Name</label>
+                                <div className="input-group pb-2 w-50">
+                                    <input 
+                                        type="text"
+                                        className="form-control text-black"
+                                        id="shipName" 
+                                        name="name"
+                                        value={formState.name}
+                                        onChange={HandleFormChange}
+                                    />
+                                </div>
 
-                    <div className="d-flex gap-3 py-3">
-                        <div className="col-9 col-sm-8 col-lg-4">
-                            <h1 className="display-5 p-2 text-white text-center bg-primary border border-2">
-                                Location
-                            </h1>
-                        </div>
-                    </div>
+                                <label className="form-label">Title</label>
+                                <div className="input-group pb-2 w-25">
+                                    <input 
+                                        type="text"
+                                        className="form-control text-black"
+                                        id="title" 
+                                        name="title"
+                                        value={formState.title}
+                                        onChange={HandleFormChange}
+                                    />
+                                </div>
+                            </div>
 
-                    <div className="d-flex gap-3 mb-3">
-                        <div className="col-9 col-sm-8 col-lg-4">
-                            <label className="form-label">Address</label>
-                            <div className="input-group">
-                                <input 
-                                    type="text"
-                                    className="form-control text-black"
-                                    id="shipStreet" 
-                                    name="street"
-                                    value={formState.street}
-                                    onChange={HandleFormChange}
-                                />
-                            </div>
-                        </div>
-                    </div>
-                    <div className="d-flex gap-3 mb-3">
-                        <div className="col-6 col-sm-6 col-lg-2">
-                            <label className="form-label">City</label>
-                            <div className="input-group">
-                                <input 
-                                    type="text"
-                                    className="form-control text-black"
-                                    id="shipCity" 
-                                    name="city"
-                                    value={formState.city}
-                                    onChange={HandleFormChange}
-                                />
-                            </div>
-                        </div>
-                        <div className="col-4 col-sm-4 col-lg-2">
-                            <label className="form-label">Postal Code</label>
-                            <div className="input-group">
-                                <input 
-                                    type="text"
-                                    className="form-control text-black"
-                                    id="shipZip" 
-                                    name="postalCode"
-                                    value={formState.postalCode}
-                                    onChange={HandleFormChange}
-                                />
-                            </div>
-                        </div>
-                    </div>
-                    <div className="d-flex gap-3 mb-3">
-                        <div className="col-2">
-                            <label className="form-label">Country</label>
-                            <div className="input-group">
-                                <DropdownButton 
-                                    className="border border-white" 
-                                    id="countryDropdownBtn" 
-                                    variant="light"
-                                    size="sm"
-                                    name="country"
-                                    title={formState.country ? formState.country : "Select"}
-                                    onSelect={HandleCountryDDLChange}>
-                                    {countryOptions}
-                                </DropdownButton>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="d-flex gap-3 mb-3">
-                        <div className="col-5 col-sm-5 col-lg-2">
-                            <label className="form-label">Region</label>
-                            <div className="input-group">
-                                <input 
-                                    type="text"
-                                    className="form-control text-black input-disabled"
-                                    style={{width:"125px", height:"25px", fontSize:"15px"}}
-                                    id="currentRegion" 
-                                    name="region"
-                                    value={formState.region}
-                                    disabled
-                                />
-                            </div>
-                        </div>
-                    </div>
+                            <div className="col-12 col-lg-5">
+                                <h1 className="fs-3 p-2 text-white text-center bg-primary border border-2">
+                                    Location
+                                </h1>
+                                <label className="form-label">Address</label>
+                                <div className="input-group pb-2 w-50">
+                                    <input 
+                                        type="text"
+                                        className="form-control text-black"
+                                        id="shipStreet" 
+                                        name="street"
+                                        value={formState.street}
+                                        onChange={HandleFormChange}
+                                    />
+                                </div>
 
-                    <div className="d-flex gap-3 py-3">
-                        <div className="col-9 col-sm-8 col-lg-4">
-                            <h1 className="display-5 p-2 text-white text-center bg-primary border border-2">
-                                Contact
-                            </h1>
-                        </div>
-                    </div>
-
-                    <div className="d-flex gap-3 mb-3">
-                        <div className="col-6 col-sm-6 col-lg-2">
-                            <label className="form-label">Phone</label>
-                            <div className="input-group">
-                                <input 
-                                    type="text"
-                                    className="form-control text-black"
-                                    id="phone" 
-                                    name="phone"
-                                    value={formState.phone}
-                                    onChange={HandleFormChange}
-                                />
+                                <div className="d-flex">
+                                    <div className="col-7">
+                                        <label className="form-label">City</label>
+                                        <div className="input-group pb-2 w-75">
+                                            <input 
+                                                type="text"
+                                                className="form-control text-black"
+                                                id="shipCity" 
+                                                name="city"
+                                                value={formState.city}
+                                                onChange={HandleFormChange}
+                                            />
+                                        </div>
+                                    </div>
+                                    
+                                    <div className="col-4">
+                                        <label className="form-label">Postal Code</label>
+                                        <div className="input-group pb-2">
+                                            <input 
+                                                type="text"
+                                                className="form-control text-black"
+                                                id="shipZip" 
+                                                name="postalCode"
+                                                value={formState.postalCode}
+                                                onChange={HandleFormChange}
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div className="d-flex">
+                                    <div className="col-7">
+                                        <label className="form-label">Country</label>
+                                        <div className="input-group pb-2">
+                                            <DropdownButton 
+                                                className="border border-white" 
+                                                id="countryDropdownBtn" 
+                                                variant="light"
+                                                size="sm"
+                                                name="country"
+                                                title={formState.country ? formState.country : "Select"}
+                                                onSelect={HandleCountryDDLChange}>
+                                                {countryOptions}
+                                            </DropdownButton>
+                                        </div>
+                                    </div>
+                                    
+                                    <div className="col-4">
+                                        <label className="form-label">Region</label>
+                                        <div className="input-group pb-2">
+                                            <input 
+                                                type="text"
+                                                className="form-control text-black input-disabled"
+                                                style={{width:"125px", height:"25px", fontSize:"15px"}}
+                                                id="currentRegion" 
+                                                name="region"
+                                                value={formState.region}
+                                                disabled
+                                            />
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                
                             </div>
-                        </div>
-                        <div className="col-4 col-sm-4 col-lg-2">
-                            <label className="form-label">Fax</label>
-                            <div className="input-group">
-                                <input 
-                                    type="text"
-                                    className="form-control text-black"
-                                    id="fax" 
-                                    name="fax"
-                                    value={formState.fax}
-                                    onChange={HandleFormChange}
-                                />
+
+                            <div className="col-12 col-lg-5">
+                                <h1 className="fs-3 p-2 text-white text-center bg-primary border border-2">
+                                    Contact
+                                </h1>
+
+                                <label className="form-label">Phone</label>
+                                <div className="input-group pb-2 w-30">
+                                    <input 
+                                        type="text"
+                                        className="form-control text-black"
+                                        id="phone" 
+                                        name="phone"
+                                        value={formState.phone}
+                                        onChange={HandleFormChange}
+                                    />
+                                </div>
+
+                                <label className="form-label">Fax</label>
+                                <div className="input-group pb-2 w-30">
+                                    <input 
+                                        type="text"
+                                        className="form-control text-black"
+                                        id="fax" 
+                                        name="fax"
+                                        value={formState.fax}
+                                        onChange={HandleFormChange}
+                                    />
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -358,6 +333,7 @@ const NewClient = () => {
                             </button>
                         </div>
                     </div>
+
                 </form>
             </div>
         </>

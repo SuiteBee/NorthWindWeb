@@ -44,7 +44,7 @@ const Login = () => {
             navigate("/dashboard");
         })
         .catch(error => {
-            if(error.status === 401){
+            if([400, 401].includes(error.status)){
                 setErrorMsg("Username or password is incorrect.");
             } else{
                 setErrorMsg(`${error.message}\nIs the API backend active?`);

@@ -92,196 +92,195 @@ const ClientModal = (props) => {
     }
 
     return (
-        <Modal show={props.showModal} onHide={props.hideModal}>
-            <Modal.Dialog>
-                <Modal.Header className="bg-primary" closeButton>
-                    <Modal.Title className="fs-3"> 
-                        {client.companyName}
-                    </Modal.Title>
-                </Modal.Header>
+        <Modal show={props.showModal} onHide={props.hideModal} 
+        dialogClassName="position-fixed start-50 top-65 translate-middle">
+            <Modal.Header className="bg-primary" closeButton>
+                <Modal.Title className="fs-3"> 
+                    {client.companyName}
+                </Modal.Title>
+            </Modal.Header>
 
-                <Modal.Body className="bg-dark">
-                    <p>
-                        Update address or contact info
-                    </p>
+            <Modal.Body className="bg-dark">
+                <p>
+                    Update address or contact info
+                </p>
 
-                    <hr />
+                <hr />
 
-                    <h1 className="m-2">Address</h1>
+                <h1 className="m-2">Address</h1>
 
-                    <div className="d-flex align-items-baseline m-2">
-                        <div className="col-3">
-                            Street
-                        </div>
-                        <div className="col-6">
-                            <input 
-                                type="text"
-                                className="ms-2"
-                                style={{width:"300px", height:"25px", fontSize:"15px"}}
-                                id="currentStreet" 
-                                name="street"
-                                value={formState.street}
-                                onChange={HandleFormChange}
-                            />
-                        </div>
+                <div className="d-flex align-items-baseline m-2">
+                    <div className="col-3">
+                        Street
                     </div>
-                     
-                    <div className="d-flex align-items-baseline m-2">
-                        <div className="col-3">
-                            City
-                        </div>
-                        <div className="col-6">
-                            <input 
-                                type="text"
-                                className="ms-2"
-                                style={{width:"200px", height:"25px", fontSize:"15px"}}
-                                id="currentCity" 
-                                name="city"
-                                value={formState.city}
-                                onChange={HandleFormChange}
-                            />
-                        </div>
+                    <div className="col-6">
+                        <input 
+                            type="text"
+                            className="ms-2"
+                            style={{width:"300px", height:"25px", fontSize:"15px"}}
+                            id="currentStreet" 
+                            name="street"
+                            value={formState.street}
+                            onChange={HandleFormChange}
+                        />
                     </div>
-
-                    <div className="d-flex align-items-baseline m-2">
-                        <div className="col-3">
-                            Postal Code
-                        </div>
-                        <div className="col-6">
-                            <input 
-                                type="text"
-                                className="ms-2"
-                                style={{width:"75px", height:"25px", fontSize:"15px"}}
-                                id="currentZip" 
-                                name="postalCode"
-                                value={formState.postalCode}
-                                onChange={HandleFormChange}
-                            />
-                        </div>
-                    </div>
-
-                    <div className="d-flex align-items-baseline m-2">
-                        <div className="col-3">
-                            Country
-                        </div>
-                        <div className="col-6">
-                            <DropdownButton 
-                                className="ms-2" 
-                                id="countryDropdownBtn" 
-                                variant="light"
-                                size="sm"
-                                name="country"
-                                title={formState.country}
-                                onSelect={HandleCountryDDLChange}>
-                                {countryOptions}
-                            </DropdownButton>
-
-                        </div>
-                    </div>
-
-                    <div className="d-flex align-items-baseline m-2">
-                        <div className="col-3">
-                            Region
-                        </div>
-                        <div className="col-6">
-                            <input 
-                                type="text"
-                                className="ms-2"
-                                style={{width:"125px", height:"25px", fontSize:"15px"}}
-                                id="currentRegion" 
-                                name="region"
-                                value={formState.region}
-                                disabled
-                            />
-                        </div>
-                    </div>
-
-                    <hr />
+                </div>
                     
-                    <h1 className="m-2">Contact Info</h1>
-
-                    <div className="d-flex align-items-baseline m-2">
-                        <div className="col-2">
-                            Name
-                        </div>
-                        <div className="col-6">
-                            <input 
-                                type="text"
-                                className="ms-2"
-                                style={{width:"250px", height:"25px", fontSize:"15px"}}
-                                id="currentName" 
-                                name="contactName"
-                                value={formState.contactName}
-                                onChange={HandleFormChange}
-                            />
-                        </div>
+                <div className="d-flex align-items-baseline m-2">
+                    <div className="col-3">
+                        City
                     </div>
-
-                    <div className="d-flex align-items-baseline m-2">
-                        <div className="col-2">
-                            Title
-                        </div>
-                        <div className="col-6">
-                            <input 
-                                type="text"
-                                className="ms-2"
-                                style={{width:"250px", height:"25px", fontSize:"15px"}}
-                                id="currentTitle" 
-                                name="contactTitle"
-                                value={formState.contactTitle}
-                                onChange={HandleFormChange}
-                            />
-                        </div>
+                    <div className="col-6">
+                        <input 
+                            type="text"
+                            className="ms-2"
+                            style={{width:"200px", height:"25px", fontSize:"15px"}}
+                            id="currentCity" 
+                            name="city"
+                            value={formState.city}
+                            onChange={HandleFormChange}
+                        />
                     </div>
+                </div>
 
-                    <div className="d-flex align-items-baseline m-2">
-                        <div className="col-2">
-                            Phone
-                        </div>
-                        <div className="col-6">
-                            <input 
-                                type="text"
-                                className="ms-2"
-                                style={{width:"120px", height:"25px", fontSize:"15px"}}
-                                id="currentPhone" 
-                                name="phone"
-                                value={formState.phone}
-                                onChange={HandleFormChange}
-                            />
-                        </div>
+                <div className="d-flex align-items-baseline m-2">
+                    <div className="col-3">
+                        Postal Code
                     </div>
-
-                    <div className="d-flex align-items-baseline m-2">
-                        <div className="col-2">
-                            Fax
-                        </div>
-                        <div className="col-6">
-                            <input 
-                                type="text"
-                                className="ms-2"
-                                style={{width:"120px", height:"25px", fontSize:"15px"}}
-                                id="currentFax" 
-                                name="fax"
-                                value={formState.fax}
-                                onChange={HandleFormChange}
-                            />
-                        </div>
+                    <div className="col-6">
+                        <input 
+                            type="text"
+                            className="ms-2"
+                            style={{width:"75px", height:"25px", fontSize:"15px"}}
+                            id="currentZip" 
+                            name="postalCode"
+                            value={formState.postalCode}
+                            onChange={HandleFormChange}
+                        />
                     </div>
+                </div>
 
-                    <hr />
-
-                    <div className="d-flex justify-content-end">
-                        <button 
-                            type="submit" 
-                            className="btn btn-success btn-long"
-                            onClick={HandleSubmit}>
-                            Submit
-                        </button>
+                <div className="d-flex align-items-baseline m-2">
+                    <div className="col-3">
+                        Country
                     </div>
-                    
+                    <div className="col-6">
+                        <DropdownButton 
+                            className="ms-2" 
+                            id="countryDropdownBtn" 
+                            variant="light"
+                            size="sm"
+                            name="country"
+                            title={formState.country}
+                            onSelect={HandleCountryDDLChange}>
+                            {countryOptions}
+                        </DropdownButton>
 
-                </Modal.Body>
-            </Modal.Dialog>
+                    </div>
+                </div>
+
+                <div className="d-flex align-items-baseline m-2">
+                    <div className="col-3">
+                        Region
+                    </div>
+                    <div className="col-6">
+                        <input 
+                            type="text"
+                            className="ms-2"
+                            style={{width:"125px", height:"25px", fontSize:"15px"}}
+                            id="currentRegion" 
+                            name="region"
+                            value={formState.region}
+                            disabled
+                        />
+                    </div>
+                </div>
+
+                <hr />
+                
+                <h1 className="m-2">Contact Info</h1>
+
+                <div className="d-flex align-items-baseline m-2">
+                    <div className="col-2">
+                        Name
+                    </div>
+                    <div className="col-6">
+                        <input 
+                            type="text"
+                            className="ms-2"
+                            style={{width:"250px", height:"25px", fontSize:"15px"}}
+                            id="currentName" 
+                            name="contactName"
+                            value={formState.contactName}
+                            onChange={HandleFormChange}
+                        />
+                    </div>
+                </div>
+
+                <div className="d-flex align-items-baseline m-2">
+                    <div className="col-2">
+                        Title
+                    </div>
+                    <div className="col-6">
+                        <input 
+                            type="text"
+                            className="ms-2"
+                            style={{width:"250px", height:"25px", fontSize:"15px"}}
+                            id="currentTitle" 
+                            name="contactTitle"
+                            value={formState.contactTitle}
+                            onChange={HandleFormChange}
+                        />
+                    </div>
+                </div>
+
+                <div className="d-flex align-items-baseline m-2">
+                    <div className="col-2">
+                        Phone
+                    </div>
+                    <div className="col-6">
+                        <input 
+                            type="text"
+                            className="ms-2"
+                            style={{width:"120px", height:"25px", fontSize:"15px"}}
+                            id="currentPhone" 
+                            name="phone"
+                            value={formState.phone}
+                            onChange={HandleFormChange}
+                        />
+                    </div>
+                </div>
+
+                <div className="d-flex align-items-baseline m-2">
+                    <div className="col-2">
+                        Fax
+                    </div>
+                    <div className="col-6">
+                        <input 
+                            type="text"
+                            className="ms-2"
+                            style={{width:"120px", height:"25px", fontSize:"15px"}}
+                            id="currentFax" 
+                            name="fax"
+                            value={formState.fax}
+                            onChange={HandleFormChange}
+                        />
+                    </div>
+                </div>
+
+                <hr />
+
+                <div className="d-flex justify-content-end">
+                    <button 
+                        type="submit" 
+                        className="btn btn-success btn-long"
+                        onClick={HandleSubmit}>
+                        Submit
+                    </button>
+                </div>
+                
+
+            </Modal.Body>
         </Modal>
     );
 }
