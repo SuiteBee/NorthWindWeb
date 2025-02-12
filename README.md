@@ -1,5 +1,8 @@
 # Northwind Web
 
+> [!TIP]
+> See usage section in release README for login credentials
+
 ## Purpose
 <details open>
 <summary><h3>What is it?</h3></summary>
@@ -66,6 +69,24 @@ As well as
 </details>
 
 ## Features
+
+<details>
+<summary><h3>Login</h3></summary>
+
+### Login Page
+
+The landing page for the site is the following login screen.
+
+![login](https://github.com/user-attachments/assets/4a4ae5fc-fd9d-456b-b388-8fe7d8447a29)
+
+### Unauthorized
+
+Alternatively if a URL is accessed without a valid token or the token expires, users will be redirected to the logout screen.
+
+![login_unauthorized](https://github.com/user-attachments/assets/ffcd98bf-d455-4a4e-9fc5-dce06e13f932)
+
+</details>
+
 <details>
 <summary><h3>Dashboard</h3></summary>
 
@@ -73,12 +94,16 @@ After login users are greeted with the dashboard, displaying various charts and 
 
 ![dashboard_header](https://github.com/user-attachments/assets/94514ca1-9fa9-4770-a801-e53ceb6c4bef)
 
+### Charts and Graphs
+
 The first four charts leverage components from MUI-X and the first three offer some hover interaction for a more detailed view.
 
 ![dashboard_charts](https://github.com/user-attachments/assets/099eb786-f9fd-40f1-8c9d-7d60c0009296)
 ![dashboard_revenue_hover](https://github.com/user-attachments/assets/990f661f-ded3-4fd7-908a-47338f98d788)
 ![dashboard_categories_hover](https://github.com/user-attachments/assets/d40141af-efb7-40de-a67c-6028fbbbdc02)
 ![dashboard_category_revenue_hover](https://github.com/user-attachments/assets/c969608a-21d8-49aa-82c3-b2b0cedb21b8)
+
+### Heatmap
 
 The last chart taking up two columns is the order heatmap which leverages an open source npm package react-grid-heatmap.
 
@@ -92,8 +117,6 @@ The last chart taking up two columns is the order heatmap which leverages an ope
 The orders page allows users to create new orders as well as display all the orders made in a datagrid with shipping status and an option for a more detailed view.
 The datagrid can be ordered by any of the listed columns. 
 The number of columns shown will depend on the size of the browser window, some columns are hidden as the window shrink to keep the datagrid in view.
-
-### Orders Page
 
 ![orders](https://github.com/user-attachments/assets/2489598e-31e0-4e62-b686-02cc1b3fbc06)
 
@@ -118,6 +141,54 @@ The following GIF illustrates the new order process.
   - Review the full order and submit when ready
 
 ![order_new](https://github.com/user-attachments/assets/0dee3d92-1921-4676-83a5-468d309942b7)
+
+</details>
+
+<details>
+<summary><h3>Clients</h3></summary>
+
+On the clients page users can add or modify existing customers. The top of the page also has options to filter by client region and search by the business or owner name. 
+
+![clients](https://github.com/user-attachments/assets/6c254c29-f874-46f2-acdf-0ee54f5ca8b3)
+
+### New client submission
+
+![clients_new](https://github.com/user-attachments/assets/fb1374c8-bed6-46be-ae5c-aaa4c6228956)
+
+### Filters 
+
+The region and search bar filters are not mutually exclusive and can be applied together. 
+The search term applies to the full string and return entries that contain the substring as seen below.
+
+![clients_filtered](https://github.com/user-attachments/assets/4cf14115-8af3-4dbb-b004-69029301cb11)
+
+### Modal
+
+By clicking on any of the client entries, the user is presented with a modal to modify the street address of the business or the contact info.
+
+![clients_modal](https://github.com/user-attachments/assets/f6a27e95-c684-4f42-b921-1a8c05dd4ee1)
+
+</details>
+
+<details>
+<summary><h3>Products</h3></summary>
+
+The products page allows users to add stock, set the price or apply a markup to the existing price.
+
+![products](https://github.com/user-attachments/assets/0538159a-4fe2-4bc1-ac4f-00c1f9dac433)
+
+### Filters
+
+Like the clients page we have a filter and search bar to filter by product category or product name.
+
+![products_filtered](https://github.com/user-attachments/assets/f60ed3d9-49b8-4c86-b5f7-0a8ffb6ce9eb)
+
+### Modal
+
+Selecting any of the entries on the product page will bring up a modal to update the price and stock of the product.
+Users can manually enter a price or use the slider to apply a markup/discount which will be calculated and shown in the new price field.
+
+![products_modal](https://github.com/user-attachments/assets/d83991c5-7382-483b-875e-feafd7d0a59d)
 
 </details>
 
