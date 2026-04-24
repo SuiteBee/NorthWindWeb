@@ -19,9 +19,6 @@ jobs:
             
             - name: Install Dependencies
               run: npm ci
-              
-            - name: Debug Files
-              run: ls -R
 
             - name: Build 🔧
               run: npm run build
