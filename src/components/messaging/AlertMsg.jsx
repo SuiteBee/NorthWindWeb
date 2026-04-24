@@ -8,7 +8,7 @@ import useAlert from "@/hooks/useAlert";
 //////////////////////////////////////////
 import InfoCircle from "@/assets/icon/infoCircle.svg";
 import ExclamationTriangle from "@/assets/icon/exclamationTriangle.svg";
-import CheckCircle from "@/assets/icon/CheckCircle.svg";
+import CheckCircle from "@/assets/icon/checkCircle.svg";
 import CloseIcon from "@/assets/icon/closeIcon.svg";
 
 //////////////////////////////////////////
