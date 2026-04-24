@@ -11,7 +11,7 @@ import useUser from "@/hooks/useUser";
 //////////////////////////////////////////
 //Components
 //////////////////////////////////////////
-import { NorthWindClient as api } from "@/components/api/NorthWindClient";
+import { NorthWindClient as api } from "@/components/api/NorthWindLocalClient";
 
 const Login = () => {
     const[errorMsg, setErrorMsg] = useState("");

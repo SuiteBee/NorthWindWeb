@@ -9,7 +9,7 @@ import useUser from "@/hooks/useUser";
 //////////////////////////////////////////
 //Components
 //////////////////////////////////////////
-import { NorthWindClient as api } from "@/components/api/NorthWindClient";
+import { NorthWindClient as api } from "@/components/api/NorthWindLocalClient";
 import OrderGrid from "@/components/orders/OrderGrid";
 import OrderItem from "@/components/orders/OrderItem";
 import CloseIcon from "@/assets/icon/closeIcon.svg";
