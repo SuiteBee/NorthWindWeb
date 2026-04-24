@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.1.0",
   "type": "module",
-  "homepage": "./",
+  "homepage": "https://suitebee.github.io/NorthWindWeb/",
   "scripts": {
     "dev": "vite --open --port 3000",
     "build": "vite build",
