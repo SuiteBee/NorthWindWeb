@@ -9,7 +9,7 @@ import useUser from "@/hooks/useUser";
 //////////////////////////////////////////
 //Components
 //////////////////////////////////////////
-import { NorthWindClient } from "@/components/api/NorthWindClient";
+import { NorthWindClient as api } from "@/components/api/NorthWindClient";
 import OrderGrid from "@/components/orders/OrderGrid";
 import OrderItem from "@/components/orders/OrderItem";
 import CloseIcon from "@/assets/icon/closeIcon.svg";
@@ -43,7 +43,7 @@ const Orders = () => {
 
     //Popualate Order grid with all orders
     useEffect(() => {
-        NorthWindClient.get("order/all", token)
+        api.get("order/all", token)
         .then(data => {
             setOrderList(data);
         })

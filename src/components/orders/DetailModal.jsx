@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 //Components
 //////////////////////////////////////////
 import Modal from "react-bootstrap/Modal";
-import { NorthWindClient } from "@/components/api/NorthWindClient";
+import { NorthWindClient as api } from "@/components/api/NorthWindClient";
 
 const DetailModal = (props) => {
 
@@ -27,7 +27,7 @@ const DetailModal = (props) => {
             let orderIndex = props.orderList.indexOf(order);
 
             //API PUT - Update ship date and set model
-            NorthWindClient.put(`order/ship/${order.orderId}`, token)
+            api.put(`order/ship/${order.orderId}`, token)
             .then(data => {
                 setOrder(data);
 
@@ -50,7 +50,7 @@ const DetailModal = (props) => {
             let orderIndex = props.orderList.indexOf(order);
 
             //API Delete - Delete pending order record
-            NorthWindClient.delete(`order/delete/${order.orderId}`, token)
+            api.delete(`order/delete/${order.orderId}`, token)
             .then(() => {
                 clearAlert();
                 setAlert("success", "Success", `Order ${order.orderId} Removed`);

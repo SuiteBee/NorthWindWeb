@@ -2,7 +2,7 @@ import {
     getReasonPhrase
 } from "http-status-codes";
 
-const API_BASE_URL = "https://localhost:44303/api/";
+const API_BASE_URL = "http://localhost:5000/api/";
 
 class APIClient{
     async request(url, options){

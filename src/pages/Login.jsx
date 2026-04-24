@@ -11,7 +11,7 @@ import useUser from "@/hooks/useUser";
 //////////////////////////////////////////
 //Components
 //////////////////////////////////////////
-import { NorthWindClient } from "@/components/api/NorthWindClient";
+import { NorthWindClient as api } from "@/components/api/NorthWindClient";
 
 const Login = () => {
     const[errorMsg, setErrorMsg] = useState("");
@@ -35,7 +35,7 @@ const Login = () => {
 
     function handleSubmit(event){
         //Authenticate user
-        NorthWindClient.authenticate("user/authenticate", formState)
+        api.authenticate("user/authenticate", formState)
         .then(data => {
             //Store user info
             setAuthorizedUser(data.authorizedUser, data.token);

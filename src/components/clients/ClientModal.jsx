@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 import Modal from "react-bootstrap/Modal";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
-import { NorthWindClient } from "@/components/api/NorthWindClient";
+import { NorthWindClient as api } from "@/components/api/NorthWindClient";
 
 const ClientModal = (props) => {
 
@@ -53,7 +53,7 @@ const ClientModal = (props) => {
         client.contactInfo.fax = formState.fax;
 
         //Send API update for this product modal
-        NorthWindClient.put(`customer/update/${client.id}`, token, client)
+        api.put(`customer/update/${client.id}`, token, client)
         .then(data => {
             setClient(data);
             clearAlert();

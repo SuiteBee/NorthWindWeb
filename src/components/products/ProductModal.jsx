@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 //Components
 //////////////////////////////////////////
 import Modal from "react-bootstrap/Modal";
-import { NorthWindClient } from "@/components/api/NorthWindClient";
+import { NorthWindClient as api } from "@/components/api/NorthWindClient";
 
 const ProductModal = (props) => {
 
@@ -56,7 +56,7 @@ const ProductModal = (props) => {
         product.stockAmt += addStock;
         
         //Send API update for this product modal
-        NorthWindClient.put(`product/update/${product.productId}`, token, product)
+        api.put(`product/update/${product.productId}`, token, product)
         .then(data => {
             setProduct(data);
             clearAlert();

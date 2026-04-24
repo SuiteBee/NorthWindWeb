@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 //////////////////////////////////////////
 //Components
 //////////////////////////////////////////
-import { NorthWindClient } from "@/components/api/NorthWindClient";
+import { NorthWindClient as api } from "@/components/api/NorthWindClient";
 
 const OrderForm_ClientInfo = (props) => {
     const[companies, setCompanies] = useState(null);
@@ -77,7 +77,7 @@ const OrderForm_ClientInfo = (props) => {
 
     //Popualate Company DataList
     useEffect(() => {
-        NorthWindClient.get("customer/all", token)
+        api.get("customer/all", token)
         .then(data => {
             setCompanies(data);
             clearAlert();

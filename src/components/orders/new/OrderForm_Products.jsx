@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 //////////////////////////////////////////
 //Components
 //////////////////////////////////////////
-import { NorthWindClient } from "@/components/api/NorthWindClient";
+import { NorthWindClient as api } from "@/components/api/NorthWindClient";
 import OrderForm_ProductEntry from "@/components/orders/new/OrderForm_ProductEntry";
 import OrderForm_ProductCart from "@/components/orders/new/OrderForm_ProductCart";
 import {nanoid} from "nanoid";
@@ -40,7 +40,7 @@ const OrderForm_Products = (props) => {
 
     //Product API GET
     useEffect(() => {
-        NorthWindClient.get("product/all", token)
+        api.get("product/all", token)
         .then(data => {
             const available = data.filter(p => p.inStock && !p.discontinued);
             setAllProducts(available);

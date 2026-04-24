@@ -1,0 +1,94 @@
+//Deprecated - Utilizing local web api/db for live demo
+import {
+    getReasonPhrase
+} from "http-status-codes";
+
+const API_BASE_URL = "http://localhost:5000/api/";
+
+class APIClient{
+    async request(url, options){
+        const response = await fetch(`${API_BASE_URL}${url}`, options);
+        
+        if(!response.ok){
+            return this.notOk(response);
+        }
+        
+        return await response.json();
+    }
+
+    async remove(url, options){
+        const response = await fetch(`${API_BASE_URL}${url}`, options);
+        if(!response.ok){
+            return this.notOk(response);
+        }
+        
+        return await response;
+    }
+
+    async notOk(response){
+        const error = new Error(`HTTP Error: ${response.status} ${getReasonPhrase(response.status)}`);
+        error.status = response.status;
+        
+        try{
+            error.response = await response.json();
+        }catch{
+            error.response = null;
+        }
+
+        throw error;
+    }
+
+    authenticate(url, data){
+        return this.request(url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data),
+        });
+    }
+
+    get(url, tkn){
+        return this.request(url, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${tkn}`
+            },
+        });
+    }
+    
+    post(url, tkn, data){
+        return this.request(url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${tkn}`
+            },
+            body: JSON.stringify(data),
+        });
+    }
+
+    put(url, tkn, data){
+        return this.request(url, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${tkn}`
+            },
+            body: JSON.stringify(data),
+        });
+    }
+
+    delete(url, tkn){
+        return this.remove(url, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${tkn}`
+            }
+        });
+    }
+}
+
+export const NorthWindExternalClient = new APIClient();

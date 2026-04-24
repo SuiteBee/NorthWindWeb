@@ -8,7 +8,7 @@ import useUser from "@/hooks/useUser";
 //////////////////////////////////////////
 //Components
 //////////////////////////////////////////
-import { NorthWindClient } from "@/components/api/NorthWindClient";
+import { NorthWindClient as api } from "@/components/api/NorthWindClient";
 import {nanoid} from "nanoid";
 import OrderForm_SubmitCart from "@/components/orders/new/OrderForm_SubmitCart";
 import { moneyString } from "@/components/utility/DisplayHelpers";
@@ -23,7 +23,7 @@ const OrderForm_Submit = (props) => {
         const order = newOrderRequest(props, empId);
         
         //Submit New Order
-        NorthWindClient.post("order/create", token, order)
+        api.post("order/create", token, order)
         .then(data => {
             clearAlert();
             setAlert("success", "Success", `Order ${data.orderId} Submitted`);

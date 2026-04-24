@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 //////////////////////////////////////////
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
-import { NorthWindClient } from "@/components/api/NorthWindClient";
+import { NorthWindClient as api } from "@/components/api/NorthWindClient";
 
 const OrderForm_Shipping = (props) => {
     const[company, setCompany] = useState(props.client);
@@ -40,7 +40,7 @@ const OrderForm_Shipping = (props) => {
 
     useEffect(() => {
         //Unique Country Region Combinations
-        NorthWindClient.get("customer/regions", token)
+        api.get("customer/regions", token)
         .then(data => {
             setCountryRegions(data.regions);
             setCountries([...new Set(data.regions.map(item => item.country))]);
@@ -53,7 +53,7 @@ const OrderForm_Shipping = (props) => {
         });
 
         //Shipping Options
-        NorthWindClient.get("order/carriers", token)
+        api.get("order/carriers", token)
         .then(data => {
             setCarriers(data.carriers);
             clearAlert();

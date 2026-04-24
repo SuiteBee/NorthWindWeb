@@ -4,6 +4,7 @@ import react from '@vitejs/plugin-react'
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: "/NorthWindWeb",
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
@@ -13,7 +14,7 @@ export default defineConfig({
   server: {
     cors: {
       //Backend api running locally
-      origin: 'https://localhost:44303/',
+      origin: 'http://localhost:5000/',
     },
   },
   esbuild: {

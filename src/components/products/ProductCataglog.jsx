@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 //////////////////////////////////////////
 //Components
 //////////////////////////////////////////
-import { NorthWindClient } from "@/components/api/NorthWindClient";
+import { NorthWindClient as api } from "@/components/api/NorthWindClient";
 import ProductEntry from "./ProductEntry";
 import {nanoid} from "nanoid";
 import CategoryBtn from "@/components/utility/CategoryBtn";
@@ -48,7 +48,7 @@ const ProductCatalog = () => {
 
     //Product API GET
     useEffect(() => {
-        NorthWindClient.get("product/all", token)
+        api.get("product/all", token)
         .then(data => {
             setProducts(data);
             clearAlert();

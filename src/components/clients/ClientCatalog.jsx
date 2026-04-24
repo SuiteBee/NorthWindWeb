@@ -9,7 +9,7 @@ import useUser from "@/hooks/useUser";
 //////////////////////////////////////////
 //Components
 //////////////////////////////////////////
-import { NorthWindClient } from "@/components/api/NorthWindClient";
+import { NorthWindClient as api } from "@/components/api/NorthWindClient";
 import ClientEntry from "./ClientEntry";
 import {nanoid} from "nanoid";
 import CategoryBtn from "@/components/utility/CategoryBtn";
@@ -32,7 +32,7 @@ const ClientCatalog = () => {
     //Product API GET
     useEffect(() => {
         //Client List
-        NorthWindClient.get("customer/all", token)
+        api.get("customer/all", token)
         .then(data => {
             setClients(data);
         })
@@ -43,7 +43,7 @@ const ClientCatalog = () => {
         });
 
         //Unique Country Region Combinations
-        NorthWindClient.get("customer/regions", token)
+        api.get("customer/regions", token)
         .then(data => {
             setCountryRegions(data.regions);
             setCountries([...new Set(data.regions.map(item => item.country))]);

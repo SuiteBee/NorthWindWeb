@@ -12,7 +12,7 @@ import useUser from "@/hooks/useUser";
 import { newClientRequest } from "@/components/api/models/NewClientRequest";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
-import { NorthWindClient } from "@/components/api/NorthWindClient";
+import { NorthWindClient as api } from "@/components/api/NorthWindClient";
 
 const NewClient = () => {
 
@@ -42,7 +42,7 @@ const NewClient = () => {
 
     useEffect(() => {
         //Unique Country Region Combinations
-        NorthWindClient.get("customer/regions", token)
+        api.get("customer/regions", token)
         .then(data => {
             setCountryRegions(data.regions);
             setCountries([...new Set(data.regions.map(item => item.country))]);
@@ -55,7 +55,7 @@ const NewClient = () => {
         });
 
         //List of existing company identifiers
-        NorthWindClient.get("customer/all", token)
+        api.get("customer/all", token)
         .then(data => {
             setCompIdentifiers([...new Set(data.map(client => client.id))]);
         })
@@ -113,7 +113,7 @@ const NewClient = () => {
             const client = newClientRequest(formState);
 
             //Submit New client
-            NorthWindClient.post("customer/create", token, client)
+            api.post("customer/create", token, client)
             .then(data => {
                 clearAlert();
                 setAlert("success", "Success", `Client ${data.id} Submitted`);
