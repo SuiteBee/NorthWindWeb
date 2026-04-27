@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 //////////////////////////////////////////
 //Components
 //////////////////////////////////////////
-import { NorthWindClient as api } from "@/components/api/NorthWindLocalClient";
+import { NorthWindClient as api } from "@/components/api/NorthWindClient";
 import DashboardTotals from "../components/dashboard/DashboardTotals";
 import RevenueChart from "../components/dashboard/RevenueChart";
 import CategoryChart from "../components/dashboard/CategoryChart";

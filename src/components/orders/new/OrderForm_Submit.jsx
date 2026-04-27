@@ -8,7 +8,7 @@ import useUser from "@/hooks/useUser";
 //////////////////////////////////////////
 //Components
 //////////////////////////////////////////
-import { NorthWindClient as api } from "@/components/api/NorthWindLocalClient";
+import { NorthWindClient as api } from "@/components/api/NorthWindClient";
 import {nanoid} from "nanoid";
 import OrderForm_SubmitCart from "@/components/orders/new/OrderForm_SubmitCart";
 import { moneyString } from "@/components/utility/DisplayHelpers";

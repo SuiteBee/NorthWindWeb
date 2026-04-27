@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 //////////////////////////////////////////
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
-import { NorthWindClient as api } from "@/components/api/NorthWindLocalClient";
+import { NorthWindClient as api } from "@/components/api/NorthWindClient";
 
 const OrderForm_Shipping = (props) => {
     const[company, setCompany] = useState(props.client);

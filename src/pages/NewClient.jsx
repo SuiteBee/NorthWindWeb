@@ -12,7 +12,7 @@ import useUser from "@/hooks/useUser";
 import { newClientRequest } from "@/components/api/models/NewClientRequest";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
-import { NorthWindClient as api } from "@/components/api/NorthWindLocalClient";
+import { NorthWindClient as api } from "@/components/api/NorthWindClient";
 
 const NewClient = () => {
 

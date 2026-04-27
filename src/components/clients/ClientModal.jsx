@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 import Modal from "react-bootstrap/Modal";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
-import { NorthWindClient as api } from "@/components/api/NorthWindLocalClient";
+import { NorthWindClient as api } from "@/components/api/NorthWindClient";
 
 const ClientModal = (props) => {
 

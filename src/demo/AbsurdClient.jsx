@@ -1,10 +1,10 @@
-import {
-    getReasonPhrase
-} from "http-status-codes";
+import { getReasonPhrase } from "http-status-codes";
+import { AuthManager } from "@/demo/CryptoDemo";
+import { DB } from "@/demo/AbsurdDb";
 
 const API_BASE_URL = "http://localhost:5000/api/";
 
-class APIClient{
+class MockAPI {
     async request(url, options){
         const response = await fetch(`${API_BASE_URL}${url}`, options);
         
@@ -38,13 +38,7 @@ class APIClient{
     }
 
     authenticate(url, data){
-        return this.request(url, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(data),
-        });
+        return AuthManager.authenticate(data.usr, data.pwd);
     }
 
     get(url, tkn){
@@ -90,4 +84,5 @@ class APIClient{
     }
 }
 
-export const NorthWindClient = new APIClient();
+//FOR LIVE DEMO (absurd-sql integration)
+export const AbsurdClient = new MockAPI();

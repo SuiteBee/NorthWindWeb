@@ -1,7 +1,5 @@
-//Deprecated - Utilizing local web api/db for live demo
-import {
-    getReasonPhrase
-} from "http-status-codes";
+import { getReasonPhrase } from "http-status-codes";
+import { AbsurdClient } from "@/demo/AbsurdClient";
 
 const API_BASE_URL = "http://localhost:5000/api/";
 
@@ -91,4 +89,8 @@ class APIClient{
     }
 }
 
-export const NorthWindExternalClient = new APIClient();
+//FOR EXTERNAL API USE
+//export const NorthWindClient = new APIClient();
+
+//FOR LIVE DEMO (absurd-sql integration)
+export const NorthWindClient = AbsurdClient;

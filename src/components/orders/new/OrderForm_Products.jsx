@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 //////////////////////////////////////////
 //Components
 //////////////////////////////////////////
-import { NorthWindClient as api } from "@/components/api/NorthWindLocalClient";
+import { NorthWindClient as api } from "@/components/api/NorthWindClient";
 import OrderForm_ProductEntry from "@/components/orders/new/OrderForm_ProductEntry";
 import OrderForm_ProductCart from "@/components/orders/new/OrderForm_ProductCart";
 import {nanoid} from "nanoid";

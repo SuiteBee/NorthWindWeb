@@ -9,7 +9,7 @@ import useUser from "@/hooks/useUser";
 //////////////////////////////////////////
 //Components
 //////////////////////////////////////////
-import { NorthWindClient as api } from "@/components/api/NorthWindLocalClient";
+import { NorthWindClient as api } from "@/components/api/NorthWindClient";
 import ClientEntry from "./ClientEntry";
 import {nanoid} from "nanoid";
 import CategoryBtn from "@/components/utility/CategoryBtn";

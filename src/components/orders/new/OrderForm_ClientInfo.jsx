@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 //////////////////////////////////////////
 //Components
 //////////////////////////////////////////
-import { NorthWindClient as api } from "@/components/api/NorthWindLocalClient";
+import { NorthWindClient as api } from "@/components/api/NorthWindClient";
 
 const OrderForm_ClientInfo = (props) => {
     const[companies, setCompanies] = useState(null);

@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 //Components
 //////////////////////////////////////////
 import Modal from "react-bootstrap/Modal";
-import { NorthWindClient as api } from "@/components/api/NorthWindLocalClient";
+import { NorthWindClient as api } from "@/components/api/NorthWindClient";
 
 const DetailModal = (props) => {
 
