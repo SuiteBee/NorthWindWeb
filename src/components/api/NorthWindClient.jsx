@@ -1,5 +1,5 @@
 import { getReasonPhrase } from "http-status-codes";
-import { AbsurdClient } from "@/demo/AbsurdClient";
+import { AbsurdClient } from "@root/demo/AbsurdClient";
 
 const API_BASE_URL = "http://localhost:5000/api/";
 

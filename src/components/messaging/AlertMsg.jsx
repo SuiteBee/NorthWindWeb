@@ -1,15 +1,15 @@
 //////////////////////////////////////////
 //Hooks
 //////////////////////////////////////////
-import useAlert from "@/hooks/useAlert";
+import useAlert from "@root/hooks/useAlert";
 
 //////////////////////////////////////////
 //Assets
 //////////////////////////////////////////
-import InfoCircle from "@/assets/icon/infoCircle.svg";
-import ExclamationTriangle from "@/assets/icon/exclamationTriangle.svg";
-import CheckCircle from "@/assets/icon/checkCircle.svg";
-import CloseIcon from "@/assets/icon/closeIcon.svg";
+import InfoCircle from "@root/assets/icon/infoCircle.svg";
+import ExclamationTriangle from "@root/assets/icon/exclamationTriangle.svg";
+import CheckCircle from "@root/assets/icon/checkCircle.svg";
+import CloseIcon from "@root/assets/icon/closeIcon.svg";
 
 //////////////////////////////////////////
 //Bootstrap

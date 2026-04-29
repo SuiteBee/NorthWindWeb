@@ -2,17 +2,17 @@
 //Hooks
 //////////////////////////////////////////
 import React, { useState, useEffect } from "react";
-import useAlert from "@/hooks/useAlert";
+import useAlert from "@root/hooks/useAlert";
 import { useNavigate } from "react-router-dom";
-import useUser from "@/hooks/useUser";
+import useUser from "@root/hooks/useUser";
 
 //////////////////////////////////////////
 //Components
 //////////////////////////////////////////
-import { NorthWindClient as api } from "@/components/api/NorthWindClient";
-import OrderGrid from "@/components/orders/OrderGrid";
-import OrderItem from "@/components/orders/OrderItem";
-import CloseIcon from "@/assets/icon/closeIcon.svg";
+import { NorthWindClient as api } from "@root/components/api/NorthWindClient";
+import OrderGrid from "@root/components/orders/OrderGrid";
+import OrderItem from "@root/components/orders/OrderItem";
+import CloseIcon from "@root/assets/icon/closeIcon.svg";
 
 const Orders = () => {
     const [orderList, setOrderList] = useState(null);

@@ -1,7 +1,7 @@
 //////////////////////////////////////////
 //Hooks
 //////////////////////////////////////////
-import useAlert from "@/hooks/useAlert";
+import useAlert from "@root/hooks/useAlert";
 
 //////////////////////////////////////////
 //Components
@@ -12,13 +12,13 @@ import { NavLink } from "react-router-dom";
 //////////////////////////////////////////
 //Assets
 //////////////////////////////////////////
-import HomeIcon from "@/assets/icon/homeIcon.svg";
-import TaskIcon from "@/assets/icon/taskIcon.svg";
-import OrderIcon from "@/assets/icon/orderIcon.svg";
-import ClientsIcon from "@/assets/icon/clientsIcon.svg";
-import CatalogIcon from "@/assets/icon/productIcon.svg";
-import AboutIcon from "@/assets/icon/aboutIcon.svg";
-import LogoutIcon from "@/assets/icon/logoutIcon.svg";
+import HomeIcon from "@root/assets/icon/homeIcon.svg";
+import TaskIcon from "@root/assets/icon/taskIcon.svg";
+import OrderIcon from "@root/assets/icon/orderIcon.svg";
+import ClientsIcon from "@root/assets/icon/clientsIcon.svg";
+import CatalogIcon from "@root/assets/icon/productIcon.svg";
+import AboutIcon from "@root/assets/icon/aboutIcon.svg";
+import LogoutIcon from "@root/assets/icon/logoutIcon.svg";
 
 export const Navbar = (props) => {
 

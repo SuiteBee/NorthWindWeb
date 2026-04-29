@@ -3,7 +3,7 @@ import React from "react";
 import { BarChart } from "@mui/x-charts/BarChart";
 import { axisClasses } from "@mui/x-charts/ChartsAxis";
 
-import { moneyString } from "@/components/utility/DisplayHelpers"
+import { moneyString } from "@root/components/utility/DisplayHelpers"
 
 const chartColors = ["lightgreen", "lightblue", "lightyellow", "lightcoral"];
 

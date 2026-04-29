@@ -8,16 +8,16 @@ import {
 //////////////////////////////////////////
 //Pages
 //////////////////////////////////////////
-import Home from "@/pages/Home.jsx";
-import Orders from "@/pages/Orders.jsx";
-import NewOrder from "@/pages/NewOrder.jsx";
-import Customers from "@/pages/Customers.jsx";
-import NewClient from "@/pages/NewClient.jsx";
-import Products from "@/pages/Products.jsx";
-import About from "@/pages/About.jsx";
-import Login from "@/pages/Login.jsx";
-import Logout from "@/pages/Logout.jsx";
-import Layout from "@/pages/Layout.jsx";
+import Home from "@root/pages/Home.jsx";
+import Orders from "@root/pages/Orders.jsx";
+import NewOrder from "@root/pages/NewOrder.jsx";
+import Customers from "@root/pages/Customers.jsx";
+import NewClient from "@root/pages/NewClient.jsx";
+import Products from "@root/pages/Products.jsx";
+import About from "@root/pages/About.jsx";
+import Login from "@root/pages/Login.jsx";
+import Logout from "@root/pages/Logout.jsx";
+import Layout from "@root/pages/Layout.jsx";
 
 export const PageRouter = () => {
     return (

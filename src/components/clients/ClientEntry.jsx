@@ -6,12 +6,12 @@ import { useState } from "react";
 //////////////////////////////////////////
 //Components
 //////////////////////////////////////////
-import ClientModal from "@/components/clients/ClientModal";
+import ClientModal from "@root/components/clients/ClientModal";
 
 //////////////////////////////////////////
 //Assets
 //////////////////////////////////////////
-import ProfileImg from "@/assets/icon/profileIcon.svg";
+import ProfileImg from "@root/assets/icon/profileIcon.svg";
 
 const ClientEntry = (props) => {
     const[showClientModal, setClientModal] = useState(false);

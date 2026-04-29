@@ -1,5 +1,5 @@
 import React from "react";
-import ProductCatalog from "@/components/products/ProductCataglog";
+import ProductCatalog from "@root/components/products/ProductCataglog";
 
 const Products = () => {
     return (

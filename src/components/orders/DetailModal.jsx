@@ -1,16 +1,16 @@
 //////////////////////////////////////////
 //Hooks
 //////////////////////////////////////////
-import useAlert from "@/hooks/useAlert";
+import useAlert from "@root/hooks/useAlert";
 import { useState } from "react";
-import useUser from "@/hooks/useUser";
+import useUser from "@root/hooks/useUser";
 import { useNavigate } from "react-router-dom";
 
 //////////////////////////////////////////
 //Components
 //////////////////////////////////////////
 import Modal from "react-bootstrap/Modal";
-import { NorthWindClient as api } from "@/components/api/NorthWindClient";
+import { NorthWindClient as api } from "@root/components/api/NorthWindClient";
 
 const DetailModal = (props) => {
 

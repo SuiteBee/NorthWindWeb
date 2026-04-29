@@ -3,24 +3,24 @@ import React from "react";
 //////////////////////////////////////////
 //Assets
 //////////////////////////////////////////
-import ProduceImg from "@/assets/products/apple.svg";
-import GrainsImg from "@/assets/products/bread.svg";
-import ConfectionsImg from "@/assets/products/donut.svg";
-import BeveragesImg from "@/assets/products/drink.svg";
-import CondimentsImg from "@/assets/products/jar.svg";
-import SeafoodImg from "@/assets/products/lobster.svg";
-import MeatImg from "@/assets/products/meat.svg";
-import DairyImg from "@/assets/products/milk.svg";
+import ProduceImg from "@root/assets/products/apple.svg";
+import GrainsImg from "@root/assets/products/bread.svg";
+import ConfectionsImg from "@root/assets/products/donut.svg";
+import BeveragesImg from "@root/assets/products/drink.svg";
+import CondimentsImg from "@root/assets/products/jar.svg";
+import SeafoodImg from "@root/assets/products/lobster.svg";
+import MeatImg from "@root/assets/products/meat.svg";
+import DairyImg from "@root/assets/products/milk.svg";
 
-import HomeIcon from "@/assets/icon/homeIcon.svg";
-import TaskIcon from "@/assets/icon/taskIcon.svg";
-import OrderIcon from "@/assets/icon/orderIcon.svg";
-import ClientsIcon from "@/assets/icon/clientsIcon.svg";
-import CatalogIcon from "@/assets/icon/productIcon.svg";
-import AboutIcon from "@/assets/icon/aboutIcon.svg";
-import LogoutIcon from "@/assets/icon/logoutIcon.svg";
+import HomeIcon from "@root/assets/icon/homeIcon.svg";
+import TaskIcon from "@root/assets/icon/taskIcon.svg";
+import OrderIcon from "@root/assets/icon/orderIcon.svg";
+import ClientsIcon from "@root/assets/icon/clientsIcon.svg";
+import CatalogIcon from "@root/assets/icon/productIcon.svg";
+import AboutIcon from "@root/assets/icon/aboutIcon.svg";
+import LogoutIcon from "@root/assets/icon/logoutIcon.svg";
 
-import ProfileImg from "@/assets/icon/profileIcon.svg";
+import ProfileImg from "@root/assets/icon/profileIcon.svg";
 
 const About = () => {
     return (

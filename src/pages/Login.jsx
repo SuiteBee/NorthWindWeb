@@ -6,12 +6,12 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import useUser from "@/hooks/useUser";
+import useUser from "@root/hooks/useUser";
 
 //////////////////////////////////////////
 //Components
 //////////////////////////////////////////
-import { NorthWindClient as api } from "@/components/api/NorthWindClient";
+import { NorthWindClient as api } from "@root/components/api/NorthWindClient";
 
 const Login = () => {
     const[errorMsg, setErrorMsg] = useState("");

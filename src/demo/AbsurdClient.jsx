@@ -1,6 +1,6 @@
 import { getReasonPhrase } from "http-status-codes";
-import { AuthManager } from "@/demo/CryptoDemo";
-import { DB } from "@/demo/AbsurdDb";
+import { AuthManager } from "@root/demo/CryptoDemo";
+import { DB } from "@root/demo/AbsurdDb";
 
 const API_BASE_URL = "http://localhost:5000/api/";
 
@@ -38,7 +38,13 @@ class MockAPI {
     }
 
     authenticate(url, data){
-        return AuthManager.authenticate(data.usr, data.pwd);
+        try {
+            return AuthManager.authenticate(data.usr, data.pwd);
+        } catch (response) {
+            const error = new Error(`HTTP Error: ${response.status} ${getReasonPhrase(response.status)}`);
+            error.status = response.status;
+            throw error;
+        }
     }
 
     get(url, tkn){

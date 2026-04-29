@@ -2,8 +2,8 @@
 //Hooks
 //////////////////////////////////////////
 import { useState, useEffect } from "react";
-import useAlert from "@/hooks/useAlert";
-import useUser from "@/hooks/useUser";
+import useAlert from "@root/hooks/useAlert";
+import useUser from "@root/hooks/useUser";
 import { useNavigate } from "react-router-dom";
 
 //////////////////////////////////////////
@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 //////////////////////////////////////////
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
-import { NorthWindClient as api } from "@/components/api/NorthWindClient";
+import { NorthWindClient as api } from "@root/components/api/NorthWindClient";
 
 const OrderForm_Shipping = (props) => {
     const[company, setCompany] = useState(props.client);

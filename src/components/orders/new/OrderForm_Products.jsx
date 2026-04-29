@@ -1,19 +1,19 @@
 //////////////////////////////////////////
 //Hooks
 //////////////////////////////////////////
-import useAlert from "@/hooks/useAlert";
+import useAlert from "@root/hooks/useAlert";
 import { useState, useEffect } from "react";
-import useUser from "@/hooks/useUser";
+import useUser from "@root/hooks/useUser";
 import { useNavigate } from "react-router-dom";
 
 //////////////////////////////////////////
 //Components
 //////////////////////////////////////////
-import { NorthWindClient as api } from "@/components/api/NorthWindClient";
-import OrderForm_ProductEntry from "@/components/orders/new/OrderForm_ProductEntry";
-import OrderForm_ProductCart from "@/components/orders/new/OrderForm_ProductCart";
+import { NorthWindClient as api } from "@root/components/api/NorthWindClient";
+import OrderForm_ProductEntry from "@root/components/orders/new/OrderForm_ProductEntry";
+import OrderForm_ProductCart from "@root/components/orders/new/OrderForm_ProductCart";
 import {nanoid} from "nanoid";
-import { moneyString } from "@/components/utility/DisplayHelpers";
+import { moneyString } from "@root/components/utility/DisplayHelpers";
 
 //////////////////////////////////////////
 //Bootstrap
@@ -23,8 +23,8 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 //////////////////////////////////////////
 //Assets
 //////////////////////////////////////////
-import CloseIcon from "@/assets/icon/closeIcon.svg";
-import CartIcon from "@/assets/icon/shopCartIcon.svg";
+import CloseIcon from "@root/assets/icon/closeIcon.svg";
+import CartIcon from "@root/assets/icon/shopCartIcon.svg";
 
 const OrderForm_Products = (props) => {
     const[allProducts, setAllProducts] = useState(null);

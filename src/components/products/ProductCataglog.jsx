@@ -1,18 +1,18 @@
 //////////////////////////////////////////
 //Hooks
 //////////////////////////////////////////
-import useAlert from "@/hooks/useAlert";
+import useAlert from "@root/hooks/useAlert";
 import { useState, useEffect } from "react";
-import useUser from "@/hooks/useUser";
+import useUser from "@root/hooks/useUser";
 import { useNavigate } from "react-router-dom";
 
 //////////////////////////////////////////
 //Components
 //////////////////////////////////////////
-import { NorthWindClient as api } from "@/components/api/NorthWindClient";
+import { NorthWindClient as api } from "@root/components/api/NorthWindClient";
 import ProductEntry from "./ProductEntry";
 import {nanoid} from "nanoid";
-import CategoryBtn from "@/components/utility/CategoryBtn";
+import CategoryBtn from "@root/components/utility/CategoryBtn";
 
 let categoryValues = [
     "Beverages", 

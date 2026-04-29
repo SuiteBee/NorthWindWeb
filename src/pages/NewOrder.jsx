@@ -6,10 +6,10 @@ import React, { useState, useEffect } from "react";
 //////////////////////////////////////////
 //Components
 //////////////////////////////////////////
-import OrderForm_ClientInfo from "@/components/orders/new/OrderForm_ClientInfo";
-import OrderForm_Products from "@/components/orders/new/OrderForm_Products";
-import OrderForm_Shipping from "@/components/orders/new/OrderForm_Shipping";
-import OrderForm_Submit from "@/components/orders/new/OrderForm_Submit";
+import OrderForm_ClientInfo from "@root/components/orders/new/OrderForm_ClientInfo";
+import OrderForm_Products from "@root/components/orders/new/OrderForm_Products";
+import OrderForm_Shipping from "@root/components/orders/new/OrderForm_Shipping";
+import OrderForm_Submit from "@root/components/orders/new/OrderForm_Submit";
 
 const breadcrumbArr = [
     "client",

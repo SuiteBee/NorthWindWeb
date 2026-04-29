@@ -1,19 +1,19 @@
 //////////////////////////////////////////
 //Components
 //////////////////////////////////////////
-import { moneyString, percString } from "@/components/utility/DisplayHelpers"
+import { moneyString, percString } from "@root/components/utility/DisplayHelpers"
 
 //////////////////////////////////////////
 //Assets
 //////////////////////////////////////////
-import ProduceImg from "@/assets/products/apple.svg";
-import GrainsImg from "@/assets/products/bread.svg";
-import ConfectionsImg from "@/assets/products/donut.svg";
-import BeveragesImg from "@/assets/products/drink.svg";
-import CondimentsImg from "@/assets/products/jar.svg";
-import SeafoodImg from "@/assets/products/lobster.svg";
-import MeatImg from "@/assets/products/meat.svg";
-import DairyImg from "@/assets/products/milk.svg";
+import ProduceImg from "@root/assets/products/apple.svg";
+import GrainsImg from "@root/assets/products/bread.svg";
+import ConfectionsImg from "@root/assets/products/donut.svg";
+import BeveragesImg from "@root/assets/products/drink.svg";
+import CondimentsImg from "@root/assets/products/jar.svg";
+import SeafoodImg from "@root/assets/products/lobster.svg";
+import MeatImg from "@root/assets/products/meat.svg";
+import DairyImg from "@root/assets/products/milk.svg";
 
 let productIcons = [
     { cat: "Produce", img: ProduceImg },

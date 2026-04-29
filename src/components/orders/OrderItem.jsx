@@ -6,10 +6,10 @@ import { useState } from "react";
 //////////////////////////////////////////
 //Components
 //////////////////////////////////////////
-import ProductItem from "@/components/orders/ProductItem";
+import ProductItem from "@root/components/orders/ProductItem";
 import {nanoid} from "nanoid";
-import { moneyString } from "@/components/utility/DisplayHelpers";
-import DetailModal from "@/components/orders/DetailModal";
+import { moneyString } from "@root/components/utility/DisplayHelpers";
+import DetailModal from "@root/components/orders/DetailModal";
 
 const OrderItem = (props) => {
 

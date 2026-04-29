@@ -2,17 +2,17 @@
 //Hooks
 //////////////////////////////////////////
 import React, { useState, useEffect } from "react";
-import useAlert from "@/hooks/useAlert";
+import useAlert from "@root/hooks/useAlert";
 import { useNavigate } from "react-router-dom";
-import useUser from "@/hooks/useUser";
+import useUser from "@root/hooks/useUser";
 
 //////////////////////////////////////////
 //Components
 //////////////////////////////////////////
-import { newClientRequest } from "@/components/api/models/NewClientRequest";
+import { newClientRequest } from "@root/components/api/models/NewClientRequest";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
-import { NorthWindClient as api } from "@/components/api/NorthWindClient";
+import { NorthWindClient as api } from "@root/components/api/NorthWindClient";
 
 const NewClient = () => {
 

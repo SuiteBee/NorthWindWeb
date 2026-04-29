@@ -1,4 +1,4 @@
-import { DB } from "@/demo/AbsurdDb";
+import { DB } from "@root/demo/AbsurdDb";
 
 //JS Version of Cryptography method in NorthWindAPI.NET
 class CryptoDemo {
@@ -41,18 +41,21 @@ class CryptoDemo {
     }
 
     async authenticate(usr, pwd) {
+
+        let auth =  {
+            authorizedUser: {
+                employeeId: -1,
+                userName: "",
+                firstName: "",
+                lastName: "",
+                roleId: -1,
+                roleName: "",
+            },
+            token: ""
+        }
+
         try {
-            let auth =  {
-                authorizedUser: {
-                    employeeId: -1,
-                    userName: "",
-                    firstName: "",
-                    lastName: "",
-                    roleId: -1,
-                    roleName: "",
-                },
-                token: ""
-            }
+            
             let result = await DB.query(`SELECT * FROM Auth WHERE Username = ${usr} LIMIT 1`);
 
             if(result == null) {
@@ -69,6 +72,8 @@ class CryptoDemo {
 
         } catch (e) {
             console.error("Error getting user:", e);
+            let response = { status: 401, message: e};
+            throw response;
         }
     }
 }

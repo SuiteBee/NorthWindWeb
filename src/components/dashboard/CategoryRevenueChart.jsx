@@ -1,7 +1,7 @@
 import React from "react";
 import { LineChart } from "@mui/x-charts/LineChart";
 import { axisClasses } from "@mui/x-charts/ChartsAxis";
-import { moneyString } from "@/components/utility/DisplayHelpers"
+import { moneyString } from "@root/components/utility/DisplayHelpers"
 
 const labels = {
     beverages: "Beverages (USD)",

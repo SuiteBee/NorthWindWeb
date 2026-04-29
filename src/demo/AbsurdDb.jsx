@@ -7,28 +7,44 @@ class AbsurdDb {
         let db = null;
 
         try {
-            // Initialize WASM
-            await init();
 
-            db = await Database.newDatabase("northwind.db");
+            try {
+                // Initialize WASM
+                await init();
+            } catch(e) {
+                console.error("Error init DB:", e);
+                throw e;
+            }
+            
+            try {
+                db = await Database.newDatabase("northwind.db");
 
-            const buffer = await fs.readFile("./Northwind_data.sqlite");
-            const toLoad = new Uint8Array(buffer);
+                const buffer = await fs.readFile("./Northwind_data.sqlite");
+                const toLoad = new Uint8Array(buffer);
 
-            await db.importFromFile(toLoad);
-            db = await Database.newDatabase("northwind.db");
-        } catch (e) {
-            console.error("Error loading DB:", e);
-        }
+                await db.importFromFile(toLoad);
+                db = await Database.newDatabase("northwind.db");
+            } catch (e) {
+                console.error("Error loading DB:", e);
+                throw e;
+            }
 
-        try {
-            const result = await db.execute(queryString);
-            const data = JSON.parse(result);
-            return data;
+            try {
+                const result = await db.execute(queryString);
+                const data = JSON.parse(result);
+                return data;
+            } catch (e) {
+                console.error("Error querying DB:", e);
+            } finally {
+                // Persist to IndexedDB
+                await db.sync();
+
+                // Finish
+                await db.close();
+            }
         } catch (e) {
             console.error("Error querying DB:", e);
-        } finally {
-            await db.close();
+            throw e;
         }
     }
 

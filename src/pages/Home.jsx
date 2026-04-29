@@ -2,20 +2,20 @@
 //Hooks
 //////////////////////////////////////////
 import React, { useState, useEffect } from "react";
-import useAlert from "@/hooks/useAlert";
-import useUser from "@/hooks/useUser";
+import useAlert from "@root/hooks/useAlert";
+import useUser from "@root/hooks/useUser";
 import { useNavigate } from "react-router-dom";
 
 //////////////////////////////////////////
 //Components
 //////////////////////////////////////////
-import { NorthWindClient as api } from "@/components/api/NorthWindClient";
-import DashboardTotals from "../components/dashboard/DashboardTotals";
-import RevenueChart from "../components/dashboard/RevenueChart";
-import CategoryChart from "../components/dashboard/CategoryChart";
-import CategoryRevenueChart from "../components/dashboard/CategoryRevenueChart";
-import PendingShipGauge from "../components/dashboard/PendingShipGauge";
-import CategoryHeatmap from "../components/dashboard/CategoryHeatmap";
+import { NorthWindClient as api } from "@root/components/api/NorthWindClient";
+import DashboardTotals from "@root/components/dashboard/DashboardTotals";
+import RevenueChart from "@root/components/dashboard/RevenueChart";
+import CategoryChart from "@root/components/dashboard/CategoryChart";
+import CategoryRevenueChart from "@root/components/dashboard/CategoryRevenueChart";
+import PendingShipGauge from "@root/components/dashboard/PendingShipGauge";
+import CategoryHeatmap from "@root/components/dashboard/CategoryHeatmap";
 
 const Home = () => {
 

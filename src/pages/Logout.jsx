@@ -4,7 +4,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import useUser from "@/hooks/useUser";
+import useUser from "@root/hooks/useUser";
 
 const Logout = () => {
     const [timeToLogout, setTimeToLogout] = useState(5);

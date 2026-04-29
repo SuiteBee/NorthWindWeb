@@ -1,5 +1,5 @@
 import React from "react";
-import ClientCatalog from "@/components/clients/ClientCatalog";
+import ClientCatalog from "@root/components/clients/ClientCatalog";
 
 const Customers = () => {
     return (

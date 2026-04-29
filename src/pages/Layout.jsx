@@ -1,27 +1,27 @@
 //////////////////////////////////////////
 //Hooks
 //////////////////////////////////////////
-import { useCallback, useState } from 'react';
-import { Outlet } from 'react-router-dom';
-import useUser from "@/hooks/useUser";
+import { useCallback, useState } from "react";
+import { Outlet } from "react-router-dom";
+import useUser from "@root/hooks/useUser";
 
 //////////////////////////////////////////
 //Assets
 //////////////////////////////////////////
-import ReactLogo from "@/assets/icon/reactlogo.png";
-import MenuIcon from "@/assets/icon/menu.svg";
-import CloseIcon from "@/assets/icon/closeIcon.svg";
+import ReactLogo from "@root/assets/icon/reactlogo.png";
+import MenuIcon from "@root/assets/icon/menu.svg";
+import CloseIcon from "@root/assets/icon/closeIcon.svg";
 
 //////////////////////////////////////////
 //Components
 //////////////////////////////////////////
-import { Navbar } from "@/components/navigation/Navbar";
-import AlertMsg from '@/components/messaging/AlertMsg';
+import { Navbar } from "@root/components/navigation/Navbar";
+import AlertMsg from "@root/components/messaging/AlertMsg";
 
 //////////////////////////////////////////
 //Bootstrap
 //////////////////////////////////////////
-import Offcanvas from 'react-bootstrap/Offcanvas';
+import Offcanvas from "react-bootstrap/Offcanvas";
 
 function Layout() {
   const { firstName, lastName, role } = useUser();

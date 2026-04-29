@@ -2,14 +2,14 @@
 //Hooks
 //////////////////////////////////////////
 import { useState, useEffect } from "react";
-import useAlert from "@/hooks/useAlert";
-import useUser from "@/hooks/useUser";
+import useAlert from "@root/hooks/useAlert";
+import useUser from "@root/hooks/useUser";
 import { useNavigate } from "react-router-dom";
 
 //////////////////////////////////////////
 //Components
 //////////////////////////////////////////
-import { NorthWindClient as api } from "@/components/api/NorthWindClient";
+import { NorthWindClient as api } from "@root/components/api/NorthWindClient";
 
 const OrderForm_ClientInfo = (props) => {
     const[companies, setCompanies] = useState(null);

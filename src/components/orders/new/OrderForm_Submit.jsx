@@ -1,18 +1,18 @@
 //////////////////////////////////////////
 //Hooks
 //////////////////////////////////////////
-import useAlert from "@/hooks/useAlert";
+import useAlert from "@root/hooks/useAlert";
 import { useNavigate } from "react-router-dom";
-import useUser from "@/hooks/useUser";
+import useUser from "@root/hooks/useUser";
 
 //////////////////////////////////////////
 //Components
 //////////////////////////////////////////
-import { NorthWindClient as api } from "@/components/api/NorthWindClient";
+import { NorthWindClient as api } from "@root/components/api/NorthWindClient";
 import {nanoid} from "nanoid";
-import OrderForm_SubmitCart from "@/components/orders/new/OrderForm_SubmitCart";
-import { moneyString } from "@/components/utility/DisplayHelpers";
-import { newOrderRequest } from "@/components/api/models/NewOrderRequest";
+import OrderForm_SubmitCart from "@root/components/orders/new/OrderForm_SubmitCart";
+import { moneyString } from "@root/components/utility/DisplayHelpers";
+import { newOrderRequest } from "@root/components/api/models/NewOrderRequest";
 
 const OrderForm_Submit = (props) => {
     const { setAlert, clearAlert } = useAlert();

@@ -1,18 +1,18 @@
 //////////////////////////////////////////
 //Hooks
 //////////////////////////////////////////
-import useAlert from "@/hooks/useAlert";
+import useAlert from "@root/hooks/useAlert";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import useUser from "@/hooks/useUser";
+import useUser from "@root/hooks/useUser";
 
 //////////////////////////////////////////
 //Components
 //////////////////////////////////////////
-import { NorthWindClient as api } from "@/components/api/NorthWindClient";
+import { NorthWindClient as api } from "@root/components/api/NorthWindClient";
 import ClientEntry from "./ClientEntry";
 import {nanoid} from "nanoid";
-import CategoryBtn from "@/components/utility/CategoryBtn";
+import CategoryBtn from "@root/components/utility/CategoryBtn";
 
 const ClientCatalog = () => {
     const[clients, setClients] = useState(null);
